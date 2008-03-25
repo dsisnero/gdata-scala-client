@@ -1,4 +1,4 @@
-#summary User's Guide
+#summary A short introduction to the Scala client library for GData
 = Introduction =
 
 Currently the GData Scala client library supports only the YouTube API. This document presents its main features.
@@ -35,4 +35,107 @@ Type in expressions to have them evaluated.
 Type :help for more information.
 
 scala>
+}}}
+
+Next we need to create a service object. This object will handle communication with the server, authentication, and provides handy methods for making queries.
+
+{{{
+scala> import com.google.gdata.youtube._
+import com.google.gdata.youtube._
+
+scala> val s = new YouTubeService("mycomp-myapp-1.0")
+}}}
+
+The argument gives the application name, using the recommended naming scheme: Company '-' Application '-' version. Next we make a query and check the result:
+
+{{{
+scala> for (e <- s.getVideos(YouTubeQuery.empty / "Comedy")) println(e.rating)
+Some(4.9/5 out of 5708)
+Some(4.94/5 out of 1130)
+Some(4.84/5 out of 6950)
+Some(4.94/5 out of 3206)
+Some(4.9/5 out of 10655)
+Some(4.87/5 out of 8797)
+Some(4.79/5 out of 11602)
+Some(4.87/5 out of 23730)
+Some(4.9/5 out of 17113)
+Some(4.85/5 out of 12878)
+Some(4.9/5 out of 22885)
+Some(4.89/5 out of 7997)
+Some(4.93/5 out of 3836)
+Some(4.92/5 out of 9611)
+Some(4.83/5 out of 8453)
+Some(4.87/5 out of 8078)
+Some(4.8/5 out of 11137)
+Some(4.92/5 out of 10542)
+Some(4.94/5 out of 2957)
+Some(4.9/5 out of 2414)
+Some(4.95/5 out of 2590)
+Some(4.91/5 out of 19807)
+Some(4.89/5 out of 18001)
+Some(4.91/5 out of 20595)
+Some(4.88/5 out of 2503)
+}}}
+
+Our query retrieves videos in the 'Comedy' category and prints their rating. Notice that feeds support for comprehensions and that rating elements, being optional, are wrapped into `Some` objects. By default, GData servers return the first 25 results, so let's make a more complex query to retrieve the next ten entries:
+{{{
+scala> for (e <- s.getVideos(YouTubeQuery.empty / "Comedy" startIndex(26) maxResults(10))) println(e.title)
+(Some(text),Frank Caliendo - Impressions)
+(Some(text),Jeff Dunham and Peanut part 2)
+(Some(text),This is why 11yr olds don't raid)
+(Some(text),Achmed - O terrorista morto (Legendado))
+(Some(text),Jeff Dunham (Spark Of Insanity) pt. 1)
+(Some(text),W?atcy Móch - Pozytywna wibracja)
+(Some(text),Dave Chappelle's Funny Ass Shit)
+(Some(text),Jim Carrey)
+(Some(text),Jeff Dunham and Peanut (Part 1))
+(Some(text),Horst Schlämmer bei "Wer wird Millionär" (4/4))
+}}}
+
+Queries have two components: a category search part (delimited by '/'), and a search query part, introduced by `suchThat`. Let's query the server for all videos in the Comedy category that match the word 'carlin' and don't match 'religion':
+{{{
+scala> for (e <- s.getVideos(YouTubeQuery.empty / "Comedy" suchThat Text("carlin") & !Text("religion"))) println(e.title)
+(Some(text),George Carlin - Modern Man)
+(Some(text),George Carlin - The American Dream)
+(Some(text),George Carlin on white people)
+(Some(text),George Carlin Airport Security)
+(Some(text),YOU HAVE NO RIGHTS - George Carlin)
+(Some(text),George Carlin - Voting)
+(Some(text),george carlin nails it)
+(Some(text),George Carlin: Again! - 1978 (Part 1 of 8))
+(Some(text),George Carlin - Saving the Planet)
+(Some(text),Dirty words)
+(Some(text),George Carlin describing the real world)
+(Some(text),George Carlin)
+(Some(text),George Carlin Talks About "Stuff")
+(Some(text),George Carlin on Language)
+(Some(text),George Carlin - Religião é besteira)
+(Some(text),George Carlin - A place for my stuff)
+(Some(text),George Carlin on Cigars)
+(Some(text),George Carlin - It's Bad For Ya!)
+(Some(text),George Carlin on "the American Dream")
+(Some(text),george carlin - soft language)
+(Some(text),George Carlin-Natural Disasters)
+(Some(text),Kitty Cats)
+(Some(text),Seven Words)
+(Some(text),George Carlin-some people are stupid)
+(Some(text),George Carlin - Why is Prostitution Illegal!?)
+}}}
+
+For a complete description of the query language, check the scala doc documentation.
+
+= Navigation =
+
+Video feeds are interconnected: there are links to comment, video responses, related videos, and so on. The service object has support for the most common links. Here's an example to get related videos of a given video:
+
+{{{
+scala> val feed = s.getVideos(YouTubeQuery.empty / "Comedy" suchThat Text("carlin") & Text("religion"))
+feed: s.videos.Feed =
+Authors: (YouTube,Some(http://www.youtube.com/),None)
+Id: http://gdata.youtube.com/feeds/api/videos
+Title: (Some(text),YouTube Videos matching query: carlin religion)
+Updated: 2008-03-25T16:11:45.601Z
+Entries: Entry:
+        Authors: (jvictorthegreat,Some(http://gdata.youtube.com/feeds/api/users/jvictorthegreat),None)
+        Id: http://gdata.youtube.com/feeds/api/videos/CF1-...
 }}}
