@@ -23,10 +23,13 @@ The library goes to great lengths to provide a type-safe layer on top of the und
  * all data is mutable. This allows for services where update is allowed.
  * serialization code is separated from data representation. Picklers (the name for serialization code) are usually found as values in the companion object of data classes.
 
+= Building the library =
+
+To build the library, check out the source code [http://code.google.com/p/gdata-scala-client/source/checkout] and `cd` into your working copy. Type `ant` to build the sources (make sure `SCALA_HOME` points to the installation directory of your [http://scala-lang.org Scala] distribution). Type `ant test` to build and run tests.
 
 = Making a video query =
 
-To get started, we will use the Scala interpreter. It has the advantage that it gives immediate feedback. Let's start the interpreter, giving the path to the library:
+To get started, we will use the Scala interpreter. It has the advantage that it gives immediate feedback. Let's start the interpreter, giving the path to the library (assuming the current directory is the project directory, and the library has been built using the default output directory, `classes/`:
 
 {{{
 $ scala -cp classes/
@@ -106,23 +109,10 @@ scala> for (e <- s.getVideos(YouTubeQuery.empty / "Comedy" suchThat Text("carlin
 (Some(text),George Carlin - Saving the Planet)
 (Some(text),Dirty words)
 (Some(text),George Carlin describing the real world)
-(Some(text),George Carlin)
-(Some(text),George Carlin Talks About "Stuff")
-(Some(text),George Carlin on Language)
-(Some(text),George Carlin - Religião é besteira)
-(Some(text),George Carlin - A place for my stuff)
-(Some(text),George Carlin on Cigars)
-(Some(text),George Carlin - It's Bad For Ya!)
-(Some(text),George Carlin on "the American Dream")
-(Some(text),george carlin - soft language)
-(Some(text),George Carlin-Natural Disasters)
-(Some(text),Kitty Cats)
-(Some(text),Seven Words)
-(Some(text),George Carlin-some people are stupid)
-(Some(text),George Carlin - Why is Prostitution Illegal!?)
+...
 }}}
 
-For a complete description of the query language, check the scala doc documentation.
+For a complete description of the query language, check the scala doc documentation on `Query` and `YouTubeQuery`.
 
 = Navigation =
 
@@ -139,3 +129,22 @@ Entries: Entry:
         Authors: (jvictorthegreat,Some(http://gdata.youtube.com/feeds/api/users/jvictorthegreat),None)
         Id: http://gdata.youtube.com/feeds/api/videos/CF1-...
 }}}
+
+Once we saved the video feed, we can choose an entry and navigate to its related videos. Let's assume we have at least one entry and we want to retrieve related videos to the first one:
+
+{{{scala> for (feed <- s.getRelatedVideos(feed.entries.head); e <- feed) println(e.title)
+(Some(text),George Carlin- Guys named Todd)
+(Some(text),O PAPA NO BRASIL)
+(Some(text),Discurso do Capeta)
+(Some(text),BRUTAL BOXING)
+(Some(text),Apometria e regressão - Rosana Beni (4 de 10))
+(Some(text),10 coisas para se pensar)
+(Some(text),Design Inteligente x Teoria da Evolução - Parte 10)
+(Some(text),Forum Espiritual Mundial)
+(Some(text),Gado marcado - gado feliz?)
+...
+}}}
+
+The for-comprehension above has to generators: the first one works on the optional feed (some videos might not have a related videos link), while the second iterates over all entries in the given feed.
+
+In a similar way, the service object provides access to user profiles, comment feeds or video responses. Check the complete scaladoc documentation on `YouTubeService` for more information.
