@@ -1,7 +1,9 @@
 #summary A short introduction to the Scala client library for GData
 = Introduction =
 
-Currently the GData Scala client library supports only the YouTube API. This document presents its main features.
+Currently the GData Scala client library supports only the [http://code.google.com/apis/youtube/reference.html YouTube API]. This document presents its main features.
+
+*This document is still under development.*
 
 = Installation =
 
@@ -132,7 +134,8 @@ Entries: Entry:
 
 Once we saved the video feed, we can choose an entry and navigate to its related videos. Let's assume we have at least one entry and we want to retrieve related videos to the first one:
 
-{{{scala> for (feed <- s.getRelatedVideos(feed.entries.head); e <- feed) println(e.title)
+{{{
+scala> for (feed <- s.getRelatedVideos(feed.entries.head); e <- feed) println(e.title)
 (Some(text),George Carlin- Guys named Todd)
 (Some(text),O PAPA NO BRASIL)
 (Some(text),Discurso do Capeta)
