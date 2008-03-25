@@ -24,6 +24,7 @@ The library goes to great lengths to provide a type-safe layer on top of the und
  * whenever a default value is specified for an element or attribute, such data is represented as a value of the right type, and the default value is filled in when parsing.
  * all data is mutable. This allows for services where update is allowed.
  * serialization code is separated from data representation. Picklers (the name for serialization code) are usually found as values in the companion object of data classes.
+ * errors in the HTTP transport layer are signaled as exceptions.
 
 = Building the library =
 
@@ -151,3 +152,19 @@ scala> for (feed <- s.getRelatedVideos(feed.entries.head); e <- feed) println(e.
 The for-comprehension above has to generators: the first one works on the optional feed (some videos might not have a related videos link), while the second iterates over all entries in the given feed.
 
 In a similar way, the service object provides access to user profiles, comment feeds or video responses. Check the complete scaladoc documentation on `YouTubeService` for more information.
+
+= Raw queries =
+
+To retrieve a feed from an arbitrary URL, use the `getVideos` method on the service object passing it the URL directly. The following call retrieves the top rated videos:
+
+{{{
+scala> for (e <- s.getVideos("http://gdata.youtube.com/feeds/api/standardfeeds/top_rated")) println(e.title)
+(Some(text),Peanut - Video #3                 Part 3)
+(Some(text),Joyful Joyful - Sister Act 2)
+(Some(text),Head Tracking for Desktop VR Displays using the WiiRemote)
+(Some(text),Imogen Heap - Just For Now (live at Studio 11 103.1FM))
+(Some(text),Arby 'n' the Chief: Episode 3 - "Attitude")
+(Some(text),The3tenors-Carreras-Domingo-Pavarotti--Nessun Dorma)
+(Some(text),Jeff Dunham and Peanut part 2)
+...
+}}}
