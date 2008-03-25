@@ -1,0 +1,38 @@
+#summary User's Guide
+= Introduction =
+
+Currently the GData Scala client library supports only the YouTube API. This document presents its main features.
+
+= Installation =
+
+The Scala client library has the following dependencies:
+ * A working [http://scala-lang.org Scala] installation (at least version 2.7.0-RC2).
+
+If you intend to build from sources, you also need:
+ * [http://ant.apache.org ant].
+ * [http://www.junit.org/ junit] and [http://code.google.com/p/gdata-scala-client xmldiff] for running unit tests (found under lib/ in the root project directory).
+ * [http://emma.sourceforge.net/ emma] for code coverage (found under lib/ in the root project directory).
+
+= Library Overview =
+
+The Scala client library uses an approach similar to combinator parsing for handling XML serialization. See DevelopersGuide for more details on the implementation. The XML serialization core is found in package `com.google.xml.combinators`, while the GData definitions are in `com.google.gdata.data`. Supported services have specific data under their own package under `com.google.gdata`. Currently there is only youtube: `com.google.gdata.youtube`.
+
+The library goes to great lengths to provide a type-safe layer on top of the underlying XML protocol. Whenever possible, Scala data types are used to represent the underlying data. Here is a high level view of the conventions followed throughout the library:
+ * whenever a piece of data is optional, it is represented as an `Option[T]`.
+ * whenever a default value is specified for an element or attribute, such data is represented as a value of the right type, and the default value is filled in when parsing.
+ * all data is mutable. This allows for services where update is allowed.
+ * serialization code is separated from data representation. Picklers (the name for serialization code) are usually found as values in the companion object of data classes.
+
+
+= Making a video query =
+
+To get started, we will use the Scala interpreter. It has the advantage that it gives immediate feedback. Let's start the interpreter, giving the path to the library:
+
+{{{
+$ scala -cp classes/
+Welcome to Scala version 2.7.0-final (Java HotSpot(TM) Server VM, Java 1.5.0_07).
+Type in expressions to have them evaluated.
+Type :help for more information.
+
+scala>
+}}}
