@@ -98,9 +98,9 @@ scala> for (e <- s.getVideos(YouTubeQuery.empty / "Comedy" startIndex(26) maxRes
 (Some(text),Horst Schlämmer bei "Wer wird Millionär" (4/4))
 }}}
 
-Queries have two components: a category search part (delimited by '/'), and a search query part, introduced by `suchThat`. Let's query the server for all videos in the Comedy category that match the word 'carlin' and don't match 'religion':
+Queries have two components: a category search part (delimited by '/'), and a search query part, introduced by `matching`. Let's query the server for all videos in the Comedy category that match the word 'carlin' and don't match 'religion':
 {{{
-scala> for (e <- s.getVideos(YouTubeQuery.empty / "Comedy" suchThat Text("carlin") & !Text("religion"))) println(e.title)
+scala> for (e <- s.getVideos(YouTubeQuery.empty / "Comedy" matching Text("carlin") & !Text("religion"))) println(e.title)
 (Some(text),George Carlin - Modern Man)
 (Some(text),George Carlin - The American Dream)
 (Some(text),George Carlin on white people)
@@ -122,7 +122,7 @@ For a complete description of the query language, check the scala doc documentat
 Video feeds are interconnected: there are links to comment, video responses, related videos, and so on. The service object has support for the most common links. Here's an example to get related videos of a given video:
 
 {{{
-scala> val feed = s.getVideos(YouTubeQuery.empty / "Comedy" suchThat Text("carlin") & Text("religion"))
+scala> val feed = s.getVideos(YouTubeQuery.empty / "Comedy" matching Text("carlin") & Text("religion"))
 feed: s.videos.Feed =
 Authors: (YouTube,Some(http://www.youtube.com/),None)
 Id: http://gdata.youtube.com/feeds/api/videos
