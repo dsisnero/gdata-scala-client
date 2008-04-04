@@ -16,15 +16,12 @@ The Scala client library uses an approach similar to [http://www.cs.kuleuven.be/
   * `com.google.gdata.client` contains GData HTTP connection and authentication handling.
   * `com.google.gdata.<servicename>` contains specific data classes and services for each implemented service, like Calendar or YouTube.
 
-Supported services have specific data under their own package under `com.google.gdata`. Currently there is only youtube: `com.google.gdata.youtube` and calendar: `com.google.gdata.calendar`.
-
 The library goes to great lengths to provide a type-safe layer on top of the underlying XML protocol. Whenever possible, Scala data types are used to represent the underlying data. Here is a high level view of the conventions followed throughout the library:
  * whenever a piece of data is optional, it is represented as an `Option[T]`.
  * whenever a default value is specified for an element or attribute, such data is represented as a value of the right type, and the default value is filled in when parsing.
- * all data is mutable. This allows for services where update is allowed.
+ * all data is mutable. This is in order to support update (although some services are read-only)
  * serialization code is separated from data representation. Picklers (the name for serialization code) are usually found as values in the companion object of data classes.
  * errors in the HTTP transport layer are signaled as exceptions.
-
 
 = XML Pickling Combinators =
 
