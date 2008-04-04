@@ -1,7 +1,7 @@
 #summary A short introduction to the Scala client library for GData
 = Introduction =
 
-Currently the GData Scala client library supports only the [http://code.google.com/apis/youtube/reference.html YouTube API]. This document presents its main features.
+Currently the GData Scala client library supports the [http://code.google.com/apis/youtube/reference.html YouTube API] and [http://code.google.com/apis/calendar/reference.html Calendar API]. This document presents its main features.
 
 *This document is still under development.*
 
@@ -17,7 +17,7 @@ If you intend to build from sources, you also need:
 
 = Library Overview =
 
-The Scala client library uses an approach similar to combinator parsing for handling XML serialization. See DevelopersGuide for more details on the implementation. The XML serialization core is found in package `com.google.xml.combinators`, while the GData definitions are in `com.google.gdata.data`. Supported services have specific data under their own package under `com.google.gdata`. Currently there is only youtube: `com.google.gdata.youtube`.
+The Scala client library uses an approach similar to combinator parsing for handling XML serialization. See DevelopersGuide for more details on the implementation. The XML serialization core is found in package `com.google.xml.combinators`, while the GData definitions are in `com.google.gdata.data`. Supported services have specific data under their own package under `com.google.gdata`. Currently there is only youtube: `com.google.gdata.youtube` and calendar: `com.google.gdata.calendar`.
 
 The library goes to great lengths to provide a type-safe layer on top of the underlying XML protocol. Whenever possible, Scala data types are used to represent the underlying data. Here is a high level view of the conventions followed throughout the library:
  * whenever a piece of data is optional, it is represented as an `Option[T]`.
