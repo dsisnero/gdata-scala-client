@@ -3,9 +3,28 @@
 
 = Introduction =
 
-Add your content here.
+This document is intended to give a thorough view of the design and implementation of the GData Scala client library. If you want to know more about how this library works, or contribute to the project, this is the starting point.
 
 = Library Overview =
+
+The Scala client library uses an approach similar to [http://www.cs.kuleuven.be/publicaties/rapporten/cw/CW491.pdf combinator parsing] for handling XML serialization. Along with the core classes for XML serialization (called _picklers_), there are classes that model the various data used by the GData protocol (like feeds, contacts, calendar entries, etc) and HTTP connection classes. The library is split in packages along the following lines:
+  * `com.google.xml.combinators` The XML serialization core
+  * `com.google.gdata.data` GData common classes, including the [http://atomenabled.org/developers/syndication/atom-format-spec.php Atom protocol] classes.
+    * `kinds` contains Google [http://code.google.com/apis/gdata/elements.html kinds] classes (common data classes used by several Google services).
+    * `media` contains [http://search.yahoo.com/mrss Media Rss] classes (used by the YouTube service).
+    * `util` contains various common classes like `DateTime` or `NormalPlayTime`
+  * `com.google.gdata.client` contains GData HTTP connection and authentication handling.
+  * `com.google.gdata.<servicename>` contains specific data classes and services for each implemented service, like Calendar or YouTube.
+
+Supported services have specific data under their own package under `com.google.gdata`. Currently there is only youtube: `com.google.gdata.youtube` and calendar: `com.google.gdata.calendar`.
+
+The library goes to great lengths to provide a type-safe layer on top of the underlying XML protocol. Whenever possible, Scala data types are used to represent the underlying data. Here is a high level view of the conventions followed throughout the library:
+ * whenever a piece of data is optional, it is represented as an `Option[T]`.
+ * whenever a default value is specified for an element or attribute, such data is represented as a value of the right type, and the default value is filled in when parsing.
+ * all data is mutable. This allows for services where update is allowed.
+ * serialization code is separated from data representation. Picklers (the name for serialization code) are usually found as values in the companion object of data classes.
+ * errors in the HTTP transport layer are signaled as exceptions.
+
 
 = XML Pickling Combinators =
 
