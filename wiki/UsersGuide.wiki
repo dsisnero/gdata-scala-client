@@ -1,7 +1,9 @@
 #summary A short introduction to the Scala client library for GData
 = Introduction =
 
-Currently the GData Scala client library supports the [http://code.google.com/apis/youtube/reference.html YouTube API] and [http://code.google.com/apis/calendar/reference.html Calendar API]. This document presents its main features.
+The GData Scala client library is an implementation of the [http://code.google.com/apis/gdata/index.html GData API protocol] used by Google to expose its services programmatically. It makes it easy to retrieve and modify data exposed by services like [http://code.google.com/apis/calendar/ Calendar] and [http://code.google.com/apis/youtube/overview.html You Tube], without worrying about the underlying XML representation or how queries are made.
+
+Currently the GData Scala client library supports the [http://code.google.com/apis/youtube/reference.html YouTube API] and [http://code.google.com/apis/calendar/reference.html Calendar API]. This document shows how to connect to a service, make queries and go through the results.
 
 *This document is still under development.*
 
