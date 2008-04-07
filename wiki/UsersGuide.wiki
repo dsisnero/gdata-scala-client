@@ -13,7 +13,26 @@ The Scala client library has the following dependencies:
 If you intend to build from sources, you also need:
  * [http://ant.apache.org ant].
  * [http://www.junit.org/ junit] and [http://code.google.com/p/gdata-scala-client xmldiff] for running unit tests (found under lib/ in the root project directory).
- * [http://emma.sourceforge.net/ emma] for code coverage (found under lib/ in the root project directory).
+ * [http://emma.sourceforge.net/ emma] for code coverage.
+
+== Building ==
+
+Building the library is straight-forward. Make sure the environement variable `SCALA_HOME` points to your Scala installation. For most users, that's the only configuration needed:
+
+{{{
+ant build
+}}}
+should build the library in the default output directory (`classes/`). You can change the defaults in `build.properties`.
+
+== Test coverage ==
+
+If you want to run the tests with test coverage, you need to install [http://emma.sourceforge.net/ emma] and then update your `build.properties` file to point to the right location. Then, running
+
+{{{
+ant coverage
+}}}
+
+runs the tests and generates an html report with coverage information.
 
 = Library Overview =
 
@@ -104,14 +123,6 @@ scala> for (e <- s.getVideos(YouTubeQuery.empty / "Comedy" matching Text("carlin
 (Some(text),George Carlin - Modern Man)
 (Some(text),George Carlin - The American Dream)
 (Some(text),George Carlin on white people)
-(Some(text),George Carlin Airport Security)
-(Some(text),YOU HAVE NO RIGHTS - George Carlin)
-(Some(text),George Carlin - Voting)
-(Some(text),george carlin nails it)
-(Some(text),George Carlin: Again! - 1978 (Part 1 of 8))
-(Some(text),George Carlin - Saving the Planet)
-(Some(text),Dirty words)
-(Some(text),George Carlin describing the real world)
 ...
 }}}
 
@@ -142,10 +153,6 @@ scala> for (feed <- s.getRelatedVideos(feed.entries.head); e <- feed) println(e.
 (Some(text),Discurso do Capeta)
 (Some(text),BRUTAL BOXING)
 (Some(text),Apometria e regressão - Rosana Beni (4 de 10))
-(Some(text),10 coisas para se pensar)
-(Some(text),Design Inteligente x Teoria da Evolução - Parte 10)
-(Some(text),Forum Espiritual Mundial)
-(Some(text),Gado marcado - gado feliz?)
 ...
 }}}
 
