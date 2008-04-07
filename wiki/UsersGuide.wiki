@@ -45,10 +45,6 @@ The library goes to great lengths to provide a type-safe layer on top of the und
  * serialization code is separated from data representation. Picklers (the name for serialization code) are usually found as values in the companion object of data classes.
  * errors in the HTTP transport layer are signaled as exceptions.
 
-= Building the library =
-
-To build the library, check out the source code [http://code.google.com/p/gdata-scala-client/source/checkout] and `cd` into your working copy. Type `ant` to build the sources (make sure `SCALA_HOME` points to the installation directory of your [http://scala-lang.org Scala] distribution). Type `ant test` to build and run tests.
-
 = Making a video query =
 
 To get started, we will use the Scala interpreter. It has the advantage that it gives immediate feedback. Let's start the interpreter, giving the path to the library (assuming the current directory is the project directory, and the library has been built using the default output directory, `classes/`:
@@ -175,3 +171,43 @@ scala> for (e <- s.getVideos("http://gdata.youtube.com/feeds/api/standardfeeds/t
 (Some(text),Jeff Dunham and Peanut part 2)
 ...
 }}}
+
+= How to use the library on not-yet-supported services =
+
+Currently only YouTube and Calendar API are supported out-of-the box. However, the library can be used to access services for which the library lacks data binders. The GData protocol is based on [http://atomenabled.org/developers/syndication/atom-format-spec.php Atom], and you can use the generic atom feed picklers for accessing new services. All extension elements can be accessed as XML elements in the parsed feeds and entries.
+
+The following example shows how to access the [http://code.google.com/apis/contacts/ Contacts Data API] using the generic classes:
+
+{{{
+scala> val s = new Service("comp-test-1.0", "cp") {}
+s: com.google.gdata.Service = $anon$1@1d281f1
+
+scala> s.setUserCredentials("username@gmail.com", "secretthang")
+
+scala> val atomFeed = new StdAtomFeed
+atomFeed: com.google.gdata.data.StdAtomFeed = com.google.gdata.data.StdAtomFeed@e746a2
+}}}
+
+First we instantiate a `Service` object. This time we need to supply a second parameter which is the service name. This name is important for services that require authentication, and for Contacts API the name is `cp`. You can find a list of Google service names [http://code.google.com/support/bin/answer.py?answer=62712&topic=10433 here]. Since all Contacts feeds are private, we need to specify a username and password. Next step is to instantiate a standard Atom feed object. This object provides the types and picklers for atom feeds.
+
+Next we make a request and print the results:
+{{{
+scala> val f = s.query("http://www.google.com/m8/feeds/contacts/username%40gmail.com/base", atomFeed.feedPickler)
+scala> for (e <- f) println(e.title)
+(Some(text),Gabi Werren)
+(Some(text),Patricia Besson)
+(Some(text),Diana Badila)
+(Some(text),Iulian Dragos)
+(Some(text),Martin Odersky)
+(Some(text),Carla Neumann)
+...
+}}}
+
+We have successfully retrieved a feed of contact entries. To make sure the extra data is still present, we can print the unparsed XML elements in the first entry:
+
+{{{
+ println(f.entries.head.store)
+LinearStore(, <gd:email primary="true" address="xxxx@xxxxx.com" rel="http://schemas.google.com/g/2005#other" xmlns:gd="http://schemas.google.com/g/2005" xmlns:gContact="http://schemas.google.com/contact/2008" xmlns:openSearch="http://a9.com/-/spec/opensearchrss/1.0/" xmlns="http://www.w3.org/2005/Atom"></gd:email>,  xmlns:gd="http://schemas.google.com/g/2005" xmlns:gContact="http://schemas.google.com/contact/2008" xmlns:openSearch="http://a9.com/-/spec/opensearchrss/1.0/" xmlns="http://www.w3.org/2005/Atom")
+}}}
+
+To learn more about how to write your own picklers and extend existing feeds and entries, check the DevelopersGuide.
