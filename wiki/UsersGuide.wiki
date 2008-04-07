@@ -207,7 +207,13 @@ We have successfully retrieved a feed of contact entries. To make sure the extra
 
 {{{
  println(f.entries.head.store)
-LinearStore(, <gd:email primary="true" address="xxxx@xxxxx.com" rel="http://schemas.google.com/g/2005#other" xmlns:gd="http://schemas.google.com/g/2005" xmlns:gContact="http://schemas.google.com/contact/2008" xmlns:openSearch="http://a9.com/-/spec/opensearchrss/1.0/" xmlns="http://www.w3.org/2005/Atom"></gd:email>,  xmlns:gd="http://schemas.google.com/g/2005" xmlns:gContact="http://schemas.google.com/contact/2008" xmlns:openSearch="http://a9.com/-/spec/opensearchrss/1.0/" xmlns="http://www.w3.org/2005/Atom")
+LinearStore(, <gd:email primary="true" address="xxxx@xxxxx.com" 
+rel="http://schemas.google.com/g/2005#other"
+xmlns:gd="http://schemas.google.com/g/2005" 
+xmlns:gContact="http://schemas.google.com/contact/2008" 
+xmlns:openSearch="http://a9.com/-/spec/opensearchrss/1.0/" 
+xmlns="http://www.w3.org/2005/Atom"></gd:email>,  
+...
 }}}
 
 To learn more about how to write your own picklers and extend existing feeds and entries, check the DevelopersGuide.
