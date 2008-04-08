@@ -9,15 +9,16 @@ Currently the GData Scala client library supports the [http://code.google.com/ap
 
 = Installation =
 
-The Scala client library has the following dependencies:
- * A working [http://scala-lang.org Scala] installation newer than 2.7.0-final. That means a [http://www.scala-lang.org/downloads/distrib/files/nightly/ nightly build], until a bugfix release is issued to deal with [https://lampsvn.epfl.ch/trac/scala/ticket/632 this bug].
+GData Scala client is distributed as a jar file. As such, no special installation steps are needed. Just make sure your classpath contains the Scala standard library. If you don't intend to build from sources you can skip the following section.
+
+'''Note: The Scala client library needs a working [http://scala-lang.org Scala] installation newer than 2.7.0-final. That means a [http://www.scala-lang.org/downloads/distrib/files/nightly/ nightly build], until a bugfix release is issued to deal with [https://lampsvn.epfl.ch/trac/scala/ticket/632 this bug].'''
+
+== Building ==
 
 If you intend to build from sources, you also need:
  * [http://ant.apache.org ant].
  * [http://www.junit.org/ junit] and [http://code.google.com/p/gdata-scala-client xmldiff] for running unit tests (found under lib/ in the root project directory).
  * [http://emma.sourceforge.net/ emma] for code coverage.
-
-== Building ==
 
 Building the library is straight-forward. Make sure the environement variable `SCALA_HOME` points to your Scala installation. For most users, that's the only configuration needed:
 
