@@ -47,14 +47,14 @@ Throughout this guide we will use the Scala interpreter, as the immediate feedba
 
 {{{
 $ scala -cp classes/
-Welcome to Scala version 2.7.0-final (Java HotSpot(TM) Server VM, Java 1.5.0_07).
+Welcome to Scala version 2.7.0.r14476-b20080402152010 (Java HotSpot(TM) Server VM, Java 1.5.0_07).
 Type in expressions to have them evaluated.
 Type :help for more information.
 
 scala>
 }}}
 
-The first thing we need is a service object. This object handles communication with the server, authentication, and provides convenient methods for making queries. Each supported service has a specific service class. The first example involves You``Tube, so we instantiate a You``Tube``Service class giving our application name. We follow Google's recommendation to use names containing the company name, application name and version, separated by '-'.
+The first thing we need is a service object. This object handles communication with the server, authentication, and provides convenient methods for making queries. Each supported service has a specific service class. The first example involves !YouTube, so we instantiate a !YouTubeService class giving our application name. We follow Google's recommendation to use names containing the company name, application name and version, separated by '-'.
 
 {{{
 scala> import com.google.gdata.youtube._
@@ -96,7 +96,7 @@ Some(4.91/5 out of 20595)
 Some(4.88/5 out of 2503)
 }}}
 
-All queries to You``Tube go through the `getVideos` method which takes a query object. Queries are created starting with an empty query, and adding categories, search terms and modifiers.
+All queries to !YouTube go through the `getVideos` method which takes a query object. Queries are created starting with an empty query, and adding categories, search terms and modifiers.
 
 Notice that feeds support for comprehensions and that rating elements, being optional, are wrapped into `Some` objects. By default, GData servers return the first 25 results, so let's make a more complex query to retrieve the next ten entries:
 
@@ -107,11 +107,11 @@ scala> for (e <- s.getVideos(YouTubeQuery.empty / "Comedy" startIndex(26) maxRes
 (Some(text),This is why 11yr olds don't raid)
 (Some(text),Achmed - O terrorista morto (Legendado))
 (Some(text),Jeff Dunham (Spark Of Insanity) pt. 1)
-(Some(text),W?atcy Móch - Pozytywna wibracja)
+(Some(text),Watcy Masch - Pozytywna wibracja)
 (Some(text),Dave Chappelle's Funny Ass Shit)
 (Some(text),Jim Carrey)
 (Some(text),Jeff Dunham and Peanut (Part 1))
-(Some(text),Horst Schlämmer bei "Wer wird Millionär" (4/4))
+(Some(text),Horst Schlammer bei "Wer wird Millionaer" (4/4))
 }}}
 
 The titles that were printed look a bit funny. The first part (the optional 'text') is giving the type of contents of each title. Valid values are `text`, `html` and `xhtml`. For more information, see the scaladoc pages.
@@ -130,7 +130,7 @@ Search terms are introduced by `Text` and can be connected by `&` and `|`, havin
 
 == Navigation ==
 
-What we have seen until now applies to queries in general, regardless of the specific service we are using. In this section we look at the way You``Tube feeds are connected. For more detailed information check the [http://code.google.com/apis/youtube/reference.html#Navigating_between_feeds YouTube Reference].
+What we have seen until now applies to queries in general, regardless of the specific service we are using. In this section we look at the way !YouTube feeds are connected. For more detailed information check the [http://code.google.com/apis/youtube/reference.html#Navigating_between_feeds YouTube Reference].
 
 Video feeds have links to comments, video responses or related videos. The service object has support for the most common links. The following example gets related videos of a given video:
 
@@ -156,7 +156,7 @@ scala> for (feed <- s.getRelatedVideos(feed.entries.head);
 (Some(text),O PAPA NO BRASIL)
 (Some(text),Discurso do Capeta)
 (Some(text),BRUTAL BOXING)
-(Some(text),Apometria e regressão - Rosana Beni (4 de 10))
+(Some(text),Apometria e regresso - Rosana Beni (4 de 10))
 ...
 }}}
 
@@ -180,9 +180,89 @@ scala> for (e <- s.getVideos("http://gdata.youtube.com/feeds/api/standardfeeds/t
 ...
 }}}
 
+= Feed updates =
+
+Most Google services allow an authenticated user to add, update or delete feed entries. For the next examples we'll use the Calendar API to manipulate event entries.
+
+We start with a service object for Calendar. This time we need to authenticate:
+
+{{{
+scala> val s = new CalendarService("ACME-calor-1.0")
+s: com.google.gdata.calendar.CalendarService = com.google.gdata.calendar.CalendarService@281902
+
+scala> s.setUserCredentials("username@gmail.com", "secretthang")
+}}}
+
+If something went wrong during authentication, an exception is thrown. Assuming the username and password are correct and Google accounts didn't issue a [http://code.google.com/apis/accounts/docs/AuthForInstalledApps.html#Using Captcha challenge], we have a service object ready to handle requests.
+
+Let's create a calendar entry for a football training session:
+
+{{{
+scala> import s.eventsFeed._
+scala> val entry = new EventEntry("Football with Ronaldo", "Training session", 
+     | DateTime(2008, 4, 9, 21, 0, 0, None, 0), DateTime(2008, 4, 9, 22, 30, 0, None, 0))
+entry: s.eventsFeed.EventEntry = 
+Entry:
+	Authors: 
+	Id: None
+	Title: (None,Football with Ronaldo)
+	Updated: 2008-04-09T12:05:05.456Z
+}}}
+
+The import statement is needed to get access to `EventEntries`, as they are defined in the `eventsFeed` of our service object. The event we just created has no `id` and `author`, as these fields will be filled for us by the server. Next we can add the event to the users default calendar:
+
+{{{
+scala> var e1 = s.addEvent(new java.net.URL(CalendarService.FEEDS 
+        + "/" + "default" 
+        + "/" + CalendarService.PRIVATE
+        + "/" + CalendarService.FULL), entry)
+e1: s.eventsFeed.Entry = 
+Entry:
+	Authors: (Iulian Test Dragos,None,Some(username@gmail.com))
+	Id: Some(http://www.google.com/calendar/feeds/default/private/full/v5nn3vntdomnetj4kl1e6ag2q0)
+	Title: (Some(text),Football with Ronaldo)
+	Updated: 2008-04-09T12:06:14.000Z
+}}}
+
+The server replies with an complete entry, most notably with an `id` and `author` fields. Suppose we add a location to this event:
+
+{{{
+scala> e1.locations = List(new kinds.Where("Old Trafford", kinds.Schemas.EVENT))
+
+scala> s.updateEvent(e1)
+res4: s.eventsFeed.Entry = 
+Entry:
+	Authors: (Iulian Test Dragos,None,Some(username@gmail.com))
+	Id: Some(http://www.google.com/calendar/feeds/default/private/full/lv7hm3q5f2f10n99ae1pr1i4uc)
+	Title: (Some(text),Football with Ronaldo)
+	Updated: 2008-04-09T12:46:14.000Z
+}}}
+
+You can check that the event has been updated by logging in your Google Calendar account. Deleting the event is as simple:
+
+{{{
+scala>  s.delete(new URL(e1.linkHref("edit").get))
+com.google.gdata.client.ConflictException: Specified version number doesn't match resource's latest version number.
+	at com.google.gdata.client.GDataRequest.handleErrorCode(GDataRequest.scala:110)
+	at com.google.gdata.client.GDataRequest.connect(GDataRequest.scala:95)
+	at com.google.gdata.Service.delete(Service.scala:162)
+	at .<init>(<console>:16)
+	at .<clinit>(<console>)
+	at RequestR...
+}}}
+
+Not so fast! What happened? We have taken the `edit` link from the entry and passed it to the `delete` method. The server complained that the server's version number is different from what we provided. Tracing back what we did, notice how we updated the event, and then tried to delete it _using the old entry id_. We should have used the entry returned by the server after our update. Let's try this again, this time using the interpreter-generated name for the updated entry:
+
+{{{
+scala> s.delete(new URL(res4.linkHref("edit").get))
+
+}}}
+
+This time the operation succeeded. Check that it is gone using the web interface.
+
 = How to use the library on not-yet-supported services =
 
-Currently only You``Tube and Calendar API are supported out-of-the box. However, the library can be used to access services for which the library lacks data binders. The GData protocol is based on [http://atomenabled.org/developers/syndication/atom-format-spec.php Atom], and you can use the generic atom feed picklers for accessing new services. All extension elements can be accessed as XML elements in the parsed feeds and entries.
+Currently only !YouTube and Calendar API are supported out-of-the box. However, the library can be used to access services for which the library lacks data binders. The GData protocol is based on [http://atomenabled.org/developers/syndication/atom-format-spec.php Atom], and you can use the generic atom feed picklers for accessing new services. All extension elements can be accessed as XML elements in the parsed feeds and entries.
 
 The following example shows how to access the [http://code.google.com/apis/contacts/ Contacts Data API] using the generic classes:
 
