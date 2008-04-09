@@ -8,6 +8,8 @@ implementation of the GData Scala client library. If you want to know
 more about how this library works, or contribute to the project, this
 is the starting point.
 
+_Test_
+
 = Installation =
 
 _Note: The Scala client library needs a working [http://scala-lang.org Scala] installation newer than 2.7.0-final. That means a [http://www.scala-lang.org/downloads/distrib/files/nightly/ nightly build], until a bugfix release is issued to deal with [https://lampsvn.epfl.ch/trac/scala/ticket/632 this bug]._
