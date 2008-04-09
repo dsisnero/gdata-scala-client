@@ -1,9 +1,10 @@
 #summary A short introduction to the Scala client library for GData
+
 = Introduction =
 
 The GData Scala client library is an implementation of the [http://code.google.com/apis/gdata/index.html GData API protocol] used by Google to expose its services programmatically. It makes it easy to retrieve and modify data exposed by services like [http://code.google.com/apis/calendar/ Calendar] and [http://code.google.com/apis/youtube/overview.html You Tube], without worrying about the underlying XML representation or how queries are made.
 
-Currently the GData Scala client library supports the [http://code.google.com/apis/youtube/reference.html YouTube API] and [http://code.google.com/apis/calendar/reference.html Calendar API]. This document shows how to connect to a service, make queries and go through the results.
+Currently the GData Scala client library supports the [http://code.google.com/apis/youtube/reference.html YouTube API] and the [http://code.google.com/apis/calendar/reference.html Calendar API]. This document shows how to connect to a service, make queries and go through the results.
 
 *This document is still under development.*
 
@@ -18,7 +19,7 @@ _Note: The Scala client library needs a working [http://scala-lang.org Scala] in
 If you intend to build from sources, you also need:
  * [http://ant.apache.org ant].
  * [http://www.junit.org/ junit] and [http://code.google.com/p/gdata-scala-client xmldiff] for running unit tests (found under lib/ in the root project directory).
- * [http://emma.sourceforge.net/ emma] for code coverage.
+ * [http://emma.sourceforge.net/ emma] for code coverage (see DevelopersGuide)
 
 Building the library is straight-forward. Make sure the environement variable `SCALA_HOME` points to your Scala installation. For most users, that's the only configuration needed:
 
@@ -27,15 +28,7 @@ ant build
 }}}
 should build the library in the default output directory (`classes/`). You can change the defaults in `build.properties`.
 
-== Test coverage ==
-
-If you want to run the tests with test coverage, you need to install [http://emma.sourceforge.net/ emma] and then update your `build.properties` file to point to the right location. Then, running
-
-{{{
-ant coverage
-}}}
-
-runs the tests and generates an html report with coverage information.
+For running tests and getting test coverage reports, see DevelopersGuide.
 
 = Library Overview =
 
@@ -48,9 +41,9 @@ The library goes to great lengths to provide a type-safe layer on top of the und
  * serialization code is separated from data representation. Picklers (the name for serialization code) are usually found as values in the companion object of data classes.
  * errors in the HTTP transport layer are signaled as exceptions.
 
-= Making a video query =
+= Queries =
 
-To get started, we will use the Scala interpreter. It has the advantage that it gives immediate feedback. Let's start the interpreter, giving the path to the library (assuming the current directory is the project directory, and the library has been built using the default output directory, `classes/`:
+Throughout this guide we will use the Scala interpreter, as the immediate feedback is extremely valuable when experimenting with a new library. Let's start the interpreter, giving the path to the library. We assume the current directory is the project directory, and the library has been built using the default output directory, `classes/`:
 
 {{{
 $ scala -cp classes/
@@ -61,16 +54,18 @@ Type :help for more information.
 scala>
 }}}
 
-Next we need to create a service object. This object will handle communication with the server, authentication, and provides handy methods for making queries.
+The first thing we need is a service object. This object handles communication with the server, authentication, and provides convenient methods for making queries. Each supported service has a specific service class. The first example involves You``Tube, so we instantiate a You``Tube``Service class giving our application name. We follow Google's recommendation to use names containing the company name, application name and version, separated by '-'.
 
 {{{
 scala> import com.google.gdata.youtube._
 import com.google.gdata.youtube._
 
-scala> val s = new YouTubeService("mycomp-myapp-1.0")
+scala> val s = new YouTubeService("ACME-MoovieRowler-1.0")
 }}}
 
-The argument gives the application name, using the recommended naming scheme: Company '-' Application '-' version. Next we make a query and check the result:
+We can already make queries on public feeds. If we wanted to query private feeds, at this point we'd need to authenticate. We don't worry about it for now, and proceed to make a category query. Queries have two components: a _category_ part, and a _search_ part. Categories are introduced by forward slash, while the search part is introduced by `matching`. Queries my have a number of _modifiers_, like `maxResults` or `orderBy`, to further control the result set.
+
+Our first query is a simple category query with no search part or modifiers. It retrieves videos in from _Comedy_:
 
 {{{
 scala> for (e <- s.getVideos(YouTubeQuery.empty / "Comedy")) println(e.rating)
@@ -101,7 +96,10 @@ Some(4.91/5 out of 20595)
 Some(4.88/5 out of 2503)
 }}}
 
-Our query retrieves videos in the 'Comedy' category and prints their rating. Notice that feeds support for comprehensions and that rating elements, being optional, are wrapped into `Some` objects. By default, GData servers return the first 25 results, so let's make a more complex query to retrieve the next ten entries:
+All queries to You``Tube go through the `getVideos` method which takes a query object. Queries are created starting with an empty query, and adding categories, search terms and modifiers.
+
+Notice that feeds support for comprehensions and that rating elements, being optional, are wrapped into `Some` objects. By default, GData servers return the first 25 results, so let's make a more complex query to retrieve the next ten entries:
+
 {{{
 scala> for (e <- s.getVideos(YouTubeQuery.empty / "Comedy" startIndex(26) maxResults(10))) println(e.title)
 (Some(text),Frank Caliendo - Impressions)
@@ -116,7 +114,10 @@ scala> for (e <- s.getVideos(YouTubeQuery.empty / "Comedy" startIndex(26) maxRes
 (Some(text),Horst Schlämmer bei "Wer wird Millionär" (4/4))
 }}}
 
-Queries have two components: a category search part (delimited by '/'), and a search query part, introduced by `matching`. Let's query the server for all videos in the Comedy category that match the word 'carlin' and don't match 'religion':
+The titles that were printed look a bit funny. The first part (the optional 'text') is giving the type of contents of each title. Valid values are `text`, `html` and `xhtml`. For more information, see the scaladoc pages.
+
+To illustrate search terms, let's query the server for all videos in the Comedy category that match the word 'carlin' and don't match 'religion':
+
 {{{
 scala> for (e <- s.getVideos(YouTubeQuery.empty / "Comedy" matching Text("carlin") & !Text("religion"))) println(e.title)
 (Some(text),George Carlin - Modern Man)
@@ -125,11 +126,13 @@ scala> for (e <- s.getVideos(YouTubeQuery.empty / "Comedy" matching Text("carlin
 ...
 }}}
 
-For a complete description of the query language, check the scala doc documentation on `Query` and `YouTubeQuery`.
+Search terms are introduced by `Text` and can be connected by `&` and `|`, having the usual meaning. Negation excludes a term from the result set. For a complete description of the query language, check the scala doc documentation on `Query` and `YouTubeQuery`.
 
-= Navigation =
+== Navigation ==
 
-Video feeds are interconnected: there are links to comment, video responses, related videos, and so on. The service object has support for the most common links. Here's an example to get related videos of a given video:
+What we have seen until now applies to queries in general, regardless of the specific service we are using. In this section we look at the way You``Tube feeds are connected. For more detailed information check the [http://code.google.com/apis/youtube/reference.html#Navigating_between_feeds YouTube Reference].
+
+Video feeds have links to comments, video responses or related videos. The service object has support for the most common links. The following example gets related videos of a given video:
 
 {{{
 scala> val feed = s.getVideos(YouTubeQuery.empty / "Comedy" matching Text("carlin") & Text("religion"))
@@ -143,10 +146,12 @@ Entries: Entry:
         Id: http://gdata.youtube.com/feeds/api/videos/CF1-...
 }}}
 
-Once we saved the video feed, we can choose an entry and navigate to its related videos. Let's assume we have at least one entry and we want to retrieve related videos to the first one:
+Once we saved the video feed, we can choose an entry and navigate to its related videos. Let's assume we have at least one entry and we want to retrieve videos related to the first one:
 
 {{{
-scala> for (feed <- s.getRelatedVideos(feed.entries.head); e <- feed) println(e.title)
+scala> for (feed <- s.getRelatedVideos(feed.entries.head); 
+               e <- feed) 
+         println(e.title)
 (Some(text),George Carlin- Guys named Todd)
 (Some(text),O PAPA NO BRASIL)
 (Some(text),Discurso do Capeta)
@@ -177,7 +182,7 @@ scala> for (e <- s.getVideos("http://gdata.youtube.com/feeds/api/standardfeeds/t
 
 = How to use the library on not-yet-supported services =
 
-Currently only YouTube and Calendar API are supported out-of-the box. However, the library can be used to access services for which the library lacks data binders. The GData protocol is based on [http://atomenabled.org/developers/syndication/atom-format-spec.php Atom], and you can use the generic atom feed picklers for accessing new services. All extension elements can be accessed as XML elements in the parsed feeds and entries.
+Currently only You``Tube and Calendar API are supported out-of-the box. However, the library can be used to access services for which the library lacks data binders. The GData protocol is based on [http://atomenabled.org/developers/syndication/atom-format-spec.php Atom], and you can use the generic atom feed picklers for accessing new services. All extension elements can be accessed as XML elements in the parsed feeds and entries.
 
 The following example shows how to access the [http://code.google.com/apis/contacts/ Contacts Data API] using the generic classes:
 
