@@ -14,7 +14,7 @@ This section describes the steps to take if you want to start developing the lib
 Before you start, make sure you have installed the following software:
 
  * An [http://subversion.tigris.org/ svn] client.
- * [ant.apache.org ant]
+ * [http://ant.apache.org ant]
  * A [http://scala-lang.org Scala] distribution greater than 2.7.0.
  * [http://emma.sourceforge.net/ emma] for code coverage (optional).
 
@@ -38,14 +38,14 @@ emma.dir=/usr/local/soft/emma-2.0.5312/lib
 
 Now you can get an html report of test coverage:
 {{{
-ant coverage
+$ ant coverage
 }}}
 
 = Library Overview =
 
 The Scala client library uses an approach similar to [http://www.cs.kuleuven.be/publicaties/rapporten/cw/CW491.pdf combinator parsing] for handling XML serialization. Along with the core classes for XML serialization (called _picklers_), there are classes that model the various data used by the GData protocol (like feeds, contacts, calendar entries, etc) and HTTP connection classes. The library is split in packages along the following lines:
-  * `com.google.xml.combinators` The XML serialization core
-  * `com.google.gdata.data` GData common classes, including the [http://atomenabled.org/developers/syndication/atom-format-spec.php Atom protocol] classes.
+ `com.google.xml.combinators`:: The XML serialization core
+ `com.google.gdata.data`:: GData common classes, including the [http://atomenabled.org/developers/syndication/atom-format-spec.php Atom protocol] classes.
     * `kinds` contains Google [http://code.google.com/apis/gdata/elements.html kinds] classes (common data classes used by several Google services).
     * `media` contains [http://search.yahoo.com/mrss Media Rss] classes (used by the YouTube service).
     * `util` contains various common classes like `DateTime` or `NormalPlayTime`
