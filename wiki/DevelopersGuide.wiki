@@ -3,88 +3,60 @@
 
 = Introduction =
 
-This document is intended to give a thorough view of the design and
-implementation of the GData Scala client library. If you want to know
-more about how this library works, or contribute to the project, this
-is the starting point.
+This document is intended to give a thorough view of the design and implementation of the GData Scala client library. If you want to know more about how this library works, or contribute to the project, this is the starting point. It assumes the reader is familiar with [http://scala-lang.org Scala], the [http://code.google.com/apis/gdata/index.html GData API protocol], [http://www.atomenabled.org/developers/syndication/atom-format-spec.php Atom] and the [http://ietfreport.isoc.org/idref/draft-ietf-atompub-protocol/ Atom Publishing Protocol].
 
-= Installation =
+_Note: The Scala client library needs a working [http://scala-lang.org Scala] installation newer than 2.7.0-final. That means a [http://www.scala-lang.org/downloads/distrib/files/nightly/ nightly build], until a bug fix release is issued to deal with [https://lampsvn.epfl.ch/trac/scala/ticket/632 this bug]._
 
-_Note: The Scala client library needs a working [http://scala-lang.org Scala] installation newer than 2.7.0-final. That means a [http://www.scala-lang.org/downloads/distrib/files/nightly/ nightly build], until a bugfix release is issued to deal with [https://lampsvn.epfl.ch/trac/scala/ticket/632 this bug]._
+= Setup =
 
-First thing you need to do is checkout the sources and build the
-library.
+This section describes the steps to take if you want to start developing the library. It describes how to checkout the sources, build and run the tests. Everything is straight forward, so most readers used to [http://scala-lang.org Scala] development can skip this section and come back if needed.
 
-== Building ==
+Before you start, make sure you have installed the following software:
 
-If you intend to build from sources, you also need:
- * [http://ant.apache.org ant].
- * [http://www.junit.org/ junit] and
-[http://code.google.com/p/gdata-scala-client xmldiff] for running unit
-tests (found under lib/ in the root project directory).
- * [http://emma.sourceforge.net/ emma] for code coverage.
+ * An [http://subversion.tigris.org/ svn] client.
+ * [ant.apache.org ant]
+ * A [http://scala-lang.org Scala] distribution greater than 2.7.0.
+ * [http://emma.sourceforge.net/ emma] for code coverage (optional).
 
-Building the library is straight-forward. Make sure the environement
-variable `SCALA_HOME` points to your Scala installation. For most
-users, that's the only configuration needed:
+== Setting up your working copy ==
 
-{{{ ant build }}} should build the library in the default output
-directory (`classes/`). You can change the defaults in
-`build.properties`.
+Follow the instructions on the [http://code.google.com/p/gdata-scala-client/source/checkout project website] to checkout a working copy. Then `cd` into the directory and type
+{{{
+$ ant build
+}}}
+Make sure the environment variable `SCALA_HOME` points to your Scala installation.
 
-For more information, like running tests and getting test coverage
-information, check the DevelopersGuide.
+To build and run the tests, type
+{{{
+$ ant test
+}}}
 
-== Test coverage ==
+The build process can be configured by setting the appropriate values in `build.properties`. If you have installed [http://emma.sourceforge.net/ emma], make sure you update the properties file to point to its installation directory:
+{{{
+emma.dir=/usr/local/soft/emma-2.0.5312/lib
+}}}
 
-If you want to run the tests with test coverage, you need to install
-[http://emma.sourceforge.net/ emma] and then update your
-`build.properties` file to point to the right location. Then, running
-
-{{{ ant coverage }}}
-
-runs the tests and generates an html report with coverage information.
-
+Now you can get an html report of test coverage:
+{{{
+ant coverage
+}}}
 
 = Library Overview =
 
-The Scala client library uses an approach similar to
-[http://www.cs.kuleuven.be/publicaties/rapporten/cw/CW491.pdf
-combinator parsing] for handling XML serialization. Along with the
-core classes for XML serialization (called _picklers_), there are
-classes that model the various data used by the GData protocol (like
-feeds, contacts, calendar entries, etc) and HTTP connection
-classes. The library is split in packages along the following lines:
+The Scala client library uses an approach similar to [http://www.cs.kuleuven.be/publicaties/rapporten/cw/CW491.pdf combinator parsing] for handling XML serialization. Along with the core classes for XML serialization (called _picklers_), there are classes that model the various data used by the GData protocol (like feeds, contacts, calendar entries, etc) and HTTP connection classes. The library is split in packages along the following lines:
   * `com.google.xml.combinators` The XML serialization core
-  * `com.google.gdata.data` GData common classes, including the
-[http://atomenabled.org/developers/syndication/atom-format-spec.php
-Atom protocol] classes.
-    * `kinds` contains Google
-[http://code.google.com/apis/gdata/elements.html kinds] classes
-(common data classes used by several Google services).
-    * `media` contains [http://search.yahoo.com/mrss Media Rss]
-classes (used by the YouTube service).
-    * `util` contains various common classes like `DateTime` or
-`NormalPlayTime`
-  * `com.google.gdata.client` contains GData HTTP connection and
-authentication handling.
-  * `com.google.gdata.<servicename>` contains specific data classes
-and services for each implemented service, like Calendar or YouTube.
+  * `com.google.gdata.data` GData common classes, including the [http://atomenabled.org/developers/syndication/atom-format-spec.php Atom protocol] classes.
+    * `kinds` contains Google [http://code.google.com/apis/gdata/elements.html kinds] classes (common data classes used by several Google services).
+    * `media` contains [http://search.yahoo.com/mrss Media Rss] classes (used by the YouTube service).
+    * `util` contains various common classes like `DateTime` or `NormalPlayTime`
+  * `com.google.gdata.client` contains GData HTTP connection and authentication handling.
+  * `com.google.gdata.<servicename>` contains specific data classes and services for each implemented service, like Calendar or YouTube.
 
-The library goes to great lengths to provide a type-safe layer on top
-of the underlying XML protocol. Whenever possible, Scala data types
-are used to represent the underlying data. Here is a high level view
-of the conventions followed throughout the library:
- * whenever a piece of data is optional, it is represented as an
-`Option[T]`.
- * whenever a default value is specified for an element or attribute,
-such data is represented as a value of the right type, and the default
-value is filled in when parsing.
- * all data is mutable. This is in order to support update (although
-some services are read-only)
- * serialization code is separated from data representation. Picklers
-(the name for serialization code) are usually found as values in the
-companion object of data classes.
+The library goes to great lengths to provide a type-safe layer on top of the underlying XML protocol. Whenever possible, Scala data types are used to represent the underlying data. Here is a high level view of the conventions followed throughout the library:
+ * whenever a piece of data is optional, it is represented as an `Option[T]`.
+ * whenever a default value is specified for an element or attribute, such data is represented as a value of the right type, and the default value is filled in when parsing.
+ * all data is mutable. This is in order to support update (although some services are read-only)
+ * serialization code is separated from data representation. Picklers (the name for serialization code) are usually found as values in the companion object of data classes.
  * errors in the HTTP transport layer are signaled as exceptions.
 
 = XML Pickling Combinators =
