@@ -2,33 +2,34 @@
 
 = Introduction =
 
-The GData Scala client library is an implementation of the [http://code.google.com/apis/gdata/index.html GData API protocol] used by Google to expose its services programmatically. It makes it easy to retrieve and modify data exposed by services like [http://code.google.com/apis/calendar/ Calendar] and [http://code.google.com/apis/youtube/overview.html You Tube], without worrying about the underlying XML representation or how queries are made.
+The GData Scala client library is an implementation of the [http://code.google.com/apis/gdata/index.html GData API protocol] used by Google to expose its services programmatically. It makes it easy to retrieve and modify data exposed by services like [http://code.google.com/apis/calendar/ Calendar] and [http://code.google.com/apis/youtube/overview.html YouTube], without worrying about the underlying XML representation or how queries are made.
 
-Currently the GData Scala client library supports the [http://code.google.com/apis/youtube/reference.html YouTube API] and the [http://code.google.com/apis/calendar/reference.html Calendar API]. This document shows how to connect to a service, make queries and go through the results.
-
-*This document is still under development.*
+Currently the GData Scala client library supports the [http://code.google.com/apis/youtube/reference.html YouTube API] and the [http://code.google.com/apis/calendar/reference.html Calendar API]. This document shows how to connect to a service, make queries and go through the results. It assumes the reader is familiar with the [http://code.google.com/apis/gdata/basics.html GData protocol] in general, and the [http://code.google.com/apis/youtube/overview.html YouTube] and [http://code.google.com/apis/youtube/overview.html Calendar API] in particular.
 
 = Installation =
 
 GData Scala client is distributed as a jar file. As such, no special installation steps are needed. Just make sure your classpath contains the Scala standard library. If you don't intend to build from sources you can skip the following section.
 
-_Note: The Scala client library needs a working [http://scala-lang.org Scala] installation newer than 2.7.0-final. That means a [http://www.scala-lang.org/downloads/distrib/files/nightly/ nightly build], until a bugfix release is issued to deal with [https://lampsvn.epfl.ch/trac/scala/ticket/632 this bug]._
+_Note: The Scala client library needs a working [http://scala-lang.org Scala] installation newer than 2.7.0-final. That means a [http://www.scala-lang.org/downloads/distrib/files/nightly/ nightly build], until a bug fix release is issued to deal with [https://lampsvn.epfl.ch/trac/scala/ticket/632 this bug]._
 
 == Building ==
 
 If you intend to build from sources, you also need:
  * [http://ant.apache.org ant].
  * [http://www.junit.org/ junit] and [http://code.google.com/p/gdata-scala-client xmldiff] for running unit tests (found under lib/ in the root project directory).
- * [http://emma.sourceforge.net/ emma] for code coverage (see DevelopersGuide)
+ * [http://emma.sourceforge.net/ emma] for code coverage.
 
-Building the library is straight-forward. Make sure the environement variable `SCALA_HOME` points to your Scala installation. For most users, that's the only configuration needed:
+Building the library is straight-forward. Make sure the environment variable `SCALA_HOME` points to your Scala installation. For most users, that's the only configuration needed:
 
 {{{
 ant build
 }}}
-should build the library in the default output directory (`classes/`). You can change the defaults in `build.properties`.
+should build the library in the default output directory (`classes/`). You can change the defaults in `build.properties`. You might also want to build the API documentation:
+{{{
+ant docs
+}}}
 
-For running tests and getting test coverage reports, see DevelopersGuide.
+For running tests and getting test coverage reports, see the DevelopersGuide.
 
 = Library Overview =
 
@@ -98,7 +99,7 @@ Some(4.88/5 out of 2503)
 
 All queries to !YouTube go through the `getVideos` method which takes a query object. Queries are created starting with an empty query, and adding categories, search terms and modifiers.
 
-Notice that feeds support for comprehensions and that rating elements, being optional, are wrapped into `Some` objects. By default, GData servers return the first 25 results, so let's make a more complex query to retrieve the next ten entries:
+Notice that feeds support for comprehension and that rating elements, being optional, are wrapped into `Some` objects. By default, GData servers return the first 25 results, so let's make a more complex query to retrieve the next ten entries:
 
 {{{
 scala> for (e <- s.getVideos(YouTubeQuery.empty / "Comedy" startIndex(26) maxResults(10))) println(e.title)
@@ -125,6 +126,10 @@ scala> for (e <- s.getVideos(YouTubeQuery.empty / "Comedy" matching Text("carlin
 (Some(text),George Carlin on white people)
 ...
 }}}
+
+If you've never heard of George Carlin, take a break and watch one of the above movies.
+
+Welcome back.
 
 Search terms are introduced by `Text` and can be connected by `&` and `|`, having the usual meaning. Negation excludes a term from the result set. For a complete description of the query language, check the scala doc documentation on `Query` and `YouTubeQuery`.
 
@@ -193,7 +198,7 @@ s: com.google.gdata.calendar.CalendarService = com.google.gdata.calendar.Calenda
 scala> s.setUserCredentials("username@gmail.com", "secretthang")
 }}}
 
-If something went wrong during authentication, an exception is thrown. Assuming the username and password are correct and Google accounts didn't issue a [http://code.google.com/apis/accounts/docs/AuthForInstalledApps.html#Using Captcha challenge], we have a service object ready to handle requests.
+If something went wrong during authentication, an exception is thrown. Assuming the user name and password are correct and Google accounts didn't issue a [http://code.google.com/apis/accounts/docs/AuthForInstalledApps.html#Using Captcha challenge], we have a service object ready to handle requests.
 
 Let's create a calendar entry for a football training session:
 
@@ -253,7 +258,7 @@ com.google.gdata.client.ConflictException: Specified version number doesn't matc
 	at RequestR...
 }}}
 
-Not so fast! What happened? We have taken the `edit` link from the entry and passed it to the `delete` method. The server complained that the server's version number is different from what we provided. Tracing back what we did, notice how we updated the event, and then tried to delete it _using the old entry id_. We should always use the most recent entry returned by the server (see the [http://code.google.com/apis/gdata/reference.html#Optimistic-concurrency Optimistic Concurrency]). Fortunately, the interpreter saves result values into automatically generated vals, so let's try it again, this time using the updated entry:
+Not so fast! What happened? We have taken the `edit` link from the entry and passed it to the `delete` method. The server complained that the server's version number is different from what we provided. Tracing back what we did, notice how we updated the event, and then tried to delete it _using the old entry id_. We should always use the most recent entry returned by the server (see [http://code.google.com/apis/gdata/reference.html#Optimistic-concurrency Optimistic Concurrency]). Fortunately, the interpreter saves result values into automatically generated vals, so let's try it again, this time using the updated entry:
 
 {{{
 scala> s.delete(new URL(res4.linkHref("edit").get))
@@ -278,7 +283,7 @@ scala> val atomFeed = new StdAtomFeed
 atomFeed: com.google.gdata.data.StdAtomFeed = com.google.gdata.data.StdAtomFeed@e746a2
 }}}
 
-First we instantiate a `Service` object. This time we need to supply a second parameter which is the service name. This name is important for services that require authentication, and for Contacts API the name is `cp`. You can find a list of Google service names [http://code.google.com/support/bin/answer.py?answer=62712&topic=10433 here]. Since all Contacts feeds are private, we need to specify a username and password. Next step is to instantiate a standard Atom feed object. This object provides the types and picklers for atom feeds.
+First we instantiate a `Service` object. This time we need to supply a second parameter which is the service name. This name is important for services that require authentication, and for Contacts API the name is `cp`. You can find a list of Google service names [http://code.google.com/support/bin/answer.py?answer=62712&topic=10433 here]. Since all Contacts feeds are private, we need to specify a user name and password. Next step is to instantiate a standard Atom feed object. This object provides the types and picklers for atom feeds.
 
 Next we make a request and print the results:
 {{{
