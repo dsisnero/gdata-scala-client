@@ -63,7 +63,7 @@ import com.google.gdata.youtube._
 scala> val s = new YouTubeService("ACME-MoovieRowler-1.0")
 }}}
 
-We can already make queries on public feeds. If we wanted to query private feeds, at this point we'd need to authenticate. We don't worry about it for now, and proceed to make a category query. Queries have two components: a _category_ part, and a _search_ part. Categories are introduced by forward slash, while the search part is introduced by `matching`. Queries my have a number of _modifiers_, like `maxResults` or `orderBy`, to further control the result set.
+We can already make queries on public feeds. If we wanted to query private feeds, at this point we'd need to authenticate. We don't worry about it for now, and proceed to make a category query. Queries have two components: a _category_ part, and a _search_ part. Categories are introduced by a forward slash, while the search part is introduced by `matching`. Queries my have a number of _modifiers_, like `maxResults` or `orderBy`, to further control the result set.
 
 Our first query is a simple category query with no search part or modifiers. It retrieves videos in from _Comedy_:
 
@@ -209,7 +209,7 @@ Entry:
 	Updated: 2008-04-09T12:05:05.456Z
 }}}
 
-The import statement is needed to get access to `EventEntries`, as they are defined in the `eventsFeed` of our service object. The event we just created has no `id` and `author`, as these fields will be filled for us by the server. Next we can add the event to the users default calendar:
+The import statement is needed to get access to `EventEntries`, as they are defined in the `eventsFeed` of our service object. The event we just created has no `id` and `author`, as these fields will be filled in by the server. Next we add the event to the users default calendar:
 
 {{{
 scala> var e1 = s.addEvent(new java.net.URL(CalendarService.FEEDS 
@@ -224,7 +224,7 @@ Entry:
 	Updated: 2008-04-09T12:06:14.000Z
 }}}
 
-The server replies with an complete entry, most notably with an `id` and `author` fields. Suppose we add a location to this event:
+The server replies with a complete entry, most notably with an `id` and `author` fields. Suppose we add a location to this event:
 
 {{{
 scala> e1.locations = List(new kinds.Where("Old Trafford", kinds.Schemas.EVENT))
@@ -238,7 +238,9 @@ Entry:
 	Updated: 2008-04-09T12:46:14.000Z
 }}}
 
-You can check that the event has been updated by logging in your Google Calendar account. Deleting the event is as simple:
+You can check that the event has been updated by logging in to your Google Calendar account.
+
+Deleting the event is equally simple:
 
 {{{
 scala>  s.delete(new URL(e1.linkHref("edit").get))
@@ -251,7 +253,7 @@ com.google.gdata.client.ConflictException: Specified version number doesn't matc
 	at RequestR...
 }}}
 
-Not so fast! What happened? We have taken the `edit` link from the entry and passed it to the `delete` method. The server complained that the server's version number is different from what we provided. Tracing back what we did, notice how we updated the event, and then tried to delete it _using the old entry id_. We should have used the entry returned by the server after our update. Let's try this again, this time using the interpreter-generated name for the updated entry:
+Not so fast! What happened? We have taken the `edit` link from the entry and passed it to the `delete` method. The server complained that the server's version number is different from what we provided. Tracing back what we did, notice how we updated the event, and then tried to delete it _using the old entry id_. We should always use the most recent entry returned by the server (see the [http://code.google.com/apis/gdata/reference.html#Optimistic-concurrency Optimistic Concurrency]). Fortunately, the interpreter saves result values into automatically generated vals, so let's try it again, this time using the updated entry:
 
 {{{
 scala> s.delete(new URL(res4.linkHref("edit").get))
