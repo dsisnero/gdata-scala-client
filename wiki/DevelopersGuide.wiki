@@ -93,15 +93,115 @@ The library provides picklers for primitive types. It is interesting to note tha
 
 == Combinators ==
 
-Combinators are functions that take as arguments one or more picklers, and return a pickler for a more complex data type. Sometimes they return a pickler for the same data type as their argument, but perform some processing on input, like `attr` and `elem`:
- * `elem(label, p)` Wraps the given pickler in an element with the given `label`. For instance, `elem('id', text)` creates a pickler that pickles (and unpickles) strings into an element 'id': `<id>Test</id>`. Namespaces can be specified as well (see the API documentation).
+Combinators are functions that take as arguments one or more picklers, and return a pickler for a more complex data type. Sometimes they return a pickler for the same data type as their argument, but perform some processing on input, like `attr` and `elem`. To keep the exposition clear, descriptions of picklers will talk from the point of view of _unpickling_ (parsing the input), but keep in mind that the pickling part is always implied:
+
+ * `elem(label, p)` Wraps the given pickler in an element with the given `label`. For instance, `elem('id', text)` creates a pickler that accepts strings inside an element called 'id': `<id>Test</id>`. Namespaces can be specified as well (see the API documentation).
  * `attr(label, p)` Wraps the given pickler in an attribute with the given `label`.
  * `seq(pa, pb)` The two picklers are applied in sequence. This combinator is usually written as `pa ~ pb`. The `~` operator is a convenience method defined in the `Pickler` interface, so that sequences can be written using an infix operator.
  * `interleaved(p)`. Makes the given combinator accept input sequences in any order. Unknown elements are ignored. This is used heavily throughout the library.
  * `opt(p)` Turns the given pickler into an optional pickler. If `p` fails, `opt(p)` succeeds with a value of `None`.
- * `rep(p)` Repeatedly apply `p`, until it fails. It results into a list of values handled by `p`.
- * `wrap` A combinator used to adapt one type to another. It has a dedicated section later on.
+ * `rep(p)` Repeatedly apply `p`, until it fails. It results into a list of values unpickled successfully by `p`.
+ * `wrap` A combinator used to adapt one type to another. It has a dedicated section below.
  * other, less common combinators. See the scaladoc.
+
+== Example ==
+
+All this has been pretty abstract, so now we turn to a simple example. Let's say we need to write a pickler for Google [http://code.google.com/apis/gdata/elements.html#gdRating rating] elements. We should start by defining a class for ratings:
+{{{
+case class Rating(average: Option[Double], 
+    min: Int, 
+    max: Int, 
+    numRaters: Option[Int],
+    rel: String,
+    value: Option[Int]) {
+}
+}}}
+
+We follow the conventions and turn all elements and attributes into fields with the same name. Optional elements get an `Option` type. Next we need to define a pickler for ratings in the companion object:
+{{{
+object Rating {
+  import Uris.gdNs
+  import Picklers._
+
+  def pickler: Pickler[Rating] = 
+    elem("rating", 
+          opt(attr("average", doubleVal))
+        ~ attr("min", intVal)
+        ~ attr("max", intVal)
+        ~ opt(attr("numRaters", intVal))
+        ~ default(attr("rel", text), "overall")
+        ~ opt(attr("value", intVal)))(gdNs)
+}
+}}}
+The pickler definition reads almost like an RNG schema for the rating element. The `default` combinator provides a default value in case the attribute _rel_ is not present. The last argument to `elem` is the element namespace (in this case, the Google data namespace).
+
+If you try to compile this code, you'll notice there is a type error: The return type of `pickler` is not `Pickler[Rating]`, but some type involving `~`. The reason has to do with the sequence combinator, which returns picklers for a pair-like type formed by the two picklers:
+{{{
+def seq[A, B](pa: => Pickler[A], pb: => Pickler[B]): Pickler[~[A, B]]
+}}}
+As in the combinator parsing library, `~` is both a convenience method in trait `Pickler`, and a holder class. To fix this error, we need the `wrap` combinator
+
+== Wrap ==
+
+We can fix our code by giving the library a way to transform between our type to the type it understands. The `wrap` combinator does just that: Given a pickler for some type `A`, and two functions `f: A => B` and `g: B => A`, it gives back a pickler for type `B`.
+{{{
+  def rawPickler = // the previous definition
+
+  def pickler: Pickler[Rating] =
+    wrap (rawPickler) {
+      case avg ~ min ~ max ~ numRaters ~ rel ~ value => Rating(avg, min, max, numRaters, rel, value)
+    } (fromRating)
+
+  private def fromRating(r: Rating) = 
+    (new ~(r.average, r.min) ~ r.max ~ r.numRaters ~ r.rel ~ r.value)
+}}}
+
+Thanks to type inference, we got away easy: all types are filled in by the compiler. The first argument to `wrap` is the raw pickler, the second one is a function (using Scala's support for patterns as partial functions) than constructs `Rating` objects out of the pair-like structure. The last argument breaks a `Rating` object into pairs.
+
+Oh, and one more thing: because `Rating` is a case class, we can use the constructor functions generated automatically to get a much cleaner definition:
+{{{
+  def rawPickler = // as before
+
+  def pickler: Pickler[Rating] =
+    wrap (rawPickler) (Rating.apply) (Rating.unapply)
+}}}
+
+This code uses implicit conversions behind the scenes to adapt the given functions to the expected types. There is one sad thing, though: [http://lampsvn.epfl.ch/trac/scala/ticket/508 ticket #508]. For the moment, the `unapply` method cannot be used.
+
+== Extensions ==
+
+The Google Data protocol is highly extensible. Most elements can be extended with new attributes or elements, and the library provides a solution based on picklers. The basic idea is to collect any unparsed content of an element and store it as XML. An extension is then just another pickler, which combined with an extensible element operates on the collected data. Here's an example involving the Atom `link` element.
+{{{
+case class Link(href: String, 
+    rel: Option[String],
+    tpe: Option[String],
+    hrefLang: Option[String],
+    title: Option[String],
+    length: Option[String]) extends HasStore
+    
+    
+object Link {
+  implicit val nsAtom = Uris.atomNs
+  
+  val contentsPickler: Pickler[Link] = wrap(attr("href", text) 
+        ~ opt(attr("rel", text))
+        ~ opt(attr("type", text))
+        ~ opt(attr("hrefLang", text))
+        ~ opt(attr("title", text))
+        ~ opt(attr("length", text))) (Link.apply) (toPair)
+  
+  lazy val pickler: Pickler[Link] = elem("link", makeExtensible(contentsPickler))
+}}}
+
+The interesting thing to note is the call to `makeExtensible` on the `contentsPickler`. This combinator simply stores whatever was not parsed by the given pickler into a field of the `Link` class. Note that `Link` extends `HasStore`, a trait that declares a `store` field. Remember that, even though we talk only about parsing, the store goes both ways: when pickling a `Link`, all unknown elements are pickled too.
+
+Suppose link elements are extended with a child element called `webContent`:
+{{{
+extend(pickler, elem("webContent", text)(Uris.gCalNs))
+}}}
+This returns a pickler that handles the additional element.
+
+This scheme works fine for simple cases, but when a class refers to another class, and both can be extended independently, this scheme will lose type information: the container will refer to its members by a super type. This is the case with feeds and entries, and the solution is described _Feeds and Entries_.
 
 = Atom data classes =
 
