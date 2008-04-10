@@ -3,7 +3,7 @@
 
 = Introduction =
 
-This document is intended to give a thorough view of the design and implementation of the GData Scala client library. If you want to know more about how this library works, or contribute to the project, this is the starting point. It assumes the reader is familiar with [http://scala-lang.org Scala], the [http://code.google.com/apis/gdata/index.html GData API protocol], [http://www.atomenabled.org/developers/syndication/atom-format-spec.php Atom] and the [http://ietfreport.isoc.org/idref/draft-ietf-atompub-protocol/ Atom Publishing Protocol].
+This document is intended to give a thorough view of the design and implementation of the Google Data Scala client library. If you want to know more about how this library works, or contribute to the project, this is the starting point. It assumes the reader is familiar with [http://scala-lang.org Scala], the [http://code.google.com/apis/gdata/index.html Google Data API protocol], [http://www.atomenabled.org/developers/syndication/atom-format-spec.php Atom] and the [http://ietfreport.isoc.org/idref/draft-ietf-atompub-protocol/ Atom Publishing Protocol].
 
 _Note: The Scala client library needs a working [http://scala-lang.org Scala] installation newer than 2.7.0-final. That means a [http://www.scala-lang.org/downloads/distrib/files/nightly/ nightly build], until a bug fix release is issued to deal with [https://lampsvn.epfl.ch/trac/scala/ticket/632 this bug]._
 
@@ -43,13 +43,9 @@ $ ant coverage
 
 = Library Overview =
 
-The library is centered around serializing and deserializing XML. The design goals are:
-  * favor composition over inheritance.
-  * describe the XML structure in a natural way.
-  * most elements can be extended with new elements/attributes. Such extensions should require code proportional to how much is added (extensibility).
-  * the library should deal with user defined types without losing that information (type-safety).
+The Scala client library handles XML serialization, HTTP connection, authentication and query building for Google Data. The library is centered around serializing and deserializing XML, and provides a core set of classes called _Picklers_, on which all the serialization code is based. The object model is decoupled from serialization code, and the library provides classes for Atom and Google Data common elements. Supported services, like !YouTube or Calendar, define new model classes and picklers, using exactly the same approach as the core library. Users that need to extend the library (for a new service, or to accommodate an extension to an existing service) can use the same approach.
 
-The answer is an approach similar to [http://www.cs.kuleuven.be/publicaties/rapporten/cw/CW491.pdf combinator parsing] for handling XML serialization. More about that in the following sections.
+The library provides support for making queries and updating data through HTTP. The approach is straight forward, and similar to the road taken by the [http://code.google.com/p/gdata-java-client/ Java client library]. Users connect to Google services through `Service` objects, that provide methods for making queries and updating data on the server. Queries are encoded as specific URLs, and the Query builder provides a natural syntax for expressing complex queries. These are the objects that are most visible to the users of this library.
 
 == Conventions ==
 
@@ -64,22 +60,52 @@ The library goes to great lengths to provide a type-safe layer on top of the und
 
 == Organization ==
 
-Along with the core classes for XML serialization (called _picklers_), there are classes that model the various data used by the GData protocol (like feeds, contacts, calendar entries, etc) and HTTP connection classes. The library is split in packages along the following lines:
+Along with the core classes for XML serialization (_picklers_), there are classes that model the various data used by the Google Data protocol (like feeds, contacts, calendar entries, etc) and HTTP connection classes. The library is split in packages along the following lines:
   * `com.google.xml.combinators` The XML serialization core
-  * `com.google.gdata.data` GData common classes, including the [http://atomenabled.org/developers/syndication/atom-format-spec.php Atom protocol] classes.
+  * `com.google.gdata.data` Google Data common classes, including the [http://atomenabled.org/developers/syndication/atom-format-spec.php Atom protocol] classes.
     * `kinds` Google [http://code.google.com/apis/gdata/elements.html kinds] classes (common data classes used by several Google services).
     * `media` [http://search.yahoo.com/mrss Media Rss] classes (used by the !YouTube service).
     * `util` various common classes like `DateTime` or `NormalPlayTime`
-  * `com.google.gdata.client` GData HTTP connection and authentication handling.
+  * `com.google.gdata.client` Google Data HTTP connection and authentication handling.
   * `com.google.gdata.<servicename>` specific data classes and services for each implemented service, like Calendar or !YouTube.
 
-= XML Pickling Combinators =
+= XML Pickler Combinators =
 
+The serialization code is built around [http://research.microsoft.com/~akenn/fun/picklercombinators.pdf pickler combinators]. A _pickler_ is an object that can serialize and deserialize some type. The library provides implementations for base cases, and _combinators_ for assembling more sophisticated picklers out of simple ones. This should strike a familiar note if you've ever used the [http://www.scala-lang.org/docu/files/api/index.html combinator parsing] library in the Scala distribution.
 
+Pickler combinators are implemented in `com.google.xml.combinators`. The `Pickler` interface needs just two methods:
+{{{
+  abstract class Pickler[A] {
+    def pickle(v: A, in: XmlOutputStore): XmlOutputStore
+    def unpickle(in: XmlInputStore): PicklerResult[A]
+  }
+}}}
+The input and output types are abstractions over the XML representation. The result type of the unpickle method is a `PicklerResult`, which can be either `Success` or `Error`. All errors are issued through `PicklerResult` values, as this allows combinators to decide later if an error should fail the whole pickler, or try another alternative.
+
+== Primitive picklers ==
+
+The library provides picklers for primitive types. It is interesting to note that they do not commit to an attribute or an element content. Combinators will decide that when they wrap one of the basic picklers.
+ * `text` This is a pickler for Strings. 
+ * `boolVal` This is a pickler for Booleans.
+ * `intVal` This is a pickler for Integers.
+ * `doubleVal` This is a pickler for Double values.
+ * `dateTime` This is a pickler for date/time in RFC 3339 format.
+
+== Combinators ==
+
+Combinators are functions that take as arguments one or more picklers, and return a pickler for a more complex data type. Sometimes they return a pickler for the same data type as their argument, but perform some processing on input, like `attr` and `elem`:
+ * `elem(label, p)` Wraps the given pickler in an element with the given `label`. For instance, `elem('id', text)` creates a pickler that pickles (and unpickles) strings into an element 'id': `<id>Test</id>`. Namespaces can be specified as well (see the API documentation).
+ * `attr(label, p)` Wraps the given pickler in an attribute with the given `label`.
+ * `seq(pa, pb)` The two picklers are applied in sequence. This combinator is usually written as `pa ~ pb`. The `~` operator is a convenience method defined in the `Pickler` interface, so that sequences can be written using an infix operator.
+ * `interleaved(p)`. Makes the given combinator accept input sequences in any order. Unknown elements are ignored. This is used heavily throughout the library.
+ * `opt(p)` Turns the given pickler into an optional pickler. If `p` fails, `opt(p)` succeeds with a value of `None`.
+ * `rep(p)` Repeatedly apply `p`, until it fails. It results into a list of values handled by `p`.
+ * `wrap` A combinator used to adapt one type to another. It has a dedicated section later on.
+ * other, less common combinators. See the scaladoc.
 
 = Atom data classes =
 
 = Feeds and Entries =
 
-= Http and GData requests =
+= Http and Google Data requests =
 
