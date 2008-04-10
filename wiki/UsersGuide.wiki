@@ -1,14 +1,16 @@
-#summary A short introduction to the Scala client library for GData
+#summary A short introduction to the Scala client library for Google Data
 
 = Introduction =
 
-The GData Scala client library is an implementation of the [http://code.google.com/apis/gdata/index.html GData API protocol] used by Google to expose its services programmatically. It makes it easy to retrieve and modify data exposed by services like [http://code.google.com/apis/calendar/ Calendar] and [http://code.google.com/apis/youtube/overview.html YouTube], without worrying about the underlying XML representation or how queries are made.
+The Google Data Scala client library allows client software to connect to Google Services through the [http://code.google.com/apis/gdata/index.html Google Data API protocol]. It makes it easy to retrieve and modify data exposed by services like [http://code.google.com/apis/calendar/ Calendar] and [http://code.google.com/apis/youtube/overview.html YouTube], without worrying about the underlying XML representation or how queries are made.
 
-Currently the GData Scala client library supports the [http://code.google.com/apis/youtube/reference.html YouTube API] and the [http://code.google.com/apis/calendar/reference.html Calendar API]. This document shows how to connect to a service, make queries and go through the results. It assumes the reader is familiar with the [http://code.google.com/apis/gdata/basics.html GData protocol], and has some high-level understanding of the [http://code.google.com/apis/youtube/overview.html YouTube] and [http://code.google.com/apis/youtube/overview.html Calendar API]s.
+Currently the Google Data Scala client library supports the [http://code.google.com/apis/youtube/reference.html YouTube API] and the [http://code.google.com/apis/calendar/reference.html Calendar API]. It can be easily extended to support new services.
+
+This document shows how to connect to a service, make queries and go through the results. It assumes the reader is familiar with the [http://code.google.com/apis/gdata/basics.html Google Data protocol], and has some high-level understanding of the [http://code.google.com/apis/youtube/overview.html YouTube] and [http://code.google.com/apis/youtube/overview.html Calendar API]s.
 
 = Installation =
 
-GData Scala client is distributed as a jar file. As such, no special installation steps are needed. Just make sure your classpath contains the Scala standard library. If you don't intend to build from sources you can skip the following section.
+Google Data Scala client is distributed as a jar file. As such, no special installation steps are needed. Just make sure your classpath contains the Scala standard library. If you don't intend to build from sources you can skip the following section.
 
 _Note: The Scala client library needs a working [http://scala-lang.org Scala] installation newer than 2.7.0-final. That means a [http://www.scala-lang.org/downloads/distrib/files/nightly/ nightly build], until a bug fix release is issued to deal with [https://lampsvn.epfl.ch/trac/scala/ticket/632 this bug]._
 
@@ -33,18 +35,25 @@ For running tests and getting test coverage reports, see the DevelopersGuide.
 
 = Library Overview =
 
-The Scala client library uses an approach similar to combinator parsing for handling XML serialization. See DevelopersGuide for more details on the implementation. The XML serialization core is found in package `com.google.xml.combinators`, while the GData definitions are in `com.google.gdata.data`. Supported services have specific data under their own package under `com.google.gdata`. Currently there is only youtube: `com.google.gdata.youtube` and calendar: `com.google.gdata.calendar`.
+The Scala client library handles XML serialization, HTTP connection, authentication and query building for Google Data. Serialization is provided for Atom and Google Data types, but the library makes it easy to write serializers for new data types. The `Service` class provides methods to retrieve and update data through the HTTP protocol, handling authentication through [http://code.google.com/apis/accounts/index.html Google Accounts], using query classes to provide a simple syntax for building URLs.
 
-The library goes to great lengths to provide a type-safe layer on top of the underlying XML protocol. Whenever possible, Scala data types are used to represent the underlying data. Here is a high level view of the conventions followed throughout the library:
+== Organization ==
+
+The XML serialization core is found in package `com.google.xml.combinators`, while the Google Data definitions are in `com.google.gdata.data` and sub-packages. Supported services have specific data under their own package below `com.google.gdata`, like `com.google.gdata.youtube` and `com.google.gdata.calendar`. Generic classes for handling the HTTP connection and authentication are located in `com.google.gdata.client`.
+
+== Conventions ==
+
+The library aims to have a consistent feel, and follows a few conventions. Whenever possible, Scala data types are used to represent the underlying data:
  * whenever a piece of data is optional, it is represented as an `Option[T]`.
  * whenever a default value is specified for an element or attribute, such data is represented as a value of the right type, and the default value is filled in when parsing.
  * all data is mutable. This allows for services where update is allowed.
  * serialization code is separated from data representation. Picklers (the name for serialization code) are usually found as values in the companion object of data classes.
  * errors in the HTTP transport layer are signaled as exceptions.
+ * names in data classes closely follow the XML data they model. If an [http://code.google.com/apis/gdata/elements.html#gdEventKind event entry] has an element called `eventStatus`, the `EventEntry` class will have a field named the same. This makes it easy to use existing Google documentation.
 
-= Queries =
+= Query =
 
-Throughout this guide we will use the Scala interpreter, as the immediate feedback is extremely valuable when experimenting with a new library. Let's start the interpreter, giving the path to the library. We assume the current directory is the project directory, and the library has been built using the default output directory, `classes/`:
+The following sections present library features in a tutorial style. We will use the Scala interpreter, as the immediate feedback is extremely valuable when experimenting with a new library. Let's start the interpreter, giving the path to the library. We assume the current directory is the project directory, and the library has been built using the default output directory, `classes/`:
 
 {{{
 $ scala -cp classes/
@@ -70,36 +79,36 @@ Our first query is a simple category query with no search part or modifiers. It 
 
 {{{
 scala> for (e <- s.getVideos(YouTubeQuery.empty / "Comedy")) println(e.rating)
-Some(4.9/5 out of 5708)
-Some(4.94/5 out of 1130)
-Some(4.84/5 out of 6950)
-Some(4.94/5 out of 3206)
-Some(4.9/5 out of 10655)
-Some(4.87/5 out of 8797)
-Some(4.79/5 out of 11602)
-Some(4.87/5 out of 23730)
-Some(4.9/5 out of 17113)
-Some(4.85/5 out of 12878)
-Some(4.9/5 out of 22885)
-Some(4.89/5 out of 7997)
-Some(4.93/5 out of 3836)
-Some(4.92/5 out of 9611)
-Some(4.83/5 out of 8453)
-Some(4.87/5 out of 8078)
-Some(4.8/5 out of 11137)
-Some(4.92/5 out of 10542)
-Some(4.94/5 out of 2957)
-Some(4.9/5 out of 2414)
-Some(4.95/5 out of 2590)
-Some(4.91/5 out of 19807)
-Some(4.89/5 out of 18001)
-Some(4.91/5 out of 20595)
-Some(4.88/5 out of 2503)
+Some(4.9/5 (18339 voters))
+Some(4.82/5 (9717 voters))
+Some(4.95/5 (3051 voters))
+Some(4.95/5 (2654 voters))
+Some(4.87/5 (8987 voters))
+Some(4.79/5 (12032 voters))
+Some(4.91/5 (6071 voters))
+Some(4.92/5 (11520 voters))
+Some(4.88/5 (2556 voters))
+Some(4.89/5 (19477 voters))
+Some(4.83/5 (8614 voters))
+Some(4.91/5 (22535 voters))
+Some(4.79/5 (12104 voters))
+Some(4.92/5 (11285 voters))
+Some(4.91/5 (11216 voters))
+Some(4.8/5 (11264 voters))
+Some(4.91/5 (21357 voters))
+Some(4.84/5 (7161 voters))
+Some(4.92/5 (10298 voters))
+Some(4.9/5 (2485 voters))
+Some(4.9/5 (24692 voters))
+Some(4.87/5 (8520 voters))
+Some(4.93/5 (4390 voters))
+Some(4.89/5 (8273 voters))
+Some(4.85/5 (13600 voters))
 }}}
 
-All queries to !YouTube go through the `getVideos` method which takes a query object. Queries are created starting with an empty query, and adding categories, search terms and modifiers.
+All queries to !YouTube go through the `getVideos` method which takes a query object. Queries are created starting with an empty query, and adding categories, search terms and modifiers. The given query is encoded to `http://gdata.youtube.com/feeds/api/videos/-/Comedy`.
 
-Notice that feeds support for comprehension and that rating elements, being optional, are wrapped into `Some` objects. By default, GData servers return the first 25 results, so let's make a more complex query to retrieve the next ten entries:
+Notice that feeds support for comprehension. Also, optional elements such as rating are wrapped into `Some` objects. By default, Google Data servers return the first 25 results, so let's make a more complex query to retrieve the next ten entries:
 
 {{{
 scala> for (e <- s.getVideos(YouTubeQuery.empty / "Comedy" startIndex(26) maxResults(10))) println(e.title)
@@ -115,21 +124,21 @@ scala> for (e <- s.getVideos(YouTubeQuery.empty / "Comedy" startIndex(26) maxRes
 (Some(text),Horst Schlammer bei "Wer wird Millionaer" (4/4))
 }}}
 
-The titles that were printed look a bit funny. The first part (the optional 'text') is giving the type of contents of each title. Valid values are `text`, `html` and `xhtml`. For more information, see the scaladoc pages.
+The URL for this query is ` http://gdata.youtube.com/feeds/api/videos/-/Comedy?start-index=26&max-results=10`.
 
-To illustrate search terms, let's query the server for all videos in the Comedy category that match the word 'carlin' and don't match 'religion':
+The titles that we got back deserve a passing note. The first part (the optional 'text') is giving the type of contents of each title. Valid values are `text`, `html` and `xhtml`. For more information, see the scaladoc pages.
+
+To illustrate search terms, let's query the server for all videos in the Comedy category that match the words 'chuck norris' and don't match 'joke':
 
 {{{
-scala> for (e <- s.getVideos(YouTubeQuery.empty / "Comedy" matching Text("carlin") & !Text("religion"))) println(e.title)
-(Some(text),George Carlin - Modern Man)
-(Some(text),George Carlin - The American Dream)
-(Some(text),George Carlin on white people)
+scala>  import com.google.gdata.Text
+import com.google.gdata.Text
+scala> for (e <- s.getVideos(YouTubeQuery.empty / "Comedy" matching Text("chuck norris") & !Text("joke"))) println(e.title)
+(Some(text),Chuck Norris in Russia)
+(Some(text),Comedy : Chuck Norris Fakten Witze Facts)
+(Some(text),Mike Huckabee 2008 Ad- With Chuck Norris)
 ...
 }}}
-
-If you've never heard of George Carlin, take a break and watch one of the above movies.
-
-Welcome back.
 
 Search terms are introduced by `Text` and can be connected by `&` and `|`, having the usual meaning. Negation excludes a term from the result set. For a complete description of the query language, check the scala doc documentation on `Query` and `YouTubeQuery`.
 
@@ -248,10 +257,10 @@ You can check that the event has been updated by logging in to your Google Calen
 Deleting the event is equally simple:
 
 {{{
-scala>  s.delete(new URL(e1.linkHref("edit").get))
+scala>  s.delete(new URL(e1.editLink.get))
 com.google.gdata.client.ConflictException: Specified version number doesn't match resource's latest version number.
-	at com.google.gdata.client.GDataRequest.handleErrorCode(GDataRequest.scala:110)
-	at com.google.gdata.client.GDataRequest.connect(GDataRequest.scala:95)
+	at com.google.gdata.client.Google DataRequest.handleErrorCode(Google DataRequest.scala:110)
+	at com.google.gdata.client.Google DataRequest.connect(Google DataRequest.scala:95)
 	at com.google.gdata.Service.delete(Service.scala:162)
 	at .<init>(<console>:16)
 	at .<clinit>(<console>)
@@ -261,7 +270,7 @@ com.google.gdata.client.ConflictException: Specified version number doesn't matc
 Not so fast! What happened? We have taken the `edit` link from the entry and passed it to the `delete` method. The server complained that the server's version number is different from what we provided. Tracing back what we did, notice how we updated the event, and then tried to delete it _using the old entry id_. We should always use the most recent entry returned by the server (see [http://code.google.com/apis/gdata/reference.html#Optimistic-concurrency Optimistic Concurrency]). Fortunately, the interpreter saves result values into automatically generated vals, so let's try it again, this time using the updated entry:
 
 {{{
-scala> s.delete(new URL(res4.linkHref("edit").get))
+scala> s.delete(new URL(res4.editLink.get))
 
 }}}
 
@@ -269,7 +278,7 @@ This time the operation succeeded. Check that it is gone using the web interface
 
 = How to use the library on not-yet-supported services =
 
-Currently only !YouTube and Calendar API are supported out-of-the box. However, the library can be used to access services for which the library lacks data binders. The GData protocol is based on [http://atomenabled.org/developers/syndication/atom-format-spec.php Atom], and you can use the generic atom feed picklers for accessing new services. All extension elements can be accessed as XML elements in the parsed feeds and entries.
+Currently only !YouTube and Calendar API are supported out-of-the box. However, the library can be used to access services for which the library lacks data binders. The Google Data protocol is based on [http://atomenabled.org/developers/syndication/atom-format-spec.php Atom], and you can use the generic atom feed picklers for accessing new services. All extension elements can be accessed as XML elements in the parsed feeds and entries.
 
 The following example shows how to access the [http://code.google.com/apis/contacts/ Contacts Data API] using the generic classes:
 
@@ -295,6 +304,7 @@ scala> for (e <- f) println(e.title)
 (Some(text),Iulian Dragos)
 (Some(text),Martin Odersky)
 (Some(text),Carla Neumann)
+(Some(text),Florian Preknya)
 ...
 }}}
 
