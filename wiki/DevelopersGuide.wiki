@@ -203,11 +203,15 @@ This returns a pickler that handles the additional element.
 
 This scheme works fine for simple cases, but when a class refers to another class, and both can be extended independently, this scheme will lose type information: the container will refer to its members by a super type. This is the case with feeds and entries, and the solution is described _Feeds and Entries_.
 
-= Atom data classes =
+= Common Data Classes =
 
-All 
+The [http://www.atomenabled.org/developers/syndication/atom-format-spec.php Atom syndication protocol] defines common constructs and the basic structure of feeds and entries. Their model classes and picklers are found under `com.google.gdata.data`. They follow the pattern described above, except for feeds and entries, which are described in the next section. The library uses a custom `DateTime` class, whose definition and picklers are found in `com.google.gdata.data.util`. This class handles time zones and parses dates in the RFC 3339 format.
+
+Google defines a number of common classes, and their implementation is found in package `com.google.gdata.data.kinds`. The interesting cases are `FeedLink` and `EntryLink`, which are special because they might enclose a feed or entry element. They will be described in the _Feeds and Entries_ section.
 
 = Feeds and Entries =
+
+
 
 = Http and Google Data requests =
 

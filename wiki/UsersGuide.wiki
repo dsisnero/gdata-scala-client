@@ -37,6 +37,8 @@ For running tests and getting test coverage reports, see the DevelopersGuide.
 
 The Scala client library handles XML serialization, HTTP connection, authentication and query building for Google Data. Serialization is provided for Atom and Google Data types, but the library makes it easy to write serializers for new data types. The `Service` class provides methods to retrieve and update data through the HTTP protocol, handling authentication through [http://code.google.com/apis/accounts/index.html Google Accounts], using query classes to provide a simple syntax for building URLs.
 
+If you are just evaluating the library or reading this for the first time, you can skip directly to the _Query_ tutorial.
+
 == Organization ==
 
 The XML serialization core is found in package `com.google.xml.combinators`, while the Google Data definitions are in `com.google.gdata.data` and sub-packages. Supported services have specific data under their own package below `com.google.gdata`, like `com.google.gdata.youtube` and `com.google.gdata.calendar`. Generic classes for handling the HTTP connection and authentication are located in `com.google.gdata.client`.
