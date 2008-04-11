@@ -128,7 +128,7 @@ scala> for (e <- s.getVideos(YouTubeQuery.empty / "Comedy" startIndex(26) maxRes
 
 The URL for this query is ` http://gdata.youtube.com/feeds/api/videos/-/Comedy?start-index=26&max-results=10`.
 
-The titles that we got back deserve a passing note. The first part (the optional 'text') is giving the type of contents of each title. Valid values are `text`, `html` and `xhtml`. For more information, see the scaladoc pages.
+The titles that we got back deserve a passing note. The first part (the optional 'text') is giving the type of contents of each title. Valid values are `text`, `html` and `xhtml`. For more information, see the [http://gdata-scala-client.googlecode.com/svn/trunk/docs/api/index.html scaladoc].
 
 To illustrate search terms, let's query the server for all videos in the Comedy category that match the words 'chuck norris' and don't match 'joke':
 
@@ -178,7 +178,7 @@ scala> for (feed <- s.getRelatedVideos(feed.entries.head);
 
 The for-comprehension above has to generators: the first one works on the optional feed (some videos might not have a related videos link), while the second iterates over all entries in the given feed.
 
-In a similar way, the service object provides access to user profiles, comment feeds or video responses. Check the complete scaladoc documentation on `YouTubeService` for more information.
+In a similar way, the service object provides access to user profiles, comment feeds or video responses. Check the complete scaladoc documentation on [http://gdata-scala-client.googlecode.com/svn/trunk/docs/api/com/google/gdata/youtube/YouTubeService.html YouTubeService] for more information.
 
 = Raw queries =
 

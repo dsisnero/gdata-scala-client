@@ -49,7 +49,7 @@ The library provides support for making queries and updating data through HTTP. 
 
 == Conventions ==
 
-The library goes to great lengths to provide a type-safe layer on top of the underlying XML protocol. Whenever possible, Scala data types are used to represent the underlying data. Here is a high level view of the conventions followed throughout the library:
+The library goes to great lengths to provide a type-safe layer on top of the underlying XML protocol. Whenever possible, Scala data types are used to represent the underlying data. Here is a high level view of the conventions followed throughout the library, that should be followed by all extensions:
  * whenever a piece of data is optional, it is represented as an `Option[T]`. *null* values should never be valid values.
  * whenever a default value is specified for an element or attribute, such data is represented as a value of the right type, and the default value is filled in when parsing.
  * all data is mutable. This is in order to support update (although some services are read-only).
@@ -95,14 +95,14 @@ The library provides picklers for primitive types. It is interesting to note tha
 
 Combinators are functions that take as arguments one or more picklers, and return a pickler for a more complex data type. Sometimes they return a pickler for the same data type as their argument, but perform some processing on input, like `attr` and `elem`. To keep the exposition clear, descriptions of picklers will talk from the point of view of _unpickling_ (parsing the input), but keep in mind that the pickling part is always implied:
 
- * `elem(label, p)` Wraps the given pickler in an element with the given `label`. For instance, `elem('id', text)` creates a pickler that accepts strings inside an element called 'id': `<id>Test</id>`. Namespaces can be specified as well (see the API documentation).
+ * `elem(label, p)` Wraps the given pickler in an element with the given `label`. For instance, `elem('id', text)` creates a pickler that accepts strings inside an element called 'id': `<id>Test</id>`. Namespaces can be specified as well (see the [http://gdata-scala-client.googlecode.com/svn/trunk/docs/api/index.html API documentation]).
  * `attr(label, p)` Wraps the given pickler in an attribute with the given `label`.
  * `seq(pa, pb)` The two picklers are applied in sequence. This combinator is usually written as `pa ~ pb`. The `~` operator is a convenience method defined in the `Pickler` interface, so that sequences can be written using an infix operator.
  * `interleaved(p)`. Makes the given combinator accept input sequences in any order. Unknown elements are ignored. This is used heavily throughout the library.
  * `opt(p)` Turns the given pickler into an optional pickler. If `p` fails, `opt(p)` succeeds with a value of `None`.
  * `rep(p)` Repeatedly apply `p`, until it fails. It results into a list of values unpickled successfully by `p`.
  * `wrap` A combinator used to adapt one type to another. It has a dedicated section below.
- * other, less common combinators. See the scaladoc.
+ * other, less common combinators. See the [http://gdata-scala-client.googlecode.com/svn/trunk/docs/api/index.html scaladoc].
 
 == Example ==
 
@@ -313,17 +313,156 @@ Notice how the pickler is using the abstract method `entryPickler` to handle the
 
 == Tying the knot ==
 
-To bring everything together, we need to come up with a concrete class that can be instantiated. This means fixing the abstract types, and their picklers. 
+To bring everything together, we need to come up with a concrete class that can be instantiated. This means fixing the abstract types, and their picklers. This is usually done at the point of use, as after types are concrete, no further refinement is possible. We define a named class however:
+{{{
+class StdAtomFeed extends AtomFeeds with AtomEntries {
+  type Feed = AtomFeed
+  type Entry = AtomEntry
+  
+  def feedContentsPickler = atomFeedContentsPickler
+  def entryContentsPickler = atomEntryContentsPickler
+}
+}}}
+
+Now we can instantiate standard atom feeds and use it everywhere a feed is needed.
+
+== Writing feeds that are easily extensible ==
+
+In this section we lay out the pattern for refining entries and feeds. This should be the way new feeds are added to the library. The goals are to have a consistent feel, and limit the amount of code a subclass needs to write in order to reuse super class picklers.
+
+During this section we'll talk about entries, but keep in mind that the same pattern applies to feeds as well. All new entries should subclass `AtomEntries` and give a more specific upper bound to the abstract type of entry. They should also provide a pickler, named after the entry type plus the suffix `ContentsPickler`, implemented in terms of the superclass pickler.
+{{{
+trait VideoEntries extends AtomEntries {
+  type Entry <: VideoEntry
+
+  class VideoEntry extends AtomEntry {
+    var noembed: Boolean = false
+    var restricted: Boolean = false
+
+    // ..
+  }
+
+  def videoEntryContentsPickler: Pickler[VideoEntry] =
+    wrap (atomEntryContentsPickler ~ videoEntryExtra) ({
+      case ae ~ (noembed ~ restricted) => 
+        val me = new VideoEntry
+        me.fromAtomEntry(ae)
+        me.fillOwnFields(noembed, restricted)
+    }) (fromVideoEntry)
+  //...
+}
+}}}
+
+In this example we have assumed the extra fields of video entries have been gathered in their own pickler `videoEntryExtra`, but this is not always necessary. The pickler is using the `atomEntryContentsPickler` to parse everything the superclass may contain, and wrapping the contents pickler to instantiate video entries. The interesting bit is the following two lines, which fill the fields of video entries:
+ * a call to `fromAtomEntry`. This is a copy constructor (inherited from `AtomEntry`), which fills all its known fields
+ * a call to `fillOwnFields`. This is a method defined in `VideoEntry`, that fills the additional fields defined in video entries.
+
+These two methods should be implemented by all entries. Let's go back to the definition of `VideoEntry` and add the necessary methods:
+{{{
+class VideoEntry extends AtomEntry {
+  // ..
+  def fromVideoEntry(me: VideoEntry) {
+    this.fromAtomEntry(me)
+    fillOwnFields(me.media, me.noembed, me.restricted, me.viewCount, me.rating, me.comments)
+  }
+
+  def fillOwnFields(noembed: Boolean, restricted: Boolean): this.type = {
+    this.noembed = noembed
+    this.restricted = restricted
+    this
+  }
+  // ..
+}
+}}}
+Notice how the `fromVideoEntry` method is implemented in terms of `fromAtomEntry` and `fillOwnFields` (in our previous definition of `AtomEntry` we have glossed over the implementation of these two methods). This has the nice effect that any extension requires code that is proportional in size to the _delta_ the extension introduces. You can check how that works in [http://gdata-scala-client.googlecode.com/svn/trunk/docs/api/com/google/gdata/youtube/PlaylistVideoEntries.html PlayListVideoEntries], which extends video entries even further.
+
+To sum it up, a new refinement of Entries should:
+ * extend `AtomEntries` or a subclass (extending `Entries` directly seems very unlikely choice).
+ * define a new concrete class that subclasses the current entry class, for instance `AtomEntry`.
+ * refine the upper bound of the `Entry` type.
+ * provide a `fromNewConcreteClass` method that copies all fields from the given object.
+ * provide a `fillOwnFields` method that copies only the new fields.
+ * provide a contents pickler named after the entry class plus `ContentsPickler`.
+
+If the entry is part of a new feed, 
+ * create a concrete class called `StdNewFeed` which fixes all abstract members to sensible defaults.
 
 == References to other feeds ==
 
-== Conventions ==
+Many times a feed or an entry references another feed. For instance, video entries need to refer to comments, which have a feed of their own. The way to refer to comment feeds is to declare an abstract value of the feed type, and use the `Feed` and `Entry` types defined by that value.
+{{{
+trait VideoEntries {
+  val commentsFeed: StdAtomFeed
+  // ...
+  val comments: commentFeed.Feed
+}
+}}}
 
-== FeedLink and EntryLink ==
+This declaration makes it explicit that video entries depend on a comment feed implementation. Clients of video entries will need to provide a concrete implementation for commentsFeed. Most likely this will be in a `Service` implementation, and such an implementation will want to make sure the same comments component is used by all components in the service. To achieve that, it needs to override the `comments` value with a singleton type.
+{{{
+  val videos = new StdVideoFeed {
+    override lazy val commentsFeed: YouTubeService.this.comments.type = comments
+  }
+  
+  val comments = new StdCommentsFeed
+  //..
+}}}
 
-= Implementing a new service =
+This code says to the compiler that the value `comments` and `videos.commentsFeed` are the same, and therefore the `Entry` type in comments is the same as the `Entry` type in `videos.commentsFeed`. Without this wiring, the compiler would think that `comments.Feed` and 'videos.commentsFeed.Feed` are different types, as the paths are different.
 
-== Implementing new entries ==
+== !FeedLink and !EntryLink ==
+
+Google defines two elements, `feedLink` and `entryLink`, which represent either the link to a feed, or an embedded feed (we talk only about feeds, but the same applies to entries). Because they might enclose a feed, their pickler needs to be able to handle an arbitrary embedded feed. They simply abstract over the type and pickler for the embedded feed.
+{{{
+class FeedLink[Feed] extends HasStore {
+  // ..
+}
+object FeedLink {
+  def contentsPickler[F](feedPickler: Pickler[F]): Pickler[FeedLink[F]]
+}
+}}}
+
+= Query =
+
+Google Data implements queries using GET requests to a specific URL. The library provides a class for building URLs using a nice syntax. Queries have two components: a _category_ part, and a _search_ part. Categories are introduced by a forward slash, while the search part is introduced by `matching`. They may have a number of _modifiers_, like `maxResults` or `orderBy`, to further control the result set. The base class `Query` defines the standard query syntax and handles the encoding of parameters into a URL. Supported services define subclasses of `Query` to handle new, specific parameters.
+
+All new parameters should be implemented in terms of `Query.addParam`, for instance the [http://gdata-scala-client.googlecode.com/svn/trunk/docs/api/com/google/gdata/youtube/YouTubeQuery.html YouTubeQuery] adds an 'orderBy' parameter:
+{{{
+class YouTubeQuery extends Query {
+  def orderBy(ordering: String): this.type =
+    addParam("orderby", ordering)
+}
+}}}
 
 = Http and Google Data requests =
 
+The library defines helper classes for making Google Data requests and handling authentication. The `Service` class holds everything together:
+ * creates requests using a `RequestFactory`.
+ * handles authentication tokens using an `AuthenticationFactory`.
+ * makes queries using a `Query` class.
+
+The request factory creates requests and handles common headers that should be added to each request. The `Service` class supports stateful services, like calendar, by handling redirects with a `gsessionid` parameter by saving it and shipping it with future queries. It also provides generic query methods that use picklers for handling request/response content. Any pickling errors are translated to exceptions at this point.
+
+For example, the !YouTubeService class provides convenient methods for accessing video feeds by hiding the concrete picklers and URLs to which queries are made:
+{{{
+class YouTubeService {
+   val videos = new StdVideoFeed {
+    override lazy val commentsFeed: YouTubeService.this.comments.type = comments
+  }
+  // ..
+
+  /** Return a video feed matching the given query. */
+  def getVideos(q: Query): videos.Feed = {
+    query(q.mkUrl(YouTubeService.BASE_VIDEO_FEED), videos.feedPickler)
+  }
+}
+}}}
+
+= Implementing a new service =
+
+To support a new service, one needs to
+ * implement its feeds.
+ * define a service-specific query class if the service has additional search parameters
+ * define a subclass of `Service` which provides convenient methods for accessing the given feeds.
+
+All these additional classes should go into a service-specific package below `com.google.gdata`.
