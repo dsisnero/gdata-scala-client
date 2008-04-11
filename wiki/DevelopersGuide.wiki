@@ -106,7 +106,21 @@ Combinators are functions that take as arguments one or more picklers, and retur
 
 == Example ==
 
-All this has been pretty abstract, so now we turn to a simple example. Let's say we need to write a pickler for Google [http://code.google.com/apis/gdata/elements.html#gdRating rating] elements. We should start by defining a class for ratings:
+All this has been pretty abstract, so now we turn to a simple example. Let's say we need to write a pickler for Google [http://code.google.com/apis/gdata/elements.html#gdRating rating] elements, with the following schema:
+{{{
+rating =
+   element gd:rating {
+      gdCommonProperties,
+      attribute rel { xs:string }?,
+      attribute value { xs:int }?,
+      attribute average { xs:float }?,
+      attribute min { xs:int },
+      attribute max { xs:int },
+      attribute numRaters { xs:int }?
+   }
+}}}
+
+We start by defining a class for ratings:
 {{{
 case class Rating(average: Option[Double], 
     min: Int, 
@@ -133,9 +147,9 @@ object Rating {
         ~ opt(attr("value", intVal)))(gdNs)
 }
 }}}
-The pickler definition reads almost like an RNG schema for the rating element. The `default` combinator provides a default value in case the attribute _rel_ is not present. The last argument to `elem` is the element namespace (in this case, the Google data namespace).
+The pickler definition reads almost like an RNG schema for the rating element. The `default` combinator provides a value in case the attribute _rel_ is not present. The last argument to `elem` is the element namespace (in this case, the Google data namespace).
 
-If you try to compile this code, you'll notice there is a type error: The return type of `pickler` is not `Pickler[Rating]`, but some type involving `~`. The reason has to do with the sequence combinator, which returns picklers for a pair-like type formed by the two picklers:
+If you try to compile this code, you'll notice there is a type error: The return type of `pickler` is not `Pickler[Rating]`, but some complex involving `~`. The reason has to do with the sequence combinator, which returns picklers for a pair-like type formed by the two picklers:
 {{{
 def seq[A, B](pa: => Pickler[A], pb: => Pickler[B]): Pickler[~[A, B]]
 }}}
@@ -144,6 +158,10 @@ As in the combinator parsing library, `~` is both a convenience method in trait 
 == Wrap ==
 
 We can fix our code by giving the library a way to transform between our type to the type it understands. The `wrap` combinator does just that: Given a pickler for some type `A`, and two functions `f: A => B` and `g: B => A`, it gives back a pickler for type `B`.
+{{{
+  def wrap[A, B](pb: => Pickler[A])(g: A => B)(f: B => A): Pickler[B]
+}}}
+
 {{{
   def rawPickler = // the previous definition
 
@@ -156,7 +174,7 @@ We can fix our code by giving the library a way to transform between our type to
     (new ~(r.average, r.min) ~ r.max ~ r.numRaters ~ r.rel ~ r.value)
 }}}
 
-Thanks to type inference, we got away easy: all types are filled in by the compiler. The first argument to `wrap` is the raw pickler, the second one is a function (using Scala's support for patterns as partial functions) than constructs `Rating` objects out of the pair-like structure. The last argument breaks a `Rating` object into pairs.
+Thanks to type inference, we got away easy: all types are filled in by the compiler. The first argument to `wrap` is the raw pickler, the second one is a function (using Scala's support for patterns as partial functions) that constructs `Rating` objects out of the pair-like structure. The last argument breaks a `Rating` object into pairs.
 
 Oh, and one more thing: because `Rating` is a case class, we can use the constructor functions generated automatically to get a much cleaner definition:
 {{{
@@ -193,7 +211,7 @@ object Link {
   lazy val pickler: Pickler[Link] = elem("link", makeExtensible(contentsPickler))
 }}}
 
-The interesting thing to note is the call to `makeExtensible` on the `contentsPickler`. This combinator simply stores whatever was not parsed by the given pickler into a field of the `Link` class. Note that `Link` extends `HasStore`, a trait that declares a `store` field. Remember that, even though we talk only about parsing, the store goes both ways: when pickling a `Link`, all unknown elements are pickled too.
+The interesting thing to note is the call to `makeExtensible` on the `contentsPickler`. This combinator simply stores whatever was not parsed by the given pickler into a field of the `Link` class. Note that `Link` extends `HasStore`, a trait that declares a `store` field for that purpose. Remember that, even though we talk only about parsing, the store goes both ways: when pickling a `Link`, all unknown elements are pickled too.
 
 Suppose link elements are extended with a child element called `webContent`:
 {{{
@@ -201,17 +219,111 @@ extend(pickler, elem("webContent", text)(Uris.gCalNs))
 }}}
 This returns a pickler that handles the additional element.
 
-This scheme works fine for simple cases, but when a class refers to another class, and both can be extended independently, this scheme will lose type information: the container will refer to its members by a super type. This is the case with feeds and entries, and the solution is described _Feeds and Entries_.
+This scheme works fine for simple cases, but when a class contains objects of a class that was extended, this scheme will lose type information: the container will refer to its members by a super type. This is the case with feeds and entries, and the solution is described in a dedicated section.
 
 = Common Data Classes =
 
-The [http://www.atomenabled.org/developers/syndication/atom-format-spec.php Atom syndication protocol] defines common constructs and the basic structure of feeds and entries. Their model classes and picklers are found under `com.google.gdata.data`. They follow the pattern described above, except for feeds and entries, which are described in the next section. The library uses a custom `DateTime` class, whose definition and picklers are found in `com.google.gdata.data.util`. This class handles time zones and parses dates in the RFC 3339 format.
+The [http://www.atomenabled.org/developers/syndication/atom-format-spec.php Atom syndication protocol] defines common constructs and the basic structure of feeds and entries. Their model classes and picklers are found under `com.google.gdata.data`, and follow the pattern described above with one exception: feeds and entries, which are described in the next section. The library uses a custom `DateTime` class, whose definition and picklers are found in `com.google.gdata.data.util`. This class handles time zones and parses dates in the RFC 3339 format.
 
-Google defines a number of common classes, and their implementation is found in package `com.google.gdata.data.kinds`. The interesting cases are `FeedLink` and `EntryLink`, which are special because they might enclose a feed or entry element. They will be described in the _Feeds and Entries_ section.
+Google defines a number of common classes, and their implementation is found in package `com.google.gdata.data.kinds`. Implementation is straight forward. The interesting cases are `FeedLink` and `EntryLink`, which are special because they might enclose a feed or entry element, and are described below.
 
 = Feeds and Entries =
 
+Feeds are at the center of the Google Data API. Each kind of data that is published by a service is represented as a feed. A feed contains _entries_ along with metadata (such as author, id, or publish date). In turn, each entry represents a specific kind of data, like videos, events, messages. As such, entries are by far the most extended structure in Google Data.
 
+Going back to the extensibility issue, when modeling Atom feeds, we are faced with the choice of a type for entries. Our first attempt might look like this:
+{{{
+  class AtomFeed {
+    var author: String
+    ...
+    var entries: List[AtomEntry]
+  }
+}}}
+
+But what happens when we implement !YouTube video feeds? We will extend `AtomEntry` to define `VideoEntry`, but the feed will still 'know' only about `AtomEntry`, and user code would need to down cast. Worse, feeds are often interconnected: a video entry has a comments feed, a related video feed and a user profile feed. All these have different type of entries, who can in turn be extended later. Redefining each feed for each extension (and the transitive closure of its uses) is clearly not a scalable solution. 
+
+In turn, we abstract over the type of entries, and let feeds and entries evolve independently, combining them using mixin composition.
+
+== The Cake Pattern ==
+
+The [http://scala.sygneca.com/patterns/component-mixins cake pattern] is used when different components need to abstract over their dependencies, evolve independently and do so in a type safe way. In our case, feeds and entries are the components that need to inter-operate, but the dependencies should be hard coded in either of them. We start by defining a trait for Entries:
+{{{
+trait Entries {
+  type Entry <: HasStore
+  
+  def entryPickler: Pickler[Entry] = elem("entry", makeExtensible(entryContentsPickler))(Uris.atomNs)
+  def entryContentsPickler: Pickler[Entry]
+}
+}}}
+
+This component provides an abstract type `Entry`: all components using entries use this abstract type for referring to an entry. This allows them to work with different implementations of `Entries`. It also provides a pickler for this abstract type, expressed in terms of a pickler for entry contents. The `entryContentsPickler` is a method that needs to be defined by concrete implementations, and which should remain abstract until the type is fixed to a concrete type.
+
+Next we look at a component for feeds. Since feeds depend on entries, we'll use a self type annotation to express this requirement:
+{{{
+trait Feeds { this: Feeds with Entries =>
+  type Feed <: Seq[Entry] with HasStore
+  
+  def feedPickler: Pickler[Feed] = elem("feed", makeExtensible(feedContentsPickler))(Uris.atomNs)
+  
+  def feedContentsPickler: Pickler[Feed]
+}}}
+
+This component is very similar to the previous one, except for the self type annotation, that reads like 'all instances that mix in `Feeds` should also mix in `Entries`'. This allows `Feeds` to be defined in terms of the abstract type `Entry`, for instance by making them implement `Seq[Entry]`.
+
+== Atom Feeds ==
+
+Once we have defined feed and entry components, we can refine them to model the most basic feeds: atom feeds. At each step, we need to refine the abstract type and define a contents pickler for the new bound:
+{{{
+trait AtomEntries extends Entries {
+  type Entry <: AtomEntry
+  
+  class AtomEntry extends AnyRef with LinkNavigation with HasStore {
+    var authors: List[Person] = Nil
+    var categories: List[Category] = Nil
+    // ...
+  }
+
+  lazy val atomEntryContentsPickler: Pickler[AtomEntry] = wrap (...) ({
+    case authors ~ cats ~ .. =>
+      (new AtomEntry).fillOwnFields(authors, cats, content, contribs, id, links, published, 
+          rights, src, summary, title, updated)
+  }) (fromEntry)
+}
+}}}
+
+This new component provides a more specific type of entries, and defines the `AtomEntry` class along with its pickler. Note that the contents pickler method is *not* implemented yet: instead, a `atomEntryContentsPickler` is provided. This allows future extensions, that can reuse the atom entry pickler. Similarly, atom feeds follow:
+{{{
+trait AtomFeeds extends Feeds { this: AtomFeeds with Entries =>
+  type Feed <: AtomFeed with HasStore
+
+  class AtomFeed extends AnyRef with Seq[Entry] with HasStore {
+    var authors: List[Person] = Nil
+    // ..
+
+    var entries: List[Entry] = Nil
+  }
+
+  lazy val atomFeedContentsPickler: Pickler[AtomFeed] = 
+    wrap (interleaved(rep(atomPerson("author")) ~ rep(entryPickler))) ({
+      case authors ~ entries => new AtomFeed(...)
+  }) (fromAtomFeed)
+}
+}}}
+Notice how the pickler is using the abstract method `entryPickler` to handle the abstract `Entry` type.
+
+== Tying the knot ==
+
+To bring everything together, we need to come up with a concrete class that can be instantiated. This means fixing the abstract types, and their picklers. 
+
+== References to other feeds ==
+
+== Conventions ==
+
+== FeedLink and EntryLink ==
+
+= Implementing a new service =
+
+== Implementing new entries ==
 
 = Http and Google Data requests =
 
