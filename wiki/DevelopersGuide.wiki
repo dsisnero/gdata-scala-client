@@ -53,10 +53,10 @@ The library goes to great lengths to provide a type-safe layer on top of the und
  * whenever a piece of data is optional, it is represented as an `Option[T]`. *null* values should never be valid values.
  * whenever a default value is specified for an element or attribute, such data is represented as a value of the right type, and the default value is filled in when parsing.
  * all data is mutable. This is in order to support update (although some services are read-only).
- * serialization code is separated from data representation. Picklers (the name for serialization code) are usually found as values in the companion object of data classes.
- * errors in the HTTP transport layer are signaled as exceptions.
+ * serialization code is separated from data representation. Picklers (serialization code) are usually found as values in the companion object of data classes.
+ * errors in the HTTP layer are signaled as exceptions.
  * convenience methods and constructors are provided for the most common cases. For instance, an `EventEntry` has a constructor taking a title and a description as plain strings (although they could be `html` or `xhtml`) and two `DateTime` objects (although an event might have only one or none).
- * names in data classes closely follow the XML data they model. If an [http://code.google.com/apis/gdata/elements.html#gdEventKind event entry] has an element called `eventStatus`, the `EventEntry` class will have a field named the same. This makes it easy to use existing Google documentation.
+ * names in data classes closely follow the XML data they model. If an [http://code.google.com/apis/gdata/elements.html#gdEventKind event entry] has an element called `eventStatus`, the `EventEntry` class will have a field named the same. This makes it easy to reuse existing documentation.
 
 == Organization ==
 
@@ -149,7 +149,7 @@ object Rating {
 }}}
 The pickler definition reads almost like an RNG schema for the rating element. The `default` combinator provides a value in case the attribute _rel_ is not present. The last argument to `elem` is the element namespace (in this case, the Google data namespace).
 
-If you try to compile this code, you'll notice there is a type error: The return type of `pickler` is not `Pickler[Rating]`, but some complex involving `~`. The reason has to do with the sequence combinator, which returns picklers for a pair-like type formed by the two picklers:
+If you try to compile this code, you'll notice there is a type error: The return type of `pickler` is not `Pickler[Rating]`, but some complex type involving `~`. The reason has to do with the sequence combinator, which returns picklers for a pair-like type formed by the two picklers:
 {{{
 def seq[A, B](pa: => Pickler[A], pb: => Pickler[B]): Pickler[~[A, B]]
 }}}
@@ -176,7 +176,7 @@ We can fix our code by giving the library a way to transform between our type to
 
 Thanks to type inference, we got away easy: all types are filled in by the compiler. The first argument to `wrap` is the raw pickler, the second one is a function (using Scala's support for patterns as partial functions) that constructs `Rating` objects out of the pair-like structure. The last argument breaks a `Rating` object into pairs.
 
-Oh, and one more thing: because `Rating` is a case class, we can use the constructor functions generated automatically to get a much cleaner definition:
+Oh, and one more thing: because `Rating` is a case class, we can use the automatically generated functions to get a much cleaner definition:
 {{{
   def rawPickler = // as before
 
@@ -246,7 +246,7 @@ In turn, we abstract over the type of entries, and let feeds and entries evolve 
 
 == The Cake Pattern ==
 
-The [http://scala.sygneca.com/patterns/component-mixins cake pattern] is used when different components need to abstract over their dependencies, evolve independently and do so in a type safe way. In our case, feeds and entries are the components that need to inter-operate, but the dependencies should be hard coded in either of them. We start by defining a trait for Entries:
+The [http://scala.sygneca.com/patterns/component-mixins cake pattern] is used when different components need to abstract over their dependencies, evolve independently and do so in a type safe way. In our case, feeds and entries are the components that need to inter-operate, but the dependencies should not be hard coded in either of them. We start by defining a trait for Entries:
 {{{
 trait Entries {
   type Entry <: HasStore
@@ -256,7 +256,7 @@ trait Entries {
 }
 }}}
 
-This component provides an abstract type `Entry`: all components using entries use this abstract type for referring to an entry. This allows them to work with different implementations of `Entries`. It also provides a pickler for this abstract type, expressed in terms of a pickler for entry contents. The `entryContentsPickler` is a method that needs to be defined by concrete implementations, and which should remain abstract until the type is fixed to a concrete type.
+This component provides an abstract type `Entry`: all components using entries use this abstract type when referring to an entry. This allows them to work with different implementations of `Entries`. It also provides a pickler for this abstract type, expressed in terms of a pickler for entry contents. The `entryContentsPickler` is a method that needs to be defined by concrete implementations, and which should remain abstract until the type is fixed to a concrete type.
 
 Next we look at a component for feeds. Since feeds depend on entries, we'll use a self type annotation to express this requirement:
 {{{
@@ -313,7 +313,7 @@ Notice how the pickler is using the abstract method `entryPickler` to handle the
 
 == Tying the knot ==
 
-To bring everything together, we need to come up with a concrete class that can be instantiated. This means fixing the abstract types, and their picklers. This is usually done at the point of use, as after types are concrete, no further refinement is possible. We define a named class however:
+To bring everything together, we need to come up with a concrete class that can be instantiated. This means fixing the abstract types, and their picklers. This is usually done at the point of use, as after types are concrete, no further refinement is possible. We choose to define named classes for all feeds, as it is very likely to use the same feed in more than one place. The name should be the name of the feed type, prefixed by `Std`:
 {{{
 class StdAtomFeed extends AtomFeeds with AtomEntries {
   type Feed = AtomFeed
@@ -324,7 +324,17 @@ class StdAtomFeed extends AtomFeeds with AtomEntries {
 }
 }}}
 
-Now we can instantiate standard atom feeds and use it everywhere a feed is needed.
+Now we can instantiate standard atom feeds and use the types and picklers. For example, the following code is unpickling a feed from a file:
+{{{
+val atomFeed = new StdAtomFeed
+val is = new FileInputStream(...)
+val xmlStore = LinearStore.fromInputStream(is)
+atomFeed.feedPickler.unpickle(xmlStore) match {
+  case Success(feed, _) => println('Unpickled feed: ' + feed)
+  case f: NoSuccess => println(f.toString)
+}
+}}}
+The unpickle method takes an `XmlInputStore` as parameter, so we need to create one based on the input stream. Then we match on the result, to check if the parsing was successful or not.
 
 == Writing feeds that are easily extensible ==
 
@@ -374,10 +384,10 @@ class VideoEntry extends AtomEntry {
   // ..
 }
 }}}
-Notice how the `fromVideoEntry` method is implemented in terms of `fromAtomEntry` and `fillOwnFields` (in our previous definition of `AtomEntry` we have glossed over the implementation of these two methods). This has the nice effect that any extension requires code that is proportional in size to the _delta_ the extension introduces. You can check how that works in [http://gdata-scala-client.googlecode.com/svn/trunk/docs/api/com/google/gdata/youtube/PlaylistVideoEntries.html PlayListVideoEntries], which extends video entries even further.
+Notice how the `fromVideoEntry` method is implemented in terms of `fromAtomEntry` and `fillOwnFields` (in our previous definition of `AtomEntry` we have glossed over the implementation of these two methods). This has the nice effect that any extension requires code that is proportional in size to the _delta_ the extension introduces. You can check how that works in [http://gdata-scala-client.googlecode.com/svn/trunk/docs/api/com/google/gdata/youtube/PlaylistVideoEntries.html PlaylistVideoEntries], which extends video entries even further.
 
 To sum it up, a new refinement of Entries should:
- * extend `AtomEntries` or a subclass (extending `Entries` directly seems very unlikely choice).
+ * extend `AtomEntries` or a subclass (extending `Entries` directly seems very unlikely).
  * define a new concrete class that subclasses the current entry class, for instance `AtomEntry`.
  * refine the upper bound of the `Entry` type.
  * provide a `fromNewConcreteClass` method that copies all fields from the given object.
@@ -400,15 +410,17 @@ trait VideoEntries {
 
 This declaration makes it explicit that video entries depend on a comment feed implementation. Clients of video entries will need to provide a concrete implementation for commentsFeed. Most likely this will be in a `Service` implementation, and such an implementation will want to make sure the same comments component is used by all components in the service. To achieve that, it needs to override the `comments` value with a singleton type.
 {{{
+class YouTubeService {
   val videos = new StdVideoFeed {
     override lazy val commentsFeed: YouTubeService.this.comments.type = comments
   }
   
   val comments = new StdCommentsFeed
   //..
+}
 }}}
 
-This code says to the compiler that the value `comments` and `videos.commentsFeed` are the same, and therefore the `Entry` type in comments is the same as the `Entry` type in `videos.commentsFeed`. Without this wiring, the compiler would think that `comments.Feed` and 'videos.commentsFeed.Feed` are different types, as the paths are different.
+This code says to the compiler that the value `comments` and `videos.commentsFeed` are the same, and therefore the `Entry` type in comments is the same as the `Entry` type in `videos.commentsFeed`. Without this wiring, the compiler would think that `comments.Feed` and `videos.commentsFeed.Feed` are different types, as the paths are different.
 
 == !FeedLink and !EntryLink ==
 
@@ -425,6 +437,43 @@ object FeedLink {
 = Query =
 
 Google Data implements queries using GET requests to a specific URL. The library provides a class for building URLs using a nice syntax. Queries have two components: a _category_ part, and a _search_ part. Categories are introduced by a forward slash, while the search part is introduced by `matching`. They may have a number of _modifiers_, like `maxResults` or `orderBy`, to further control the result set. The base class `Query` defines the standard query syntax and handles the encoding of parameters into a URL. Supported services define subclasses of `Query` to handle new, specific parameters.
+
+== Category Queries ==
+
+To build a query that matches several categories, start with a `Query` object and add categories separated by `/`. This method is defined in the `Query` class and takes a `CategoryQuery`. To make more complex queries, you can use `|` and `!` to build alternatives and negation, respectively. These methods are defined in the `CategoryQuery` class. One obtains the URL by passing a base URL to `mkUrl`:
+
+{{{
+scala> var q1 = Query.empty / "Comedy" / "Fun"
+scala> q1.mkUrl("http://gdata.youtube.com/feeds/api/videos")
+res6: String = http://gdata.youtube.com/feeds/api/videos/-/Comedy/Fun
+
+scala> q1 = Query.empty / (cat("Comedy") | cat("Fun"))
+scala> q1.mkUrl("http://gdata.youtube.com/feeds/api/videos")
+res5: String = http://gdata.youtube.com/feeds/api/videos/-/Comedy%7CFun
+}}}
+
+== Search queries ==
+
+To make a text query, start with a `Query` object and call `matching`, passing an instance of `SearchQuery`. Search queries are built using `&`, `|`, `!` and `Text` instances, with the usual meaning. For instance, the following query is translated to an URL by passing a base URL:
+
+{{{
+scala> q1 = Query.empty matching Text("fun") & !Text("office")
+scala> q1.mkUrl("http://gdata.youtube.com/feeds/api/videos")
+res13: String = http://gdata.youtube.com/feeds/api/videos?q=fun+-office
+}}}
+
+== Modifiers ==
+
+In addition to category and search queries, one can control the result set by adding _modifiers_. Modifiers are additional parameters that get shipped with a query, and control the number of results or ordering. This last example shows a query having all parts described above:
+{{{
+scala> q1 = Query.empty / "Comedy" matching Text("fun") & !Text("office") maxResults(10)
+scala> q1.mkUrl("http://gdata.youtube.com/feeds/api/videos")
+res15: String = http://gdata.youtube.com/feeds/api/videos/-/Comedy?max-results=10&q=fun+-office
+}}}
+
+== Service-specific queries ==
+
+Most services accept additional parameters. Supported services get a specialized query class that implements such new features.
 
 All new parameters should be implemented in terms of `Query.addParam`, for instance the [http://gdata-scala-client.googlecode.com/svn/trunk/docs/api/com/google/gdata/youtube/YouTubeQuery.html YouTubeQuery] adds an 'orderBy' parameter:
 {{{
