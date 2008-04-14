@@ -515,3 +515,19 @@ To support a new service, one needs to
  * define a subclass of `Service` which provides convenient methods for accessing the given feeds.
 
 All these additional classes should go into a service-specific package below `com.google.gdata`.
+
+= Tests =
+
+The library has a collection of unit tests. They are organized in the same packages as the classes they test, but live under `tests/` instead of `src/`. Unit tests are written using [http://www.junit.org/ junit] 4. Most tests are straight forward, but feed tests are more interesting. Each feed test unpickles a saved feed under `test-data`, then pickles it back and uses [http://code.google.com/p/xml-test xml-test] to check that the resulting XML document matches the input. This ensures no input elements are lost.
+
+To write a test for a new feed, get an XML document retrieved from the server, by using [http://curl.haxx.se/ curl] for instance. Save it under `test-data/feeds`, then write a new test class that extends `FeedFileTest`.
+{{{
+class YouTubeFeedsTest extends AnyRef with FeedFileTest {
+  @Test def testVideoFeed {
+    testRoundtrip("feeds/video-feed-in.xml", (new StdVideoFeed).feedPickler, "//rating")
+  }
+  //...
+}
+}}}
+
+`testRoundtrip` takes the input file, the pickler and any number of XPath elements that should be ignored when comparing.
