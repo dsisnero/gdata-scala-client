@@ -4,7 +4,7 @@
 
 The Google Data Scala client library allows client software to connect to Google Services through the [http://code.google.com/apis/gdata/index.html Google Data API protocol]. It makes it easy to retrieve and modify data exposed by services like [http://code.google.com/apis/calendar/ Calendar] and [http://code.google.com/apis/youtube/overview.html YouTube], without worrying about the underlying XML representation or how queries are made.
 
-Currently the Google Data Scala client library supports the [http://code.google.com/apis/youtube/reference.html YouTube API] and the [http://code.google.com/apis/calendar/reference.html Calendar API]. It can be easily extended to support new services (and it will do so in time).
+Currently the Google Data Scala client library supports the [http://code.google.com/apis/youtube/reference.html YouTube API], [http://code.google.com/apis/contacts/ Contacts API] and the [http://code.google.com/apis/calendar/reference.html Calendar API]. It can be easily extended to support new services (and it will do so in time).
 
 This document shows how to connect to a service, make queries and go through the results. It assumes the reader is familiar with the [http://code.google.com/apis/gdata/basics.html Google Data protocol], and has some high-level understanding of the [http://code.google.com/apis/youtube/overview.html YouTube] and [http://code.google.com/apis/youtube/overview.html Calendar API]s.
 
