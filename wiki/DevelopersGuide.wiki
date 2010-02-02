@@ -5,7 +5,7 @@
 
 This document is intended to give a thorough view of the design and implementation of the Google Data Scala client library. If you want to know more about how this library works, or contribute to the project, this is the starting point. It assumes the reader is familiar with [http://scala-lang.org Scala], the [http://code.google.com/apis/gdata/index.html Google Data API protocol], [http://www.atomenabled.org/developers/syndication/atom-format-spec.php Atom] and the [http://ietfreport.isoc.org/idref/draft-ietf-atompub-protocol/ Atom Publishing Protocol].
 
-_Note: The Scala client library needs a working [http://scala-lang.org Scala] installation newer than 2.7.0-final. That means a [http://www.scala-lang.org/downloads/distrib/files/nightly/ nightly build], until a bug fix release is issued to deal with [https://lampsvn.epfl.ch/trac/scala/ticket/632 this bug]._
+_Note: The Scala client library needs a working [http://scala-lang.org Scala] installation newer than 2.7.1. It also works with the current 2.8.0-beta._
 
 = Setup =
 
