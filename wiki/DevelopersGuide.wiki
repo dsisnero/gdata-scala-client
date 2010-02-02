@@ -15,7 +15,7 @@ Before you start, make sure you have installed the following software:
 
  * An [http://subversion.tigris.org/ svn] client.
  * [http://ant.apache.org ant]
- * A [http://scala-lang.org Scala] distribution greater than 2.7.0.
+ * A [http://scala-lang.org Scala] distribution greater than 2.7.1 (including 2.8.0-beta).
  * [http://emma.sourceforge.net/ emma] for code coverage (optional).
 
 == Setting up your working copy ==
