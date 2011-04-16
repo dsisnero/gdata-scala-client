@@ -1,0 +1,498 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>com.google.gdata.data</title>
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link type="text/css" media="screen" rel="stylesheet" href="../../../../lib/template.css" />
+      <script type="text/javascript" src="../../../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../lib/tools.tooltip.js"></script>
+    
+        </head>
+        <body onload="windowTitle();" class="value">
+
+      <p id="owner"><a name="com" class="extype" href="../../../package.html">com</a>.<a name="com.google" class="extype" href="../../package.html">google</a>.<a name="com.google.gdata" class="extype" href="../package.html">gdata</a></p>
+
+      <div id="definition">
+        <img src="../../../../lib/package_big.png" />
+        <h1>data</h1>
+      </div>
+
+      <h4 class="signature" id="signature">
+      <span class="kind">package</span>
+      <span class="symbol">
+        <span class="name">data</span>
+        
+        
+        
+      </span>
+      </h4>
+      
+          
+          <div class="fullcomment" id="comment"></div>
+        
+
+      <div id="template">
+
+        <div id="mbrsel">
+          <div id="textfilter"><span class="pre"></span><span class="input"><input accesskey="/" type="text" /></span><span class="post"></span></div>
+          
+          
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in">Public</li><li class="all out">All</li></ol>
+            </div>
+          <div id="impl">
+              <span class="filtertype">Impl.</span>
+              <ol><li class="concrete in">Concrete</li><li class="abstract in">Abstract</li></ol>
+            </div>
+        </div>
+
+        
+
+        <div class="types members" id="types">
+              <h3>Type Members</h3>
+              <ol><li visbl="pub" name="com.google.gdata.data.AtomEntries" data-isabs="true">
+      <a id="AtomEntries:AtomEntries"></a>
+      <h4 class="signature"><a href="AtomEntries.html">
+      <span class="kind">trait</span>
+      <span class="symbol">
+        <span class="name">AtomEntries</span>
+        
+        
+        <span class="result"> extends Entries</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Atom Entries provides a type of Atom entries and a pickler for the AtomEntry.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.AtomFeeds" data-isabs="true">
+      <a id="AtomFeeds:AtomFeeds"></a>
+      <h4 class="signature"><a href="AtomFeeds.html">
+      <span class="kind">trait</span>
+      <span class="symbol">
+        <span class="name">AtomFeeds</span>
+        
+        
+        <span class="result"> extends Feeds</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Atom feeds refines Feeds with Atom-like feeds.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.Category" data-isabs="false">
+      <a id="Category:Category"></a>
+      <h4 class="signature"><a href="Category.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Category</span>
+        
+        <span class="params">(<span name="term">
+                  term
+                  : String
+                  
+                </span>, <span name="scheme">
+                  scheme
+                  : Option[String]
+                  
+                </span>, <span name="label">
+                  label
+                  : Option[String]
+                  
+                </span>)</span>
+        <span class="result"> extends Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">An Atom category, as defined by the Atom spec.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.Content" data-isabs="true">
+      <a id="Content:Content"></a>
+      <h4 class="signature"><a href="Content.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">Content</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A content element as defined by the Atom syndication format.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.Entries" data-isabs="true">
+      <a id="Entries:Entries"></a>
+      <h4 class="signature"><a href="Entries.html">
+      <span class="kind">trait</span>
+      <span class="symbol">
+        <span class="name">Entries</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">An interface for abstract entries.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.Feeds" data-isabs="true">
+      <a id="Feeds:Feeds"></a>
+      <h4 class="signature"><a href="Feeds.html">
+      <span class="kind">trait</span>
+      <span class="symbol">
+        <span class="name">Feeds</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A module for Feeds.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.Generator" data-isabs="false">
+      <a id="Generator:Generator"></a>
+      <h4 class="signature"><a href="Generator.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Generator</span>
+        
+        <span class="params">(<span name="name">
+                  name
+                  : String
+                  
+                </span>, <span name="uri">
+                  uri
+                  : Option[String]
+                  
+                </span>, <span name="version">
+                  version
+                  : Option[String]
+                  
+                </span>)</span>
+        <span class="result"> extends Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">An Atom generator construct, as defined by the Atom spec.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.HtmlContent" data-isabs="false">
+      <a id="HtmlContent:HtmlContent"></a>
+      <h4 class="signature"><a href="HtmlContent.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">HtmlContent</span>
+        
+        <span class="params">(<span name="text">
+                  text
+                  : String
+                  
+                </span>)</span>
+        <span class="result"> extends Content with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">An Html content.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.Link" data-isabs="false">
+      <a id="Link:Link"></a>
+      <h4 class="signature"><a href="Link.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Link</span>
+        
+        <span class="params">(<span name="href">
+                  href
+                  : String
+                  
+                </span>, <span name="rel">
+                  rel
+                  : Option[String]
+                  
+                </span>, <span name="tpe">
+                  tpe
+                  : Option[String]
+                  
+                </span>, <span name="hrefLang">
+                  hrefLang
+                  : Option[String]
+                  
+                </span>, <span name="title">
+                  title
+                  : Option[String]
+                  
+                </span>, <span name="length">
+                  length
+                  : Option[String]
+                  
+                </span>)</span>
+        <span class="result"> extends HasStore with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">An Atom link construct, as defined by the Atom spec.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.LinkNavigation" data-isabs="true">
+      <a id="LinkNavigation:LinkNavigation"></a>
+      <h4 class="signature"><a href="LinkNavigation.html">
+      <span class="kind">trait</span>
+      <span class="symbol">
+        <span class="name">LinkNavigation</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Mix in this trait in any container of links.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.OutOfLineContent" data-isabs="false">
+      <a id="OutOfLineContent:OutOfLineContent"></a>
+      <h4 class="signature"><a href="OutOfLineContent.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">OutOfLineContent</span>
+        
+        <span class="params">(<span name="src">
+                  src
+                  : String
+                  
+                </span>, <span name="tpe">
+                  tpe
+                  : String
+                  
+                </span>)</span>
+        <span class="result"> extends Content with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">An out of line content (linked to an external URL).</p>
+    </li><li visbl="pub" name="com.google.gdata.data.Person" data-isabs="false">
+      <a id="Person:Person"></a>
+      <h4 class="signature"><a href="Person.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Person</span>
+        
+        <span class="params">(<span name="name">
+                  name
+                  : String
+                  
+                </span>, <span name="uri">
+                  uri
+                  : Option[String]
+                  
+                </span>, <span name="email">
+                  email
+                  : Option[String]
+                  
+                </span>)</span>
+        <span class="result"> extends (String, Option[String], Option[String]) with HasStore with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A person construct, according to the Atom specification.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.Source" data-isabs="false">
+      <a id="Source:Source"></a>
+      <h4 class="signature"><a href="Source.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">Source</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">An Atom source element.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.StdAtomFeed" data-isabs="false">
+      <a id="StdAtomFeed:StdAtomFeed"></a>
+      <h4 class="signature"><a href="StdAtomFeed.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">StdAtomFeed</span>
+        
+        
+        <span class="result"> extends AtomFeeds with AtomEntries</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A standard Atom feed, with only the elements defined by Atom Syndication Format
+</p>
+    </li><li visbl="pub" name="com.google.gdata.data.Text" data-isabs="false">
+      <a id="Text:Text"></a>
+      <h4 class="signature"><a href="Text.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Text</span>
+        
+        <span class="params">(<span name="tpe">
+                  tpe
+                  : Option[String]
+                  
+                </span>, <span name="content">
+                  content
+                  : String
+                  
+                </span>)</span>
+        <span class="result"> extends (Option[String], String) with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A text construct, according to the Atom specification.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.TextContent" data-isabs="false">
+      <a id="TextContent:TextContent"></a>
+      <h4 class="signature"><a href="TextContent.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">TextContent</span>
+        
+        <span class="params">(<span name="text">
+                  text
+                  : String
+                  
+                </span>)</span>
+        <span class="result"> extends Content with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A plain text content.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.XhtmlContent" data-isabs="false">
+      <a id="XhtmlContent:XhtmlContent"></a>
+      <h4 class="signature"><a href="XhtmlContent.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">XhtmlContent</span>
+        
+        <span class="params">(<span name="div">
+                  div
+                  : NodeSeq
+                  
+                </span>)</span>
+        <span class="result"> extends Content with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A Xhtml content.</p>
+    </li></ol>
+            </div>
+
+        <div class="values members" id="values">
+              <h3>Value Members</h3>
+              <ol><li visbl="pub" name="com.google.gdata.data.Atom" data-isabs="false">
+      <a id="Atom:Atom"></a>
+      <h4 class="signature"><a href="Atom$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Atom</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">This object defines common Atom constructs.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.Category" data-isabs="false">
+      <a id="Category:Category"></a>
+      <h4 class="signature"><a href="Category$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Category</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Provides the picklers for Category elements.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.Content" data-isabs="false">
+      <a id="Content:Content"></a>
+      <h4 class="signature"><a href="Content$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Content</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Provide picklers for content elements.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.Generator" data-isabs="false">
+      <a id="Generator:Generator"></a>
+      <h4 class="signature"><a href="Generator$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Generator</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.Link" data-isabs="false">
+      <a id="Link:Link"></a>
+      <h4 class="signature"><a href="Link$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Link</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.NoText" data-isabs="false">
+      <a id="NoText:NoText"></a>
+      <h4 class="signature"><a href="NoText$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">NoText</span>
+        
+        
+        <span class="result"> extends Text</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A default, empty text construct.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.Source" data-isabs="false">
+      <a id="Source:Source"></a>
+      <h4 class="signature"><a href="Source$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Source</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Provide a pickler for Source.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.Uris" data-isabs="false">
+      <a id="Uris:Uris"></a>
+      <h4 class="signature"><a href="Uris$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Uris</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">This object holds together common namespace definitions.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.kinds" data-isabs="false">
+      <a id="kinds:kinds"></a>
+      <h4 class="signature"><a href="kinds/package.html">
+      <span class="kind">package</span>
+      <span class="symbol">
+        <span class="name">kinds</span>
+        
+        
+        
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.media" data-isabs="false">
+      <a id="media:media"></a>
+      <h4 class="signature"><a href="media/package.html">
+      <span class="kind">package</span>
+      <span class="symbol">
+        <span class="name">media</span>
+        
+        
+        
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.util" data-isabs="false">
+      <a id="util:util"></a>
+      <h4 class="signature"><a href="util/package.html">
+      <span class="kind">package</span>
+      <span class="symbol">
+        <span class="name">util</span>
+        
+        
+        
+      </span>
+      </a></h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+      </div>
+      
+      <div id="tooltip"></div>
+      
+    </body>
+      </html>

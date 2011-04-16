@@ -1,0 +1,248 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>com.google.xml.combinators</title>
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link type="text/css" media="screen" rel="stylesheet" href="../../../../lib/template.css" />
+      <script type="text/javascript" src="../../../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../lib/tools.tooltip.js"></script>
+    
+        </head>
+        <body onload="windowTitle();" class="value">
+
+      <p id="owner"><a name="com" class="extype" href="../../../package.html">com</a>.<a name="com.google" class="extype" href="../../package.html">google</a>.<a name="com.google.xml" class="extype" href="../package.html">xml</a></p>
+
+      <div id="definition">
+        <img src="../../../../lib/package_big.png" />
+        <h1>combinators</h1>
+      </div>
+
+      <h4 class="signature" id="signature">
+      <span class="kind">package</span>
+      <span class="symbol">
+        <span class="name">combinators</span>
+        
+        
+        
+      </span>
+      </h4>
+      
+          
+          <div class="fullcomment" id="comment"></div>
+        
+
+      <div id="template">
+
+        <div id="mbrsel">
+          <div id="textfilter"><span class="pre"></span><span class="input"><input accesskey="/" type="text" /></span><span class="post"></span></div>
+          
+          
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in">Public</li><li class="all out">All</li></ol>
+            </div>
+          <div id="impl">
+              <span class="filtertype">Impl.</span>
+              <ol><li class="concrete in">Concrete</li><li class="abstract in">Abstract</li></ol>
+            </div>
+        </div>
+
+        
+
+        <div class="types members" id="types">
+              <h3>Type Members</h3>
+              <ol><li visbl="pub" name="com.google.xml.combinators.HasStore" data-isabs="true">
+      <a id="HasStore:HasStore"></a>
+      <h4 class="signature"><a href="HasStore.html">
+      <span class="kind">trait</span>
+      <span class="symbol">
+        <span class="name">HasStore</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A trait for extensible data.</p>
+    </li><li visbl="pub" name="com.google.xml.combinators.LinearStore" data-isabs="false">
+      <a id="LinearStore:LinearStore"></a>
+      <h4 class="signature"><a href="LinearStore.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">LinearStore</span>
+        
+        
+        <span class="result"> extends XmlInputStore</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">This class encapsulate the state carried around
+when pickling or unpickling XML.</p>
+    </li><li visbl="pub" name="com.google.xml.combinators.MalformedXmlStore" data-isabs="false">
+      <a id="MalformedXmlStore:MalformedXmlStore"></a>
+      <h4 class="signature"><a href="MalformedXmlStore.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">MalformedXmlStore</span>
+        
+        <span class="params">(<span name="msg">
+                  msg
+                  : String
+                  
+                </span>, <span name="state">
+                  state
+                  : XmlOutputStore
+                  
+                </span>)</span>
+        <span class="result"> extends RuntimeException with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">An exception thrown when the XML output store is inconsistent.</p>
+    </li><li visbl="pub" name="com.google.xml.combinators.PlainOutputStore" data-isabs="false">
+      <a id="PlainOutputStore:PlainOutputStore"></a>
+      <h4 class="signature"><a href="PlainOutputStore.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">PlainOutputStore</span>
+        
+        
+        <span class="result"> extends XmlOutputStore</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A PlainOutputStore implements XmlOutputStore with reasonable efficiency.</p>
+    </li><li visbl="pub" name="com.google.xml.combinators.RandomAccessStore" data-isabs="false">
+      <a id="RandomAccessStore:RandomAccessStore"></a>
+      <h4 class="signature"><a href="RandomAccessStore.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">RandomAccessStore</span>
+        
+        
+        <span class="result"> extends LinearStore</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">This class matches elements at any position in the sequence of nodes.</p>
+    </li><li visbl="pub" name="com.google.xml.combinators.TupleToPairFunctions" data-isabs="true">
+      <a id="TupleToPairFunctions:TupleToPairFunctions"></a>
+      <h4 class="signature"><a href="TupleToPairFunctions.html">
+      <span class="kind">trait</span>
+      <span class="symbol">
+        <span class="name">TupleToPairFunctions</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Mix in this trait to get implicit conversions between functions of arity 2-7 and
+functions that take nested instances of '~' pairs.</p>
+    </li><li visbl="pub" name="com.google.xml.combinators.XmlInputStore" data-isabs="true">
+      <a id="XmlInputStore:XmlInputStore"></a>
+      <h4 class="signature"><a href="XmlInputStore.html">
+      <span class="kind">trait</span>
+      <span class="symbol">
+        <span class="name">XmlInputStore</span>
+        
+        
+        <span class="result"> extends XmlStore</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">This class represents the input of picklers.</p>
+    </li><li visbl="pub" name="com.google.xml.combinators.XmlOutputStore" data-isabs="true">
+      <a id="XmlOutputStore:XmlOutputStore"></a>
+      <h4 class="signature"><a href="XmlOutputStore.html">
+      <span class="kind">trait</span>
+      <span class="symbol">
+        <span class="name">XmlOutputStore</span>
+        
+        
+        <span class="result"> extends XmlStore</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">An XML store used during pickling.</p>
+    </li><li visbl="pub" name="com.google.xml.combinators.XmlStore" data-isabs="true">
+      <a id="XmlStore:XmlStore"></a>
+      <h4 class="signature"><a href="XmlStore.html">
+      <span class="kind">trait</span>
+      <span class="symbol">
+        <span class="name">XmlStore</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">An interface for XML stores.</p>
+    </li><li visbl="pub" name="com.google.xml.combinators.~" data-isabs="false">
+      <a id="~:~[A, B]"></a>
+      <h4 class="signature"><a href="$tilde.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">~</span>
+        <span class="tparams">[<span name="A">+A</span>, <span name="B">+B</span>]</span>
+        <span class="params">(<span name="_1">
+                  _1
+                  : A
+                  
+                </span>, <span name="_2">
+                  _2
+                  : B
+                  
+                </span>)</span>
+        <span class="result"> extends Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Convenience class to hold two values (it has lighter syntax than pairs).</p>
+    </li></ol>
+            </div>
+
+        <div class="values members" id="values">
+              <h3>Value Members</h3>
+              <ol><li visbl="pub" name="com.google.xml.combinators.LinearStore" data-isabs="false">
+      <a id="LinearStore:LinearStore"></a>
+      <h4 class="signature"><a href="LinearStore$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">LinearStore</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Convenience object for creating LinearStores
+</p>
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers" data-isabs="false">
+      <a id="Picklers:Picklers"></a>
+      <h4 class="signature"><a href="Picklers$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Picklers</span>
+        
+        
+        <span class="result"> extends TupleToPairFunctions</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A class for XML Pickling combinators.</p>
+    </li><li visbl="pub" name="com.google.xml.combinators.PlainOutputStore" data-isabs="false">
+      <a id="PlainOutputStore:PlainOutputStore"></a>
+      <h4 class="signature"><a href="PlainOutputStore$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">PlainOutputStore</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Factory for output stores.</p>
+    </li></ol>
+            </div>
+
+        
+
+      </div>
+      
+      <div id="tooltip"></div>
+      
+    </body>
+      </html>

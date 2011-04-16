@@ -1,0 +1,695 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>com.google.gdata.data.kinds</title>
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link type="text/css" media="screen" rel="stylesheet" href="../../../../../lib/template.css" />
+      <script type="text/javascript" src="../../../../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../../lib/tools.tooltip.js"></script>
+    
+        </head>
+        <body onload="windowTitle();" class="value">
+
+      <p id="owner"><a name="com" class="extype" href="../../../../package.html">com</a>.<a name="com.google" class="extype" href="../../../package.html">google</a>.<a name="com.google.gdata" class="extype" href="../../package.html">gdata</a>.<a name="com.google.gdata.data" class="extype" href="../package.html">data</a></p>
+
+      <div id="definition">
+        <img src="../../../../../lib/package_big.png" />
+        <h1>kinds</h1>
+      </div>
+
+      <h4 class="signature" id="signature">
+      <span class="kind">package</span>
+      <span class="symbol">
+        <span class="name">kinds</span>
+        
+        
+        
+      </span>
+      </h4>
+      
+          
+          <div class="fullcomment" id="comment"></div>
+        
+
+      <div id="template">
+
+        <div id="mbrsel">
+          <div id="textfilter"><span class="pre"></span><span class="input"><input accesskey="/" type="text" /></span><span class="post"></span></div>
+          
+          
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in">Public</li><li class="all out">All</li></ol>
+            </div>
+          <div id="impl">
+              <span class="filtertype">Impl.</span>
+              <ol><li class="concrete in">Concrete</li><li class="abstract in">Abstract</li></ol>
+            </div>
+        </div>
+
+        
+
+        <div class="types members" id="types">
+              <h3>Type Members</h3>
+              <ol><li visbl="pub" name="com.google.gdata.data.kinds.Comments" data-isabs="false">
+      <a id="Comments:Comments[Feed]"></a>
+      <h4 class="signature"><a href="Comments.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Comments</span>
+        <span class="tparams">[<span name="Feed">Feed</span>]</span>
+        <span class="params">(<span name="rel">
+                  rel
+                  : Option[String]
+                  
+                </span>, <span name="feedLink">
+                  feedLink
+                  : Option[FeedLink[Feed]]
+                  
+                </span>)</span>
+        <span class="result"> extends Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A gd:comments element.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.ContactEntries" data-isabs="true">
+      <a id="ContactEntries:ContactEntries"></a>
+      <h4 class="signature"><a href="ContactEntries.html">
+      <span class="kind">trait</span>
+      <span class="symbol">
+        <span class="name">ContactEntries</span>
+        
+        
+        <span class="result"> extends AtomEntries</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Refine Entry to the contact kind.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.Email" data-isabs="false">
+      <a id="Email:Email"></a>
+      <h4 class="signature"><a href="Email.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Email</span>
+        
+        <span class="params">(<span name="address">
+                  address
+                  : String
+                  
+                </span>, <span name="label">
+                  label
+                  : Option[String]
+                  
+                </span>, <span name="rel">
+                  rel
+                  : Option[String]
+                  
+                </span>, <span name="primary">
+                  primary
+                  : Boolean
+                  
+                </span>)</span>
+        <span class="result"> extends Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">An email address as exposed by GData.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.EntryLink" data-isabs="false">
+      <a id="EntryLink:EntryLink[Entry]"></a>
+      <h4 class="signature"><a href="EntryLink.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">EntryLink</span>
+        <span class="tparams">[<span name="Entry">Entry</span>]</span>
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Represents a logically nested entry.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.EventEntries" data-isabs="true">
+      <a id="EventEntries:EventEntries"></a>
+      <h4 class="signature"><a href="EventEntries.html">
+      <span class="kind">trait</span>
+      <span class="symbol">
+        <span class="name">EventEntries</span>
+        
+        
+        <span class="result"> extends AtomEntries</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">An event kind.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.ExtendedProperty" data-isabs="false">
+      <a id="ExtendedProperty:ExtendedProperty"></a>
+      <h4 class="signature"><a href="ExtendedProperty.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">ExtendedProperty</span>
+        
+        <span class="params">(<span name="name">
+                  name
+                  : String
+                  
+                </span>, <span name="value">
+                  value
+                  : String
+                  
+                </span>)</span>
+        <span class="result"> extends Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A GData extended property is a name-value pair of Strings.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.FeedLink" data-isabs="false">
+      <a id="FeedLink:FeedLink[Feed]"></a>
+      <h4 class="signature"><a href="FeedLink.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">FeedLink</span>
+        <span class="tparams">[<span name="Feed">Feed</span>]</span>
+        
+        <span class="result"> extends HasStore</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A gd:feedLink element.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.Im" data-isabs="false">
+      <a id="Im:Im"></a>
+      <h4 class="signature"><a href="Im.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Im</span>
+        
+        <span class="params">(<span name="address">
+                  address
+                  : String
+                  
+                </span>, <span name="label">
+                  label
+                  : Option[String]
+                  
+                </span>, <span name="rel">
+                  rel
+                  : Option[String]
+                  
+                </span>, <span name="protocol">
+                  protocol
+                  : Option[String]
+                  
+                </span>, <span name="primary">
+                  primary
+                  : Boolean
+                  
+                </span>)</span>
+        <span class="result"> extends Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">An instant messaging address, as exposed by GData.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.Organization" data-isabs="false">
+      <a id="Organization:Organization"></a>
+      <h4 class="signature"><a href="Organization.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Organization</span>
+        
+        <span class="params">(<span name="label">
+                  label
+                  : Option[String]
+                  
+                </span>, <span name="rel">
+                  rel
+                  : Option[String]
+                  
+                </span>, <span name="primary">
+                  primary
+                  : Boolean
+                  
+                </span>, <span name="name">
+                  name
+                  : Option[String]
+                  
+                </span>, <span name="title">
+                  title
+                  : Option[String]
+                  
+                </span>)</span>
+        <span class="result"> extends Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">An organization, typically associated with a contact.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.OriginalEvent" data-isabs="false">
+      <a id="OriginalEvent:OriginalEvent"></a>
+      <h4 class="signature"><a href="OriginalEvent.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">OriginalEvent</span>
+        
+        <span class="params">(<span name="id">
+                  id
+                  : String
+                  
+                </span>, <span name="href">
+                  href
+                  : String
+                  
+                </span>, <span name="when">
+                  when
+                  : When
+                  
+                </span>)</span>
+        <span class="result"> extends Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Identifies a particular instance in a recurrent event.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.PhoneNumber" data-isabs="false">
+      <a id="PhoneNumber:PhoneNumber"></a>
+      <h4 class="signature"><a href="PhoneNumber.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">PhoneNumber</span>
+        
+        <span class="params">(<span name="label">
+                  label
+                  : Option[String]
+                  
+                </span>, <span name="rel">
+                  rel
+                  : Option[String]
+                  
+                </span>, <span name="uri">
+                  uri
+                  : Option[String]
+                  
+                </span>, <span name="primary">
+                  primary
+                  : Boolean
+                  
+                </span>, <span name="phone">
+                  phone
+                  : String
+                  
+                </span>)</span>
+        <span class="result"> extends Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A phone number as exposed by GData
+</p>
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.PostalAddress" data-isabs="false">
+      <a id="PostalAddress:PostalAddress"></a>
+      <h4 class="signature"><a href="PostalAddress.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">PostalAddress</span>
+        
+        <span class="params">(<span name="label">
+                  label
+                  : Option[String]
+                  
+                </span>, <span name="rel">
+                  rel
+                  : Option[String]
+                  
+                </span>, <span name="primary">
+                  primary
+                  : Boolean
+                  
+                </span>, <span name="address">
+                  address
+                  : String
+                  
+                </span>)</span>
+        <span class="result"> extends Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A postal address, as represented by GData.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.Rating" data-isabs="false">
+      <a id="Rating:Rating"></a>
+      <h4 class="signature"><a href="Rating.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Rating</span>
+        
+        <span class="params">(<span name="average">
+                  average
+                  : Option[Double]
+                  
+                </span>, <span name="min">
+                  min
+                  : Int
+                  
+                </span>, <span name="max">
+                  max
+                  : Int
+                  
+                </span>, <span name="numRaters">
+                  numRaters
+                  : Option[Int]
+                  
+                </span>, <span name="rel">
+                  rel
+                  : String
+                  
+                </span>, <span name="value">
+                  value
+                  : Option[Int]
+                  
+                </span>)</span>
+        <span class="result"> extends Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A gd:rating element.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.RecurrenceException" data-isabs="false">
+      <a id="RecurrenceException:RecurrenceException[EventEntry]"></a>
+      <h4 class="signature"><a href="RecurrenceException.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">RecurrenceException</span>
+        <span class="tparams">[<span name="EventEntry">EventEntry &lt;: EventEntry</span>]</span>
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">An event that's an exception to a recurring event.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.Reminder" data-isabs="false">
+      <a id="Reminder:Reminder"></a>
+      <h4 class="signature"><a href="Reminder.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Reminder</span>
+        
+        <span class="params">(<span name="absoluteTime">
+                  absoluteTime
+                  : Option[DateTime]
+                  
+                </span>, <span name="method">
+                  method
+                  : Option[String]
+                  
+                </span>, <span name="days">
+                  days
+                  : Option[Int]
+                  
+                </span>, <span name="hours">
+                  hours
+                  : Option[Int]
+                  
+                </span>, <span name="minutes">
+                  minutes
+                  : Option[Int]
+                  
+                </span>)</span>
+        <span class="result"> extends Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A reminder, usually found inside a 'when' element.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.StdContactEntries" data-isabs="false">
+      <a id="StdContactEntries:StdContactEntries"></a>
+      <h4 class="signature"><a href="StdContactEntries.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">StdContactEntries</span>
+        
+        
+        <span class="result"> extends ContactEntries</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A concrete class for contact entries.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.When" data-isabs="false">
+      <a id="When:When"></a>
+      <h4 class="signature"><a href="When.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">When</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">This class represents a period of time or an instant.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.Where" data-isabs="false">
+      <a id="Where:Where[CEntry]"></a>
+      <h4 class="signature"><a href="Where.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">Where</span>
+        <span class="tparams">[<span name="CEntry">CEntry &lt;: ContactEntry</span>]</span>
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A place (such as an event location) associated with the containing entity.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.Who" data-isabs="false">
+      <a id="Who:Who[ContactEntry]"></a>
+      <h4 class="signature"><a href="Who.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">Who</span>
+        <span class="tparams">[<span name="ContactEntry">ContactEntry &lt;: ContactEntry</span>]</span>
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A person associated to the containing entity.</p>
+    </li></ol>
+            </div>
+
+        <div class="values members" id="values">
+              <h3>Value Members</h3>
+              <ol><li visbl="pub" name="com.google.gdata.data.kinds.Comments" data-isabs="false">
+      <a id="Comments:Comments"></a>
+      <h4 class="signature"><a href="Comments$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Comments</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.Email" data-isabs="false">
+      <a id="Email:Email"></a>
+      <h4 class="signature"><a href="Email$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Email</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.EntryLink" data-isabs="false">
+      <a id="EntryLink:EntryLink"></a>
+      <h4 class="signature"><a href="EntryLink$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">EntryLink</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.Enum" data-isabs="false">
+      <a id="Enum:Enum"></a>
+      <h4 class="signature"><a href="Enum$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Enum</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Helper for parsing gdEnum elements.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.EventEntries" data-isabs="false">
+      <a id="EventEntries:EventEntries"></a>
+      <h4 class="signature"><a href="EventEntries$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">EventEntries</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Hold together enumeration values for event entries.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.ExtendedProperty" data-isabs="false">
+      <a id="ExtendedProperty:ExtendedProperty"></a>
+      <h4 class="signature"><a href="ExtendedProperty$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">ExtendedProperty</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.FeedLink" data-isabs="false">
+      <a id="FeedLink:FeedLink"></a>
+      <h4 class="signature"><a href="FeedLink$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">FeedLink</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.Im" data-isabs="false">
+      <a id="Im:Im"></a>
+      <h4 class="signature"><a href="Im$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Im</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Defines a pickler for Im.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.Organization" data-isabs="false">
+      <a id="Organization:Organization"></a>
+      <h4 class="signature"><a href="Organization$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Organization</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.OriginalEvent" data-isabs="false">
+      <a id="OriginalEvent:OriginalEvent"></a>
+      <h4 class="signature"><a href="OriginalEvent$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">OriginalEvent</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.PhoneNumber" data-isabs="false">
+      <a id="PhoneNumber:PhoneNumber"></a>
+      <h4 class="signature"><a href="PhoneNumber$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">PhoneNumber</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.PostalAddress" data-isabs="false">
+      <a id="PostalAddress:PostalAddress"></a>
+      <h4 class="signature"><a href="PostalAddress$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">PostalAddress</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.Rating" data-isabs="false">
+      <a id="Rating:Rating"></a>
+      <h4 class="signature"><a href="Rating$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Rating</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.RecurrenceException" data-isabs="false">
+      <a id="RecurrenceException:RecurrenceException"></a>
+      <h4 class="signature"><a href="RecurrenceException$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">RecurrenceException</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.Reminder" data-isabs="false">
+      <a id="Reminder:Reminder"></a>
+      <h4 class="signature"><a href="Reminder$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Reminder</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.Schemas" data-isabs="false">
+      <a id="Schemas:Schemas"></a>
+      <h4 class="signature"><a href="Schemas$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Schemas</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Defines URIs used in GData kinds to fill in 'rel' attributes for
+phone and email address, etc.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.When" data-isabs="false">
+      <a id="When:When"></a>
+      <h4 class="signature"><a href="When$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">When</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.Where" data-isabs="false">
+      <a id="Where:Where"></a>
+      <h4 class="signature"><a href="Where$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Where</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.kinds.Who" data-isabs="false">
+      <a id="Who:Who"></a>
+      <h4 class="signature"><a href="Who$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Who</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+      </div>
+      
+      <div id="tooltip"></div>
+      
+    </body>
+      </html>

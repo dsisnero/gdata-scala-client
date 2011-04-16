@@ -1,0 +1,414 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>com.google.gdata</title>
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link type="text/css" media="screen" rel="stylesheet" href="../../../lib/template.css" />
+      <script type="text/javascript" src="../../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+    
+        </head>
+        <body onload="windowTitle();" class="value">
+
+      <p id="owner"><a name="com" class="extype" href="../../package.html">com</a>.<a name="com.google" class="extype" href="../package.html">google</a></p>
+
+      <div id="definition">
+        <img src="../../../lib/package_big.png" />
+        <h1>gdata</h1>
+      </div>
+
+      <h4 class="signature" id="signature">
+      <span class="kind">package</span>
+      <span class="symbol">
+        <span class="name">gdata</span>
+        
+        
+        
+      </span>
+      </h4>
+      
+          
+          <div class="fullcomment" id="comment"></div>
+        
+
+      <div id="template">
+
+        <div id="mbrsel">
+          <div id="textfilter"><span class="pre"></span><span class="input"><input accesskey="/" type="text" /></span><span class="post"></span></div>
+          
+          
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in">Public</li><li class="all out">All</li></ol>
+            </div>
+          <div id="impl">
+              <span class="filtertype">Impl.</span>
+              <ol><li class="concrete in">Concrete</li><li class="abstract in">Abstract</li></ol>
+            </div>
+        </div>
+
+        
+
+        <div class="types members" id="types">
+              <h3>Type Members</h3>
+              <ol><li visbl="pub" name="com.google.gdata.CNot" data-isabs="false">
+      <a id="CNot:CNot"></a>
+      <h4 class="signature"><a href="CNot.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">CNot</span>
+        
+        <span class="params">(<span name="p">
+                  p
+                  : CategoryQuery
+                  
+                </span>)</span>
+        <span class="result"> extends CategoryQuery with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A query that matches when 'p' doesn't.</p>
+    </li><li visbl="pub" name="com.google.gdata.COr" data-isabs="false">
+      <a id="COr:COr"></a>
+      <h4 class="signature"><a href="COr.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">COr</span>
+        
+        <span class="params">(<span name="p">
+                  p
+                  : CategoryQuery
+                  
+                </span>, <span name="q">
+                  q
+                  : CategoryQuery
+                  
+                </span>)</span>
+        <span class="result"> extends CategoryQuery with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A query that matches either 'p' or 'q'.</p>
+    </li><li visbl="pub" name="com.google.gdata.Category" data-isabs="false">
+      <a id="Category:Category"></a>
+      <h4 class="signature"><a href="Category.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Category</span>
+        
+        <span class="params">(<span name="scheme">
+                  scheme
+                  : Option[String]
+                  
+                </span>, <span name="term">
+                  term
+                  : String
+                  
+                </span>)</span>
+        <span class="result"> extends CategoryQuery with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A category with an optional scheme.</p>
+    </li><li visbl="pub" name="com.google.gdata.CategoryQuery" data-isabs="true">
+      <a id="CategoryQuery:CategoryQuery"></a>
+      <h4 class="signature"><a href="CategoryQuery.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">CategoryQuery</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A base class for category queries.</p>
+    </li><li visbl="pub" name="com.google.gdata.Query" data-isabs="false">
+      <a id="Query:Query"></a>
+      <h4 class="signature"><a href="Query.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">Query</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Base class for GData queries.</p>
+    </li><li visbl="pub" name="com.google.gdata.SAnd" data-isabs="false">
+      <a id="SAnd:SAnd"></a>
+      <h4 class="signature"><a href="SAnd.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">SAnd</span>
+        
+        <span class="params">(<span name="p">
+                  p
+                  : SearchQuery
+                  
+                </span>, <span name="q">
+                  q
+                  : SearchQuery
+                  
+                </span>)</span>
+        <span class="result"> extends SearchQuery with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A query that matches both subqueries.</p>
+    </li><li visbl="pub" name="com.google.gdata.SNot" data-isabs="false">
+      <a id="SNot:SNot"></a>
+      <h4 class="signature"><a href="SNot.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">SNot</span>
+        
+        <span class="params">(<span name="p">
+                  p
+                  : SearchQuery
+                  
+                </span>)</span>
+        <span class="result"> extends SearchQuery with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A query that matches only when 'p' does not.</p>
+    </li><li visbl="pub" name="com.google.gdata.SOr" data-isabs="false">
+      <a id="SOr:SOr"></a>
+      <h4 class="signature"><a href="SOr.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">SOr</span>
+        
+        <span class="params">(<span name="p">
+                  p
+                  : SearchQuery
+                  
+                </span>, <span name="q">
+                  q
+                  : SearchQuery
+                  
+                </span>)</span>
+        <span class="result"> extends SearchQuery with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A query that matches either on of the subqueries.</p>
+    </li><li visbl="pub" name="com.google.gdata.SearchQuery" data-isabs="true">
+      <a id="SearchQuery:SearchQuery"></a>
+      <h4 class="signature"><a href="SearchQuery.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">SearchQuery</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Base class for Search queries.</p>
+    </li><li visbl="pub" name="com.google.gdata.Service" data-isabs="true">
+      <a id="Service:Service"></a>
+      <h4 class="signature"><a href="Service.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">Service</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A base class for Google services.</p>
+    </li><li visbl="pub" name="com.google.gdata.ServiceException" data-isabs="false">
+      <a id="ServiceException:ServiceException"></a>
+      <h4 class="signature"><a href="ServiceException.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">ServiceException</span>
+        
+        
+        <span class="result"> extends Exception</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Base class for GData Service exceptions.</p>
+    </li><li visbl="pub" name="com.google.gdata.Text" data-isabs="false">
+      <a id="Text:Text"></a>
+      <h4 class="signature"><a href="Text.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Text</span>
+        
+        <span class="params">(<span name="str">
+                  str
+                  : String
+                  
+                </span>)</span>
+        <span class="result"> extends SearchQuery with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A query that matches the exact string 'str'.</p>
+    </li><li visbl="pub" name="com.google.gdata.UnknownDocumentException" data-isabs="false">
+      <a id="UnknownDocumentException:UnknownDocumentException"></a>
+      <h4 class="signature"><a href="UnknownDocumentException.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">UnknownDocumentException</span>
+        
+        <span class="params">(<span name="msg">
+                  msg
+                  : String
+                  
+                </span>, <span name="err">
+                  err
+                  : NoSuccess
+                  
+                </span>)</span>
+        <span class="result"> extends ServiceException with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">This exception is thrown when the retrieved XML document cannot be parsed by the provided
+pickler.</p>
+    </li></ol>
+            </div>
+
+        <div class="values members" id="values">
+              <h3>Value Members</h3>
+              <ol><li visbl="pub" name="com.google.gdata.AllCategories" data-isabs="false">
+      <a id="AllCategories:AllCategories"></a>
+      <h4 class="signature"><a href="AllCategories$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">AllCategories</span>
+        
+        
+        <span class="result"> extends CategoryQuery with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A query that matches all categories.</p>
+    </li><li visbl="pub" name="com.google.gdata.CategoryQuery" data-isabs="false">
+      <a id="CategoryQuery:CategoryQuery"></a>
+      <h4 class="signature"><a href="CategoryQuery$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">CategoryQuery</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Convenience factory object.</p>
+    </li><li visbl="pub" name="com.google.gdata.MatchAll" data-isabs="false">
+      <a id="MatchAll:MatchAll"></a>
+      <h4 class="signature"><a href="MatchAll$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">MatchAll</span>
+        
+        
+        <span class="result"> extends SearchQuery with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A query that matches everything.</p>
+    </li><li visbl="pub" name="com.google.gdata.Query" data-isabs="false">
+      <a id="Query:Query"></a>
+      <h4 class="signature"><a href="Query$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Query</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.SearchQuery" data-isabs="false">
+      <a id="SearchQuery:SearchQuery"></a>
+      <h4 class="signature"><a href="SearchQuery$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">SearchQuery</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Convenience factory object.</p>
+    </li><li visbl="pub" name="com.google.gdata.Service" data-isabs="false">
+      <a id="Service:Service"></a>
+      <h4 class="signature"><a href="Service$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Service</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.calendar" data-isabs="false">
+      <a id="calendar:calendar"></a>
+      <h4 class="signature"><a href="calendar/package.html">
+      <span class="kind">package</span>
+      <span class="symbol">
+        <span class="name">calendar</span>
+        
+        
+        
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.client" data-isabs="false">
+      <a id="client:client"></a>
+      <h4 class="signature"><a href="client/package.html">
+      <span class="kind">package</span>
+      <span class="symbol">
+        <span class="name">client</span>
+        
+        
+        
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.contacts" data-isabs="false">
+      <a id="contacts:contacts"></a>
+      <h4 class="signature"><a href="contacts/package.html">
+      <span class="kind">package</span>
+      <span class="symbol">
+        <span class="name">contacts</span>
+        
+        
+        
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data" data-isabs="false">
+      <a id="data:data"></a>
+      <h4 class="signature"><a href="data/package.html">
+      <span class="kind">package</span>
+      <span class="symbol">
+        <span class="name">data</span>
+        
+        
+        
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.youtube" data-isabs="false">
+      <a id="youtube:youtube"></a>
+      <h4 class="signature"><a href="youtube/package.html">
+      <span class="kind">package</span>
+      <span class="symbol">
+        <span class="name">youtube</span>
+        
+        
+        
+      </span>
+      </a></h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+      </div>
+      
+      <div id="tooltip"></div>
+      
+    </body>
+      </html>

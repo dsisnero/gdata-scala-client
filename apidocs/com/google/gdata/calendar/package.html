@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>com.google.gdata.calendar</title>
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link type="text/css" media="screen" rel="stylesheet" href="../../../../lib/template.css" />
+      <script type="text/javascript" src="../../../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../lib/tools.tooltip.js"></script>
+    
+        </head>
+        <body onload="windowTitle();" class="value">
+
+      <p id="owner"><a name="com" class="extype" href="../../../package.html">com</a>.<a name="com.google" class="extype" href="../../package.html">google</a>.<a name="com.google.gdata" class="extype" href="../package.html">gdata</a></p>
+
+      <div id="definition">
+        <img src="../../../../lib/package_big.png" />
+        <h1>calendar</h1>
+      </div>
+
+      <h4 class="signature" id="signature">
+      <span class="kind">package</span>
+      <span class="symbol">
+        <span class="name">calendar</span>
+        
+        
+        
+      </span>
+      </h4>
+      
+          
+          <div class="fullcomment" id="comment"></div>
+        
+
+      <div id="template">
+
+        <div id="mbrsel">
+          <div id="textfilter"><span class="pre"></span><span class="input"><input accesskey="/" type="text" /></span><span class="post"></span></div>
+          
+          
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in">Public</li><li class="all out">All</li></ol>
+            </div>
+          <div id="impl">
+              <span class="filtertype">Impl.</span>
+              <ol><li class="concrete in">Concrete</li><li class="abstract in">Abstract</li></ol>
+            </div>
+        </div>
+
+        
+
+        <div class="types members" id="types">
+              <h3>Type Members</h3>
+              <ol><li visbl="pub" name="com.google.gdata.calendar.AclEntries" data-isabs="true">
+      <a id="AclEntries:AclEntries"></a>
+      <h4 class="signature"><a href="AclEntries.html">
+      <span class="kind">trait</span>
+      <span class="symbol">
+        <span class="name">AclEntries</span>
+        
+        
+        <span class="result"> extends AtomEntries</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Extends atom entries with access control elements, used by calendar.</p>
+    </li><li visbl="pub" name="com.google.gdata.calendar.AclScope" data-isabs="false">
+      <a id="AclScope:AclScope"></a>
+      <h4 class="signature"><a href="AclScope.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">AclScope</span>
+        
+        <span class="params">(<span name="tpe">
+                  tpe
+                  : String
+                  
+                </span>, <span name="value">
+                  value
+                  : Option[String]
+                  
+                </span>)</span>
+        <span class="result"> extends Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">An access control list scope.</p>
+    </li><li visbl="pub" name="com.google.gdata.calendar.CalendarEntries" data-isabs="true">
+      <a id="CalendarEntries:CalendarEntries"></a>
+      <h4 class="signature"><a href="CalendarEntries.html">
+      <span class="kind">trait</span>
+      <span class="symbol">
+        <span class="name">CalendarEntries</span>
+        
+        
+        <span class="result"> extends AtomEntries</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Entries in a calendar's feed.</p>
+    </li><li visbl="pub" name="com.google.gdata.calendar.CalendarQuery" data-isabs="false">
+      <a id="CalendarQuery:CalendarQuery"></a>
+      <h4 class="signature"><a href="CalendarQuery.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">CalendarQuery</span>
+        
+        
+        <span class="result"> extends Query</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A calendar query.</p>
+    </li><li visbl="pub" name="com.google.gdata.calendar.CalendarService" data-isabs="false">
+      <a id="CalendarService:CalendarService"></a>
+      <h4 class="signature"><a href="CalendarService.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">CalendarService</span>
+        
+        
+        <span class="result"> extends Service</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A service class for connecting to the calendar service.</p>
+    </li><li visbl="pub" name="com.google.gdata.calendar.StdAclFeed" data-isabs="false">
+      <a id="StdAclFeed:StdAclFeed"></a>
+      <h4 class="signature"><a href="StdAclFeed.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">StdAclFeed</span>
+        
+        
+        <span class="result"> extends AtomFeeds with AclEntries</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A standard access control list feed.</p>
+    </li><li visbl="pub" name="com.google.gdata.calendar.StdCalendarsFeed" data-isabs="false">
+      <a id="StdCalendarsFeed:StdCalendarsFeed"></a>
+      <h4 class="signature"><a href="StdCalendarsFeed.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">StdCalendarsFeed</span>
+        
+        
+        <span class="result"> extends AtomFeeds with CalendarEntries</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.calendar.StdEventsFeed" data-isabs="false">
+      <a id="StdEventsFeed:StdEventsFeed"></a>
+      <h4 class="signature"><a href="StdEventsFeed.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">StdEventsFeed</span>
+        
+        
+        <span class="result"> extends AtomFeeds with EventEntries</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A standard event feed.</p>
+    </li></ol>
+            </div>
+
+        <div class="values members" id="values">
+              <h3>Value Members</h3>
+              <ol><li visbl="pub" name="com.google.gdata.calendar.AclScope" data-isabs="false">
+      <a id="AclScope:AclScope"></a>
+      <h4 class="signature"><a href="AclScope$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">AclScope</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.calendar.CalendarService" data-isabs="false">
+      <a id="CalendarService:CalendarService"></a>
+      <h4 class="signature"><a href="CalendarService$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">CalendarService</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.calendar.Schemas" data-isabs="false">
+      <a id="Schemas:Schemas"></a>
+      <h4 class="signature"><a href="Schemas$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Schemas</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Defines URIs used in GData Calendar to fill in 'rel' attributes for
+different feeds.</p>
+    </li></ol>
+            </div>
+
+        
+
+      </div>
+      
+      <div id="tooltip"></div>
+      
+    </body>
+      </html>

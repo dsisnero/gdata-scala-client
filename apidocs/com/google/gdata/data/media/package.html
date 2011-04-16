@@ -1,0 +1,476 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>com.google.gdata.data.media</title>
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link type="text/css" media="screen" rel="stylesheet" href="../../../../../lib/template.css" />
+      <script type="text/javascript" src="../../../../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../../lib/tools.tooltip.js"></script>
+    
+        </head>
+        <body onload="windowTitle();" class="value">
+
+      <p id="owner"><a name="com" class="extype" href="../../../../package.html">com</a>.<a name="com.google" class="extype" href="../../../package.html">google</a>.<a name="com.google.gdata" class="extype" href="../../package.html">gdata</a>.<a name="com.google.gdata.data" class="extype" href="../package.html">data</a></p>
+
+      <div id="definition">
+        <img src="../../../../../lib/package_big.png" />
+        <h1>media</h1>
+      </div>
+
+      <h4 class="signature" id="signature">
+      <span class="kind">package</span>
+      <span class="symbol">
+        <span class="name">media</span>
+        
+        
+        
+      </span>
+      </h4>
+      
+          
+          <div class="fullcomment" id="comment"></div>
+        
+
+      <div id="template">
+
+        <div id="mbrsel">
+          <div id="textfilter"><span class="pre"></span><span class="input"><input accesskey="/" type="text" /></span><span class="post"></span></div>
+          
+          
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in">Public</li><li class="all out">All</li></ol>
+            </div>
+          <div id="impl">
+              <span class="filtertype">Impl.</span>
+              <ol><li class="concrete in">Concrete</li><li class="abstract in">Abstract</li></ol>
+            </div>
+        </div>
+
+        
+
+        <div class="types members" id="types">
+              <h3>Type Members</h3>
+              <ol><li visbl="pub" name="com.google.gdata.data.media.Category" data-isabs="false">
+      <a id="Category:Category"></a>
+      <h4 class="signature"><a href="Category.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Category</span>
+        
+        <span class="params">(<span name="scheme">
+                  scheme
+                  : String
+                  
+                </span>, <span name="label">
+                  label
+                  : Option[String]
+                  
+                </span>, <span name="value">
+                  value
+                  : String
+                  
+                </span>)</span>
+        <span class="result"> extends Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A media:category element, as defined by Media RSS
+</p>
+    </li><li visbl="pub" name="com.google.gdata.data.media.Copyright" data-isabs="false">
+      <a id="Copyright:Copyright"></a>
+      <h4 class="signature"><a href="Copyright.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Copyright</span>
+        
+        <span class="params">(<span name="url">
+                  url
+                  : Option[String]
+                  
+                </span>, <span name="value">
+                  value
+                  : String
+                  
+                </span>)</span>
+        <span class="result"> extends Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A media:copyright element, as defined by Media RSS
+</p>
+    </li><li visbl="pub" name="com.google.gdata.data.media.Credit" data-isabs="false">
+      <a id="Credit:Credit"></a>
+      <h4 class="signature"><a href="Credit.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Credit</span>
+        
+        <span class="params">(<span name="scheme">
+                  scheme
+                  : String
+                  
+                </span>, <span name="role">
+                  role
+                  : Option[String]
+                  
+                </span>, <span name="value">
+                  value
+                  : String
+                  
+                </span>)</span>
+        <span class="result"> extends Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A media:credit element, as defined by Media RSS
+</p>
+    </li><li visbl="pub" name="com.google.gdata.data.media.Hash" data-isabs="false">
+      <a id="Hash:Hash"></a>
+      <h4 class="signature"><a href="Hash.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Hash</span>
+        
+        <span class="params">(<span name="algo">
+                  algo
+                  : String
+                  
+                </span>, <span name="value">
+                  value
+                  : String
+                  
+                </span>)</span>
+        <span class="result"> extends Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A media:hash element, as defined by Media RSS
+</p>
+    </li><li visbl="pub" name="com.google.gdata.data.media.Keywords" data-isabs="false">
+      <a id="Keywords:Keywords"></a>
+      <h4 class="signature"><a href="Keywords.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Keywords</span>
+        
+        <span class="params">(<span name="values">
+                  values
+                  : List[String]
+                  
+                </span>)</span>
+        <span class="result"> extends Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A media:keywords element, as defined by Media RSS.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.media.MediaRss" data-isabs="true">
+      <a id="MediaRss:MediaRss"></a>
+      <h4 class="signature"><a href="MediaRss.html">
+      <span class="kind">trait</span>
+      <span class="symbol">
+        <span class="name">MediaRss</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Provide MediaRss elements media:group and media:content.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.media.Player" data-isabs="false">
+      <a id="Player:Player"></a>
+      <h4 class="signature"><a href="Player.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Player</span>
+        
+        <span class="params">(<span name="url">
+                  url
+                  : String
+                  
+                </span>, <span name="height">
+                  height
+                  : Option[Int]
+                  
+                </span>, <span name="width">
+                  width
+                  : Option[Int]
+                  
+                </span>)</span>
+        <span class="result"> extends Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A media:player element, as defined by Media RSS
+</p>
+    </li><li visbl="pub" name="com.google.gdata.data.media.Rating" data-isabs="false">
+      <a id="Rating:Rating"></a>
+      <h4 class="signature"><a href="Rating.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Rating</span>
+        
+        <span class="params">(<span name="scheme">
+                  scheme
+                  : String
+                  
+                </span>, <span name="value">
+                  value
+                  : String
+                  
+                </span>)</span>
+        <span class="result"> extends Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A media:rating element, as defined by Media RSS.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.media.Restriction" data-isabs="false">
+      <a id="Restriction:Restriction"></a>
+      <h4 class="signature"><a href="Restriction.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Restriction</span>
+        
+        <span class="params">(<span name="relationship">
+                  relationship
+                  : String
+                  
+                </span>, <span name="tpe">
+                  tpe
+                  : Option[String]
+                  
+                </span>, <span name="value">
+                  value
+                  : List[String]
+                  
+                </span>)</span>
+        <span class="result"> extends Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A media:restriction element, as defined by Media RSS
+</p>
+    </li><li visbl="pub" name="com.google.gdata.data.media.SimpleText" data-isabs="false">
+      <a id="SimpleText:SimpleText"></a>
+      <h4 class="signature"><a href="SimpleText.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">SimpleText</span>
+        
+        <span class="params">(<span name="tpe">
+                  tpe
+                  : String
+                  
+                </span>, <span name="value">
+                  value
+                  : String
+                  
+                </span>)</span>
+        <span class="result"> extends Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A simple text element.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.media.Text" data-isabs="false">
+      <a id="Text:Text"></a>
+      <h4 class="signature"><a href="Text.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Text</span>
+        
+        <span class="params">(<span name="tpe">
+                  tpe
+                  : String
+                  
+                </span>, <span name="value">
+                  value
+                  : String
+                  
+                </span>, <span name="lang">
+                  lang
+                  : Option[String]
+                  
+                </span>, <span name="start">
+                  start
+                  : Option[NormalPlayTime]
+                  
+                </span>, <span name="end">
+                  end
+                  : Option[NormalPlayTime]
+                  
+                </span>)</span>
+        <span class="result"> extends Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A media:text element, as defined by Media RSS
+</p>
+    </li><li visbl="pub" name="com.google.gdata.data.media.Thumbnail" data-isabs="false">
+      <a id="Thumbnail:Thumbnail"></a>
+      <h4 class="signature"><a href="Thumbnail.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Thumbnail</span>
+        
+        <span class="params">(<span name="url">
+                  url
+                  : String
+                  
+                </span>, <span name="width">
+                  width
+                  : Option[Int]
+                  
+                </span>, <span name="height">
+                  height
+                  : Option[Int]
+                  
+                </span>, <span name="time">
+                  time
+                  : Option[NormalPlayTime]
+                  
+                </span>)</span>
+        <span class="result"> extends Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A media:thumbnail element, as defined by the Media RSS spec.</p>
+    </li></ol>
+            </div>
+
+        <div class="values members" id="values">
+              <h3>Value Members</h3>
+              <ol><li visbl="pub" name="com.google.gdata.data.media.Category" data-isabs="false">
+      <a id="Category:Category"></a>
+      <h4 class="signature"><a href="Category$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Category</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.media.Copyright" data-isabs="false">
+      <a id="Copyright:Copyright"></a>
+      <h4 class="signature"><a href="Copyright$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Copyright</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.media.Credit" data-isabs="false">
+      <a id="Credit:Credit"></a>
+      <h4 class="signature"><a href="Credit$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Credit</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.media.Hash" data-isabs="false">
+      <a id="Hash:Hash"></a>
+      <h4 class="signature"><a href="Hash$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Hash</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.media.Keywords" data-isabs="false">
+      <a id="Keywords:Keywords"></a>
+      <h4 class="signature"><a href="Keywords$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Keywords</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.media.Player" data-isabs="false">
+      <a id="Player:Player"></a>
+      <h4 class="signature"><a href="Player$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Player</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.media.Rating" data-isabs="false">
+      <a id="Rating:Rating"></a>
+      <h4 class="signature"><a href="Rating$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Rating</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.media.Restriction" data-isabs="false">
+      <a id="Restriction:Restriction"></a>
+      <h4 class="signature"><a href="Restriction$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Restriction</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.media.SimpleText" data-isabs="false">
+      <a id="SimpleText:SimpleText"></a>
+      <h4 class="signature"><a href="SimpleText$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">SimpleText</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.media.Text" data-isabs="false">
+      <a id="Text:Text"></a>
+      <h4 class="signature"><a href="Text$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Text</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.media.Thumbnail" data-isabs="false">
+      <a id="Thumbnail:Thumbnail"></a>
+      <h4 class="signature"><a href="Thumbnail$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Thumbnail</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+      </div>
+      
+      <div id="tooltip"></div>
+      
+    </body>
+      </html>

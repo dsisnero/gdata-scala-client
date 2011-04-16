@@ -1,0 +1,481 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>com.google.gdata.client</title>
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link type="text/css" media="screen" rel="stylesheet" href="../../../../lib/template.css" />
+      <script type="text/javascript" src="../../../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../lib/tools.tooltip.js"></script>
+    
+        </head>
+        <body onload="windowTitle();" class="value">
+
+      <p id="owner"><a name="com" class="extype" href="../../../package.html">com</a>.<a name="com.google" class="extype" href="../../package.html">google</a>.<a name="com.google.gdata" class="extype" href="../package.html">gdata</a></p>
+
+      <div id="definition">
+        <img src="../../../../lib/package_big.png" />
+        <h1>client</h1>
+      </div>
+
+      <h4 class="signature" id="signature">
+      <span class="kind">package</span>
+      <span class="symbol">
+        <span class="name">client</span>
+        
+        
+        
+      </span>
+      </h4>
+      
+          
+          <div class="fullcomment" id="comment"></div>
+        
+
+      <div id="template">
+
+        <div id="mbrsel">
+          <div id="textfilter"><span class="pre"></span><span class="input"><input accesskey="/" type="text" /></span><span class="post"></span></div>
+          
+          
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in">Public</li><li class="all out">All</li></ol>
+            </div>
+          <div id="impl">
+              <span class="filtertype">Impl.</span>
+              <ol><li class="concrete in">Concrete</li><li class="abstract in">Abstract</li></ol>
+            </div>
+        </div>
+
+        
+
+        <div class="types members" id="types">
+              <h3>Type Members</h3>
+              <ol><li visbl="pub" name="com.google.gdata.client.AccountDeleted" data-isabs="false">
+      <a id="AccountDeleted:AccountDeleted"></a>
+      <h4 class="signature"><a href="AccountDeleted.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">AccountDeleted</span>
+        
+        <span class="params">(<span name="url">
+                  url
+                  : String
+                  
+                </span>)</span>
+        <span class="result"> extends AuthenticationException with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">The account has been deleted.</p>
+    </li><li visbl="pub" name="com.google.gdata.client.AccountDisabled" data-isabs="false">
+      <a id="AccountDisabled:AccountDisabled"></a>
+      <h4 class="signature"><a href="AccountDisabled.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">AccountDisabled</span>
+        
+        <span class="params">(<span name="url">
+                  url
+                  : String
+                  
+                </span>)</span>
+        <span class="result"> extends AuthenticationException with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">The account has been disabled.</p>
+    </li><li visbl="pub" name="com.google.gdata.client.AuthToken" data-isabs="true">
+      <a id="AuthToken:AuthToken"></a>
+      <h4 class="signature"><a href="AuthToken.html">
+      <span class="kind">trait</span>
+      <span class="symbol">
+        <span class="name">AuthToken</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">An authentication token used by GData services.</p>
+    </li><li visbl="pub" name="com.google.gdata.client.AuthTokenFactory" data-isabs="true">
+      <a id="AuthTokenFactory:AuthTokenFactory"></a>
+      <h4 class="signature"><a href="AuthTokenFactory.html">
+      <span class="kind">trait</span>
+      <span class="symbol">
+        <span class="name">AuthTokenFactory</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Factory for creating authentication objects.</p>
+    </li><li visbl="pub" name="com.google.gdata.client.AuthenticationException" data-isabs="true">
+      <a id="AuthenticationException:AuthenticationException"></a>
+      <h4 class="signature"><a href="AuthenticationException.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">AuthenticationException</span>
+        
+        
+        <span class="result"> extends Exception</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Base class for Google authentication exceptions.</p>
+    </li><li visbl="pub" name="com.google.gdata.client.BadAuthentication" data-isabs="false">
+      <a id="BadAuthentication:BadAuthentication"></a>
+      <h4 class="signature"><a href="BadAuthentication.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">BadAuthentication</span>
+        
+        <span class="params">(<span name="url">
+                  url
+                  : String
+                  
+                </span>)</span>
+        <span class="result"> extends AuthenticationException with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Wrong username or password.</p>
+    </li><li visbl="pub" name="com.google.gdata.client.BadRequestException" data-isabs="false">
+      <a id="BadRequestException:BadRequestException"></a>
+      <h4 class="signature"><a href="BadRequestException.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">BadRequestException</span>
+        
+        <span class="params">()</span>
+        <span class="result"> extends GDataRequestException with Product with Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.client.CaptchaRequired" data-isabs="false">
+      <a id="CaptchaRequired:CaptchaRequired"></a>
+      <h4 class="signature"><a href="CaptchaRequired.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">CaptchaRequired</span>
+        
+        <span class="params">(<span name="url">
+                  url
+                  : String
+                  
+                </span>, <span name="token">
+                  token
+                  : String
+                  
+                </span>, <span name="captchaUrl">
+                  captchaUrl
+                  : String
+                  
+                </span>)</span>
+        <span class="result"> extends AuthenticationException with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">The user should answer a captcha challenge.</p>
+    </li><li visbl="pub" name="com.google.gdata.client.ClientLoginFactory" data-isabs="false">
+      <a id="ClientLoginFactory:ClientLoginFactory"></a>
+      <h4 class="signature"><a href="ClientLoginFactory.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">ClientLoginFactory</span>
+        
+        
+        <span class="result"> extends AuthTokenFactory</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Concrete factory class for ClientLogin authentication tokens.</p>
+    </li><li visbl="pub" name="com.google.gdata.client.ConflictException" data-isabs="false">
+      <a id="ConflictException:ConflictException"></a>
+      <h4 class="signature"><a href="ConflictException.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">ConflictException</span>
+        
+        <span class="params">()</span>
+        <span class="result"> extends GDataRequestException with Product with Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.client.ForbiddenException" data-isabs="false">
+      <a id="ForbiddenException:ForbiddenException"></a>
+      <h4 class="signature"><a href="ForbiddenException.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">ForbiddenException</span>
+        
+        <span class="params">()</span>
+        <span class="result"> extends GDataRequestException with Product with Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.client.GDataRequest" data-isabs="false">
+      <a id="GDataRequest:GDataRequest"></a>
+      <h4 class="signature"><a href="GDataRequest.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">GDataRequest</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">This class encapsulates an HTTP request to a GData service.</p>
+    </li><li visbl="pub" name="com.google.gdata.client.GDataRequestException" data-isabs="false">
+      <a id="GDataRequestException:GDataRequestException"></a>
+      <h4 class="signature"><a href="GDataRequestException.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">GDataRequestException</span>
+        
+        
+        <span class="result"> extends Exception</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Base class for GData request exceptions.</p>
+    </li><li visbl="pub" name="com.google.gdata.client.HttpConnection" data-isabs="false">
+      <a id="HttpConnection:HttpConnection"></a>
+      <h4 class="signature"><a href="HttpConnection.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">HttpConnection</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Scala wrapper over HttpURLConnection.</p>
+    </li><li visbl="pub" name="com.google.gdata.client.InternalServerErrorException" data-isabs="false">
+      <a id="InternalServerErrorException:InternalServerErrorException"></a>
+      <h4 class="signature"><a href="InternalServerErrorException.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">InternalServerErrorException</span>
+        
+        <span class="params">()</span>
+        <span class="result"> extends GDataRequestException with Product with Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.client.MovedTemporarily" data-isabs="false">
+      <a id="MovedTemporarily:MovedTemporarily"></a>
+      <h4 class="signature"><a href="MovedTemporarily.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">MovedTemporarily</span>
+        
+        <span class="params">(<span name="headers">
+                  headers
+                  : Map[String, List[String]]
+                  
+                </span>)</span>
+        <span class="result"> extends GDataRequestException with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Redirection.</p>
+    </li><li visbl="pub" name="com.google.gdata.client.NotFoundException" data-isabs="false">
+      <a id="NotFoundException:NotFoundException"></a>
+      <h4 class="signature"><a href="NotFoundException.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">NotFoundException</span>
+        
+        <span class="params">()</span>
+        <span class="result"> extends GDataRequestException with Product with Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.client.NotModifiedException" data-isabs="false">
+      <a id="NotModifiedException:NotModifiedException"></a>
+      <h4 class="signature"><a href="NotModifiedException.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">NotModifiedException</span>
+        
+        <span class="params">()</span>
+        <span class="result"> extends GDataRequestException with Product with Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.client.NotVerified" data-isabs="false">
+      <a id="NotVerified:NotVerified"></a>
+      <h4 class="signature"><a href="NotVerified.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">NotVerified</span>
+        
+        <span class="params">(<span name="url">
+                  url
+                  : String
+                  
+                </span>)</span>
+        <span class="result"> extends AuthenticationException with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Account not verified.</p>
+    </li><li visbl="pub" name="com.google.gdata.client.RequestFactory" data-isabs="true">
+      <a id="RequestFactory:RequestFactory"></a>
+      <h4 class="signature"><a href="RequestFactory.html">
+      <span class="kind">trait</span>
+      <span class="symbol">
+        <span class="name">RequestFactory</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A factory for GData requests.</p>
+    </li><li visbl="pub" name="com.google.gdata.client.ServiceDisabled" data-isabs="false">
+      <a id="ServiceDisabled:ServiceDisabled"></a>
+      <h4 class="signature"><a href="ServiceDisabled.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">ServiceDisabled</span>
+        
+        <span class="params">(<span name="url">
+                  url
+                  : String
+                  
+                </span>)</span>
+        <span class="result"> extends AuthenticationException with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Service is disabled for the given user.</p>
+    </li><li visbl="pub" name="com.google.gdata.client.ServiceUnavailable" data-isabs="false">
+      <a id="ServiceUnavailable:ServiceUnavailable"></a>
+      <h4 class="signature"><a href="ServiceUnavailable.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">ServiceUnavailable</span>
+        
+        <span class="params">(<span name="url">
+                  url
+                  : String
+                  
+                </span>)</span>
+        <span class="result"> extends AuthenticationException with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">The service is unavailable.</p>
+    </li><li visbl="pub" name="com.google.gdata.client.TermsNotAgreed" data-isabs="false">
+      <a id="TermsNotAgreed:TermsNotAgreed"></a>
+      <h4 class="signature"><a href="TermsNotAgreed.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">TermsNotAgreed</span>
+        
+        <span class="params">(<span name="url">
+                  url
+                  : String
+                  
+                </span>)</span>
+        <span class="result"> extends AuthenticationException with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Terms not agreed.</p>
+    </li><li visbl="pub" name="com.google.gdata.client.UnauthorizedException" data-isabs="false">
+      <a id="UnauthorizedException:UnauthorizedException"></a>
+      <h4 class="signature"><a href="UnauthorizedException.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">UnauthorizedException</span>
+        
+        <span class="params">()</span>
+        <span class="result"> extends GDataRequestException with Product with Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.client.Unknown" data-isabs="false">
+      <a id="Unknown:Unknown"></a>
+      <h4 class="signature"><a href="Unknown.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Unknown</span>
+        
+        <span class="params">(<span name="url">
+                  url
+                  : String
+                  
+                </span>)</span>
+        <span class="result"> extends AuthenticationException with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Unknown error.</p>
+    </li></ol>
+            </div>
+
+        <div class="values members" id="values">
+              <h3>Value Members</h3>
+              <ol><li visbl="pub" name="com.google.gdata.client.AuthenticationException" data-isabs="false">
+      <a id="AuthenticationException:AuthenticationException"></a>
+      <h4 class="signature"><a href="AuthenticationException$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">AuthenticationException</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Factory for authentication exceptions, based on server answer.</p>
+    </li><li visbl="pub" name="com.google.gdata.client.ClientLoginFactory" data-isabs="false">
+      <a id="ClientLoginFactory:ClientLoginFactory"></a>
+      <h4 class="signature"><a href="ClientLoginFactory$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">ClientLoginFactory</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.client.GDataRequest" data-isabs="false">
+      <a id="GDataRequest:GDataRequest"></a>
+      <h4 class="signature"><a href="GDataRequest$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">GDataRequest</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.client.HttpConnection" data-isabs="false">
+      <a id="HttpConnection:HttpConnection"></a>
+      <h4 class="signature"><a href="HttpConnection$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">HttpConnection</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.client.RequestMethod" data-isabs="false">
+      <a id="RequestMethod:RequestMethod"></a>
+      <h4 class="signature"><a href="RequestMethod$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">RequestMethod</span>
+        
+        
+        <span class="result"> extends Enumeration</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">The HTTP method used by the GData Request</p>
+    </li></ol>
+            </div>
+
+        
+
+      </div>
+      
+      <div id="tooltip"></div>
+      
+    </body>
+      </html>

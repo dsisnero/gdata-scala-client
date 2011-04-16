@@ -1,0 +1,2206 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>com.google.xml.combinators.Picklers</title>
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link type="text/css" media="screen" rel="stylesheet" href="../../../../lib/template.css" />
+      <script type="text/javascript" src="../../../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../lib/tools.tooltip.js"></script>
+    
+        </head>
+        <body onload="windowTitle();" class="value">
+
+      <p id="owner"><a name="com" class="extype" href="../../../package.html">com</a>.<a name="com.google" class="extype" href="../../package.html">google</a>.<a name="com.google.xml" class="extype" href="../package.html">xml</a>.<a name="com.google.xml.combinators" class="extype" href="package.html">combinators</a></p>
+
+      <div id="definition">
+        <img src="../../../../lib/object_big.png" />
+        <h1>Picklers</h1>
+      </div>
+
+      <h4 class="signature" id="signature">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Picklers</span>
+        
+        
+        <span class="result"> extends <a name="com.google.xml.combinators.TupleToPairFunctions" class="extype" href="TupleToPairFunctions.html">TupleToPairFunctions</a></span>
+      </span>
+      </h4>
+      
+          <div class="shortcomment cmt"><p>A class for XML Pickling combinators.</p><p>A pickler for some type A is a class that can save objects of type A to XML (pickle)
+and read XML back to objects of type A (unpickle). This class provides some basic
+building blocks (like text), and several combinators (like elem, attr,
+seq) to build more complex picklers.</p><p>Example:
+&lt;xmp&gt;
+  def picklePair: Pickler[String ~ String] =
+     elem(&quot;p&quot;, URI, &quot;pair&quot;,
+        elem(&quot;p&quot;, URI, &quot;a&quot;, text) ~ elem(&quot;p&quot;, URI, &quot;b&quot;, text))</p><p>  val input =
+    &lt;p:pair xmlns:p=&quot;testing-uri&quot;&gt;
+      &lt;p:a&gt;alfa&lt;/p:a&gt;
+      &lt;p:b&gt;omega&lt;/p:b&gt;
+    &lt;/p:pair&gt;
+&lt;/xmp&gt;
+picklePair will be able to pickle and unpickle pairs of Strings that look like the
+input.
+</p></div>
+          <div class="fullcomment" id="comment"><div class="comment cmt"><p>A class for XML Pickling combinators.</p><p>A pickler for some type A is a class that can save objects of type A to XML (pickle)
+and read XML back to objects of type A (unpickle). This class provides some basic
+building blocks (like text), and several combinators (like elem, attr,
+seq) to build more complex picklers.</p><p>Example:
+&lt;xmp&gt;
+  def picklePair: Pickler[String ~ String] =
+     elem(&quot;p&quot;, URI, &quot;pair&quot;,
+        elem(&quot;p&quot;, URI, &quot;a&quot;, text) ~ elem(&quot;p&quot;, URI, &quot;b&quot;, text))</p><p>  val input =
+    &lt;p:pair xmlns:p=&quot;testing-uri&quot;&gt;
+      &lt;p:a&gt;alfa&lt;/p:a&gt;
+      &lt;p:b&gt;omega&lt;/p:b&gt;
+    &lt;/p:pair&gt;
+&lt;/xmp&gt;
+picklePair will be able to pickle and unpickle pairs of Strings that look like the
+input.
+</p></div><div class="block">
+            linear super types: <a name="com.google.xml.combinators.TupleToPairFunctions" class="extype" href="TupleToPairFunctions.html">TupleToPairFunctions</a>, AnyRef, <span name="scala.Any" class="extype">Any</span>
+          </div>
+            
+            
+            
+            <div class="block"><ol>see also:
+                  <li class="cmt"><p><a
+  href="http://www.scala-lang.org/docu/files/api/scala/util/parsing/combinator/Parsers.html">
+Scala combinator parsers</a>
+</p></li>, <li class="cmt"><p>Andrew Kennedy's
+     <a href="http://research.microsoft.com/%7Eakenn/fun/">Pickler Combinators</a>,</p></li>, <li class="cmt"><p><a href="http://www.fh-wedel.de/~si/HXmlToolbox/">Haskell XML Toolbox</a>,</p></li>
+                </ol></div>
+          </div>
+        
+
+      <div id="template">
+
+        <div id="mbrsel">
+          <div id="textfilter"><span class="pre"></span><span class="input"><input accesskey="/" type="text" /></span><span class="post"></span></div>
+          <div id="order">
+                <span class="filtertype">Ordering</span>
+                <ol><li class="alpha in">Alphabetic</li><li class="inherit out">By inheritance</li></ol>
+              </div>
+          <div id="ancestors">
+                <span class="filtertype">Inherited</span>
+                <ol><li class="hideall">Hide All</li><li class="showall">Show all</li></ol>
+                <ol id="linearization"><li name="com.google.xml.combinators.Picklers" class="in">Picklers</li><li name="com.google.xml.combinators.TupleToPairFunctions" class="in">TupleToPairFunctions</li><li name="scala.AnyRef" class="in">AnyRef</li><li name="scala.Any" class="in">Any</li></ol>
+              </div>
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in">Public</li><li class="all out">All</li></ol>
+            </div>
+          <div id="impl">
+              <span class="filtertype">Impl.</span>
+              <ol><li class="concrete in">Concrete</li><li class="abstract in">Abstract</li></ol>
+            </div>
+        </div>
+
+        
+
+        <div class="types members" id="types">
+              <h3>Type Members</h3>
+              <ol><li visbl="pub" name="com.google.xml.combinators.Picklers.Error" data-isabs="false">
+      <a id="Error:Error"></a>
+      <h4 class="signature"><a href="Picklers$$Error.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Error</span>
+        
+        <span class="params">(<span name="m">
+                  m
+                  : String
+                  
+                </span>, <span name="i">
+                  i
+                  : St
+                  
+                </span>)</span>
+        <span class="result"> extends NoSuccess with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">An Error is a failure which causes the entire parsing to fail (no alternatives are tried).</p>
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers.Failure" data-isabs="false">
+      <a id="Failure:Failure"></a>
+      <h4 class="signature"><a href="Picklers$$Failure.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Failure</span>
+        
+        <span class="params">(<span name="m">
+                  m
+                  : String
+                  
+                </span>, <span name="i">
+                  i
+                  : St
+                  
+                </span>)</span>
+        <span class="result"> extends NoSuccess with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A Failure means the parsing has failed, but alternatives can still be tried.</p>
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers.NoSuccess" data-isabs="true">
+      <a id="NoSuccess:NoSuccess"></a>
+      <h4 class="signature"><a href="Picklers$$NoSuccess.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">NoSuccess</span>
+        
+        
+        <span class="result"> extends PicklerResult[Nothing]</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Parsing failed.</p>
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers.Pickler" data-isabs="true">
+      <a id="Pickler:Pickler[A]"></a>
+      <h4 class="signature"><a href="Picklers$$Pickler.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">Pickler</span>
+        <span class="tparams">[<span name="A">A</span>]</span>
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Pickler for type A</p>
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers.PicklerResult" data-isabs="true">
+      <a id="PicklerResult:PicklerResult[A]"></a>
+      <h4 class="signature"><a href="Picklers$$PicklerResult.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">PicklerResult</span>
+        <span class="tparams">[<span name="A">+A</span>]</span>
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A class representing pickling results.</p>
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#St" data-isabs="false">
+      <a id="St:St"></a>
+      <h4 class="signature">
+      <span class="kind">type</span>
+      <span class="symbol">
+        <span class="name">St</span>
+        
+        
+        <span class="result"> = <a name="com.google.xml.combinators.XmlInputStore" class="extype" href="XmlInputStore.html">XmlInputStore</a></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">The state of the pickler is a collection of attributes, a list of
+nodes (which might be Text nodes), and namespace bindings.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>The state of the pickler is a collection of attributes, a list of
+nodes (which might be Text nodes), and namespace bindings.
+</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers.Success" data-isabs="false">
+      <a id="Success:Success[A]"></a>
+      <h4 class="signature"><a href="Picklers$$Success.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Success</span>
+        <span class="tparams">[<span name="A">+A</span>]</span>
+        <span class="params">(<span name="v">
+                  v
+                  : A
+                  
+                </span>, <span name="in">
+                  in
+                  : St
+                  
+                </span>)</span>
+        <span class="result"> extends PicklerResult[A] with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A successful parse.</p>
+    </li></ol>
+            </div>
+
+        <div class="values members" id="values">
+              <h3>Value Members</h3>
+              <ol><li visbl="pub" name="scala.AnyRef#!=" data-isabs="false">
+      <a id="!=(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">!=</span>
+        
+        <span class="params">(<span name="arg0">
+                  arg0
+                  : AnyRef
+                  
+                </span>)</span>
+        <span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div></div>
+          
+    </li><li visbl="pub" name="scala.Any#!=" data-isabs="false">
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">!=</span>
+        
+        <span class="params">(<span name="arg0">
+                  arg0
+                  : <span name="scala.Any" class="extype">Any</span>
+                  
+                </span>)</span>
+        <span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt"><code>o != arg0</code> is the same as <code>!(o == (arg0))</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p><code>o != arg0</code> is the same as <code>!(o == (arg0))</code>.
+</p></div><dl class="paramcmts block"><dt class="param">arg0</dt><dd class="cmt"><p>the object to compare against this object for dis-equality.</p></dd><dt>returns</dt><dd class="cmt"><p><code>false</code> if the receiver object is equivalent to the argument; <code>true</code> otherwise.</p></dd></dl><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: Any
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="scala.AnyRef###" data-isabs="false">
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">##</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span name="scala.Int" class="extype">Int</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef → Any
+        </div></div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#$asInstanceOf" data-isabs="false">
+      <a id="$asInstanceOf[T0]():T0"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">$asInstanceOf</span>
+        <span class="tparams">[<span name="T0">T0</span>]</span>
+        <span class="params">()</span>
+        <span class="result">: T0</span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div></div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#$isInstanceOf" data-isabs="false">
+      <a id="$isInstanceOf[T0]():Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">$isInstanceOf</span>
+        <span class="tparams">[<span name="T0">T0</span>]</span>
+        <span class="params">()</span>
+        <span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div></div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#==" data-isabs="false">
+      <a id="==(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">==</span>
+        
+        <span class="params">(<span name="arg0">
+                  arg0
+                  : AnyRef
+                  
+                </span>)</span>
+        <span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt"><code>o == arg0</code> is the same as <code>if (o eq null) arg0 eq null else o.equals(arg0)</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p><code>o == arg0</code> is the same as <code>if (o eq null) arg0 eq null else o.equals(arg0)</code>.
+</p></div><dl class="paramcmts block"><dt class="param">arg0</dt><dd class="cmt"><p>the object to compare against this object for equality.</p></dd><dt>returns</dt><dd class="cmt"><p><code>true</code> if the receiver object is equivalent to the argument; <code>false</code> otherwise.</p></dd></dl><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="scala.Any#==" data-isabs="false">
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">==</span>
+        
+        <span class="params">(<span name="arg0">
+                  arg0
+                  : <span name="scala.Any" class="extype">Any</span>
+                  
+                </span>)</span>
+        <span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt"><code>o == arg0</code> is the same as <code>o.equals(arg0)</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p><code>o == arg0</code> is the same as <code>o.equals(arg0)</code>.
+</p></div><dl class="paramcmts block"><dt class="param">arg0</dt><dd class="cmt"><p>the object to compare against this object for equality.</p></dd><dt>returns</dt><dd class="cmt"><p><code>true</code> if the receiver object is equivalent to the argument; <code>false</code> otherwise.</p></dd></dl><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: Any
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="scala.Any#asInstanceOf" data-isabs="false">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span>
+        <span class="tparams">[<span name="T0">T0</span>]</span>
+        
+        <span class="result">: T0</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">This method is used to cast the receiver object to be of type <code>T0</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>This method is used to cast the receiver object to be of type <code>T0</code>.</p><p>Note that the success of a cast at runtime is modulo Scala's erasure semantics.  Therefore the expression
+<code>1.asInstanceOf[String]</code> will throw a <code>ClassCastException</code> at runtime, while the expression
+<code>List(1).asInstanceOf[List[String]]</code> will not.  In the latter example, because the type argument is erased as
+part of compilation it is not possible to check whether the contents of the list are of the requested typed.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the receiver object.</p></dd></dl><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: Any
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#attr" data-isabs="false">
+      <a id="attr[A](String,⇒ Pickler[A]):Pickler[A]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">attr</span>
+        <span class="tparams">[<span name="A">A</span>]</span>
+        <span class="params">(<span name="label">
+                  label
+                  : String
+                  
+                </span>, <span name="pa">
+                  pa
+                  : ⇒ <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">A pickler for unprefixed attributes.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>A pickler for unprefixed attributes. Such attributes have no namespace.
+</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#attr" data-isabs="false">
+      <a id="attr[A](String,String,String,⇒ Pickler[A]):Pickler[A]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">attr</span>
+        <span class="tparams">[<span name="A">A</span>]</span>
+        <span class="params">(<span name="pre">
+                  pre
+                  : String
+                  
+                </span>, <span name="uri">
+                  uri
+                  : String
+                  
+                </span>, <span name="key">
+                  key
+                  : String
+                  
+                </span>, <span name="pa">
+                  pa
+                  : ⇒ <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Wrap a parser into a prefixed attribute.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Wrap a parser into a prefixed attribute. The attribute will contain all the
+content produced by 'pa' in the 'nodes' field.
+</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#attr" data-isabs="false">
+      <a id="attr[A](String,⇒ Pickler[A],(String, String)):Pickler[A]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">attr</span>
+        <span class="tparams">[<span name="A">A</span>]</span>
+        <span class="params">(<span name="label">
+                  label
+                  : String
+                  
+                </span>, <span name="pa">
+                  pa
+                  : ⇒ <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>, <span name="ns">
+                  ns
+                  : (String, String)
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Convenience method for creating an attribute within a namepace.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Convenience method for creating an attribute within a namepace.</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#boolVal" data-isabs="false">
+      <a id="boolVal:Pickler[Boolean]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">boolVal</span>
+        
+        
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[<span name="scala.Boolean" class="extype">Boolean</span>]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">A basic pickler for boolean values.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>A basic pickler for boolean values. Everything equal to the string 'true' is
+unpickled to the boolean value <code>true</code>, everything else to <code>false</code>.
+It is not case sensitive.
+</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="prt" name="scala.AnyRef#clone" data-isabs="false">
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">clone</span>
+        
+        <span class="params">()</span>
+        <span class="result">: AnyRef</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">This method creates and returns a copy of the receiver object.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>This method creates and returns a copy of the receiver object.</p><p>The default implementation of the <code>clone</code> method is platform dependent.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a copy of the receiver object.</p></dd></dl><div class="block">
+          attributes: protected[<a name="java.lang" class="extype" href="../../../../java/lang/package.html">lang</a>] 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div><div class="block">
+          annotations: 
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#collect" data-isabs="false">
+      <a id="collect:Pickler[XmlStore]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">collect</span>
+        
+        
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[<a name="com.google.xml.combinators.XmlStore" class="extype" href="XmlStore.html">XmlStore</a>]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Collect all unconsumed input into a XmlStore.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Collect all unconsumed input into a XmlStore.</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#commit" data-isabs="false">
+      <a id="commit[A](⇒ Pickler[A]):Pickler[A]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">commit</span>
+        <span class="tparams">[<span name="A">A</span>]</span>
+        <span class="params">(<span name="pa">
+                  pa
+                  : ⇒ <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">A commit parser.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>A commit parser. Failures are transformed to errors, so alternatives (when combined with
+other parsers) are not tried.
+</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#const" data-isabs="false">
+      <a id="const[A](⇒ Pickler[A],A):Pickler[A]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">const</span>
+        <span class="tparams">[<span name="A">A</span>]</span>
+        <span class="params">(<span name="pa">
+                  pa
+                  : ⇒ <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>, <span name="v">
+                  v
+                  : A
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">A constant pickler: it always pickles 'v'.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>A constant pickler: it always pickles 'v'. Unpickle fails when the value that is found
+is not equal to 'v'.
+</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#dateTime" data-isabs="false">
+      <a id="dateTime:Pickler[DateTime]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">dateTime</span>
+        
+        
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[<a name="com.google.gdata.data.util.DateTime" class="extype" href="../../gdata/data/util/DateTime.html">DateTime</a>]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">A pickler for date/time in RFC 3339 format.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>A pickler for date/time in RFC 3339 format. It handles dates that look like
+<code>2008-02-15T16:16:02+01:00</code>. The time offset can be replaced by Z
+(zulu time) when it is zero (UTC time). The time component is required.
+</p></div>
+            
+            
+            
+            <div class="block"><ol>see also:
+                  <li class="cmt"><p>http://atomenabled.org/developers/syndication/atom-format-spec.php#date.constructs
+</p></li>
+                </ol></div>
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#dateTime" data-isabs="false">
+      <a id="dateTime(Boolean):Pickler[DateTime]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">dateTime</span>
+        
+        <span class="params">(<span name="allowDateOnly">
+                  allowDateOnly
+                  : <span name="scala.Boolean" class="extype">Boolean</span>
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[<a name="com.google.gdata.data.util.DateTime" class="extype" href="../../gdata/data/util/DateTime.html">DateTime</a>]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">A pickler for date/time in RFC 3339 format.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>A pickler for date/time in RFC 3339 format. It handles dates that look like
+<code>2008-02-15T16:16:02+01:00</code>. The time offset can be replaced by Z
+(zulu time) when it is zero (UTC time).
+</p></div><dl class="paramcmts block"><dt class="param">allowDateOnly</dt><dd class="cmt"><p>When true, accepts date component alone.</p></dd></dl>
+            
+            
+            
+            <div class="block"><ol>see also:
+                  <li class="cmt"><p>http://atomenabled.org/developers/syndication/atom-format-spec.php#date.constructs
+</p></li>
+                </ol></div>
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#default" data-isabs="false">
+      <a id="default[A](⇒ Pickler[A],A):Pickler[A]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">default</span>
+        <span class="tparams">[<span name="A">A</span>]</span>
+        <span class="params">(<span name="pa">
+                  pa
+                  : ⇒ <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>, <span name="v">
+                  v
+                  : A
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">A pickler for default values.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>A pickler for default values. If 'pa' fails, returns 'v' instead.</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#doubleVal" data-isabs="false">
+      <a id="doubleVal:Pickler[Double]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">doubleVal</span>
+        
+        
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[<span name="scala.Double" class="extype">Double</span>]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">A basic pickler for floating point values.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>A basic pickler for floating point values. It accepts double values as specified by the
+Scala and Java language.
+</p></div>
+            
+            
+            
+            <div class="block"><ol>see also:
+                  <li class="cmt"><p>java.lang.Double.valueOf for the exact grammar.
+</p></li>
+                </ol></div>
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#elem" data-isabs="false">
+      <a id="elem[A](String,String,String,⇒ Pickler[A]):Pickler[A]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">elem</span>
+        <span class="tparams">[<span name="A">A</span>]</span>
+        <span class="params">(<span name="pre">
+                  pre
+                  : String
+                  
+                </span>, <span name="uri">
+                  uri
+                  : String
+                  
+                </span>, <span name="label">
+                  label
+                  : String
+                  
+                </span>, <span name="pa">
+                  pa
+                  : ⇒ <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Wrap a pickler into an element.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Wrap a pickler into an element.</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#elem" data-isabs="false">
+      <a id="elem[A](String,⇒ Pickler[A])((String, String)):Pickler[A]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">elem</span>
+        <span class="tparams">[<span name="A">A</span>]</span>
+        <span class="params">(<span name="label">
+                  label
+                  : String
+                  
+                </span>, <span name="pa">
+                  pa
+                  : ⇒ <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>)</span><span class="params">(<span class="implicit">implicit </span><span name="ns">
+                  ns
+                  : (String, String)
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Convenience method for creating an element with an implicit namepace.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Convenience method for creating an element with an implicit namepace. Contents of
+this element are committed (this parser is not allowed to recover from failures in
+parsing its content.
+</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#emptyStore" data-isabs="false">
+      <a id="emptyStore:XmlOutputStore"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">emptyStore</span>
+        
+        
+        <span class="result">: <a name="com.google.xml.combinators.XmlOutputStore" class="extype" href="XmlOutputStore.html">XmlOutputStore</a></span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="scala.AnyRef#eq" data-isabs="false">
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">eq</span>
+        
+        <span class="params">(<span name="arg0">
+                  arg0
+                  : AnyRef
+                  
+                </span>)</span>
+        <span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">This method is used to test whether the argument (<code>arg0</code>) is a reference to the
+receiver object (<code>this</code>).</p>
+            <div class="fullcomment"><div class="comment cmt"><p>This method is used to test whether the argument (<code>arg0</code>) is a reference to the
+receiver object (<code>this</code>).</p><p>The <code>eq</code> method implements an [http://en.wikipedia.org/wiki/Equivalence_relation equivalence relation] on
+non-null instances of <code>AnyRef</code>:
+ * It is reflexive: for any non-null instance <code>x</code> of type <code>AnyRef</code>, <code>x.eq(x)</code> returns <code>true</code>.
+ * It is symmetric: for any non-null instances <code>x</code> and <code>y</code> of type <code>AnyRef</code>, <code>x.eq(y)</code> returns <code>true</code> if and
+   only if <code>y.eq(x)</code> returns <code>true</code>.
+ * It is transitive: for any non-null instances <code>x</code>, <code>y</code>, and <code>z</code> of type <code>AnyRef</code> if <code>x.eq(y)</code> returns <code>true</code>
+   and <code>y.eq(z)</code> returns <code>true</code>, then <code>x.eq(z)</code> returns <code>true</code>.</p><p>Additionally, the <code>eq</code> method has three other properties.
+ * It is consistent: for any non-null instances <code>x</code> and <code>y</code> of type <code>AnyRef</code>, multiple invocations of
+   <code>x.eq(y)</code> consistently returns <code>true</code> or consistently returns <code>false</code>.
+ * For any non-null instance <code>x</code> of type <code>AnyRef</code>, <code>x.eq(null)</code> and <code>null.eq(x)</code> returns <code>false</code>.
+ * <code>null.eq(null)</code> returns <code>true</code>.</p><p>When overriding the <code>equals</code> or <code>hashCode</code> methods, it is important to ensure that their behavior is
+consistent with reference equality.  Therefore, if two objects are references to each other (<code>o1 eq o2</code>), they
+should be equal to each other (<code>o1 == o2</code>) and they should hash to the same value (<code>o1.hashCode == o2.hashCode</code>).
+</p></div><dl class="paramcmts block"><dt class="param">arg0</dt><dd class="cmt"><p>the object to compare against this object for reference equality.</p></dd><dt>returns</dt><dd class="cmt"><p><code>true</code> if the argument is a reference to the receiver object; <code>false</code> otherwise.</p></dd></dl><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#equals" data-isabs="false">
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">equals</span>
+        
+        <span class="params">(<span name="arg0">
+                  arg0
+                  : <span name="scala.Any" class="extype">Any</span>
+                  
+                </span>)</span>
+        <span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">This method is used to compare the receiver object (<code>this</code>) with the argument object (<code>arg0</code>) for equivalence.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>This method is used to compare the receiver object (<code>this</code>) with the argument object (<code>arg0</code>) for equivalence.</p><p>The default implementations of this method is an [http://en.wikipedia.org/wiki/Equivalence_relation equivalence
+relation]:
+ * It is reflexive: for any instance <code>x</code> of type <code>Any</code>, <code>x.equals(x)</code> should return <code>true</code>.
+ * It is symmetric: for any instances <code>x</code> and <code>y</code> of type <code>Any</code>, <code>x.equals(y)</code> should return <code>true</code> if and
+   only if <code>y.equals(x)</code> returns <code>true</code>.
+ * It is transitive: for any instances <code>x</code>, <code>y</code>, and <code>z</code> of type <code>AnyRef</code> if <code>x.equals(y)</code> returns <code>true</code> and
+   <code>y.equals(z)</code> returns <code>true</code>, then <code>x.equals(z)</code> should return <code>true</code>.</p><p>If you override this method, you should verify that your implementation remains an equivalence relation.
+Additionally, when overriding this method it is often necessary to override <code>hashCode</code> to ensure that objects
+that are &quot;equal&quot; (<code>o1.equals(o2)</code> returns <code>true</code>) hash to the same scala.Int
+(<code>o1.hashCode.equals(o2.hashCode)</code>).
+</p></div><dl class="paramcmts block"><dt class="param">arg0</dt><dd class="cmt"><p>the object to compare against this object for equality.</p></dd><dt>returns</dt><dd class="cmt"><p><code>true</code> if the receiver object is equivalent to the argument; <code>false</code> otherwise.</p></dd></dl><div class="block">
+          definition classes: AnyRef → Any
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#extend" data-isabs="false">
+      <a id="extend[A&lt;:HasStore, B](⇒ Pickler[A],⇒ Pickler[B]):Pickler[~[A, B]]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">extend</span>
+        <span class="tparams">[<span name="A">A &lt;: <a name="com.google.xml.combinators.HasStore" class="extype" href="HasStore.html">HasStore</a></span>, <span name="B">B</span>]</span>
+        <span class="params">(<span name="pa">
+                  pa
+                  : ⇒ <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>, <span name="pb">
+                  pb
+                  : ⇒ <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[B]
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[A, B]]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Apply 'pb' on the state stored in the value unpickled by 'pa'.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Apply 'pb' on the state stored in the value unpickled by 'pa'.
+It is used for after-the-fact extension. The type 'A' has to be an instance of HasStore.
+The pickler will apply 'pb' on HasStore.store. The assumption is that 'pa' stores in there
+the unconsumed input.
+</p></div>
+            
+            
+            
+            <div class="block"><ol>see also:
+                  <li class="cmt"><p>makeExtensible
+</p></li>
+                </ol></div>
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#filter" data-isabs="false">
+      <a id="filter[A, B](⇒ Pickler[A],(A, St) ⇒ PicklerResult[B],(B) ⇒ A):Pickler[B]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">filter</span>
+        <span class="tparams">[<span name="A">A</span>, <span name="B">B</span>]</span>
+        <span class="params">(<span name="pa">
+                  pa
+                  : ⇒ <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>, <span name="f">
+                  f
+                  : (A, St) ⇒ <a name="com.google.xml.combinators.Picklers.PicklerResult" class="extype" href="Picklers$$PicklerResult.html">PicklerResult</a>[B]
+                  
+                </span>, <span name="g">
+                  g
+                  : (B) ⇒ A
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[B]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Apply a pair of functions on the result of pa.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Apply a pair of functions on the result of pa. Unlike 'wrap', 'f' may cause the
+pickler to fail.</p><p>For an example, see the implementation of intVal.
+</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="prt" name="scala.AnyRef#finalize" data-isabs="false">
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">finalize</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">This method is called by the garbage collector on the receiver object when garbage collection determines that
+there are no more references to the object.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>This method is called by the garbage collector on the receiver object when garbage collection determines that
+there are no more references to the object.</p><p>The details of when and if the <code>finalize</code> method are invoked, as well as the interaction between <code>finalize</code>
+and non-local returns and exceptions, are all platform dependent.</p></div><div class="block">
+          attributes: protected[<a name="java.lang" class="extype" href="../../../../java/lang/package.html">lang</a>] 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div><div class="block">
+          annotations: 
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.TupleToPairFunctions#fun2ToPair" data-isabs="false">
+      <a id="fun2ToPair[A, B, C]((A, B) ⇒ C):(~[A, B]) ⇒ C"></a>
+      <h4 class="signature">
+      <span class="kind">implicit def</span>
+      <span class="symbol">
+        <span class="name">fun2ToPair</span>
+        <span class="tparams">[<span name="A">A</span>, <span name="B">B</span>, <span name="C">C</span>]</span>
+        <span class="params">(<span name="fun">
+                  fun
+                  : (A, B) ⇒ C
+                  
+                </span>)</span>
+        <span class="result">: (<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[A, B]) ⇒ C</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Convert a binary function to a function of a pair.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Convert a binary function to a function of a pair.</p></div><div class="block">
+          attributes: implicit 
+        </div><div class="block">
+          definition classes: <a name="com.google.xml.combinators.TupleToPairFunctions" class="extype" href="TupleToPairFunctions.html">TupleToPairFunctions</a>
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.TupleToPairFunctions#fun3ToPpairL" data-isabs="false">
+      <a id="fun3ToPpairL[A, B, C, D]((A, B, C) ⇒ D):(~[~[A, B], C]) ⇒ D"></a>
+      <h4 class="signature">
+      <span class="kind">implicit def</span>
+      <span class="symbol">
+        <span class="name">fun3ToPpairL</span>
+        <span class="tparams">[<span name="A">A</span>, <span name="B">B</span>, <span name="C">C</span>, <span name="D">D</span>]</span>
+        <span class="params">(<span name="fun">
+                  fun
+                  : (A, B, C) ⇒ D
+                  
+                </span>)</span>
+        <span class="result">: (<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[A, B], C]) ⇒ D</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Convert a function of 3 arguments to one that takes a pair of a pair.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Convert a function of 3 arguments to one that takes a pair of a pair.</p></div><div class="block">
+          attributes: implicit 
+        </div><div class="block">
+          definition classes: <a name="com.google.xml.combinators.TupleToPairFunctions" class="extype" href="TupleToPairFunctions.html">TupleToPairFunctions</a>
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.TupleToPairFunctions#fun3ToPpairR" data-isabs="false">
+      <a id="fun3ToPpairR[A, B, C, D]((A, B, C) ⇒ D):(~[A, ~[B, C]]) ⇒ D"></a>
+      <h4 class="signature">
+      <span class="kind">implicit def</span>
+      <span class="symbol">
+        <span class="name">fun3ToPpairR</span>
+        <span class="tparams">[<span name="A">A</span>, <span name="B">B</span>, <span name="C">C</span>, <span name="D">D</span>]</span>
+        <span class="params">(<span name="f">
+                  f
+                  : (A, B, C) ⇒ D
+                  
+                </span>)</span>
+        <span class="result">: (<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[A, <a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[B, C]]) ⇒ D</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Convert a function of 3 arguments to one that takes a pair of a pair,
+right associative.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Convert a function of 3 arguments to one that takes a pair of a pair,
+right associative.
+</p></div><div class="block">
+          attributes: implicit 
+        </div><div class="block">
+          definition classes: <a name="com.google.xml.combinators.TupleToPairFunctions" class="extype" href="TupleToPairFunctions.html">TupleToPairFunctions</a>
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.TupleToPairFunctions#fun4ToPpairL" data-isabs="false">
+      <a id="fun4ToPpairL[A, B, C, D, E]((A, B, C, D) ⇒ E):(~[~[~[A, B], C], D]) ⇒ E"></a>
+      <h4 class="signature">
+      <span class="kind">implicit def</span>
+      <span class="symbol">
+        <span class="name">fun4ToPpairL</span>
+        <span class="tparams">[<span name="A">A</span>, <span name="B">B</span>, <span name="C">C</span>, <span name="D">D</span>, <span name="E">E</span>]</span>
+        <span class="params">(<span name="fun">
+                  fun
+                  : (A, B, C, D) ⇒ E
+                  
+                </span>)</span>
+        <span class="result">: (<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[A, B], C], D]) ⇒ E</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Convert a function of 4 arguments to one that takes a pair of a pair.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Convert a function of 4 arguments to one that takes a pair of a pair.</p></div><div class="block">
+          attributes: implicit 
+        </div><div class="block">
+          definition classes: <a name="com.google.xml.combinators.TupleToPairFunctions" class="extype" href="TupleToPairFunctions.html">TupleToPairFunctions</a>
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.TupleToPairFunctions#fun5ToPpairL" data-isabs="false">
+      <a id="fun5ToPpairL[A, B, C, D, E, F]((A, B, C, D, E) ⇒ F):(~[~[~[~[A, B], C], D], E]) ⇒ F"></a>
+      <h4 class="signature">
+      <span class="kind">implicit def</span>
+      <span class="symbol">
+        <span class="name">fun5ToPpairL</span>
+        <span class="tparams">[<span name="A">A</span>, <span name="B">B</span>, <span name="C">C</span>, <span name="D">D</span>, <span name="E">E</span>, <span name="F">F</span>]</span>
+        <span class="params">(<span name="fun">
+                  fun
+                  : (A, B, C, D, E) ⇒ F
+                  
+                </span>)</span>
+        <span class="result">: (<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[A, B], C], D], E]) ⇒ F</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Convert a function of 4 arguments to one that takes a pair of a pair.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Convert a function of 4 arguments to one that takes a pair of a pair.</p></div><div class="block">
+          attributes: implicit 
+        </div><div class="block">
+          definition classes: <a name="com.google.xml.combinators.TupleToPairFunctions" class="extype" href="TupleToPairFunctions.html">TupleToPairFunctions</a>
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.TupleToPairFunctions#fun6ToPpairL" data-isabs="false">
+      <a id="fun6ToPpairL[A, B, C, D, E, F, G]((A, B, C, D, E, F) ⇒ G):(~[~[~[~[~[A, B], C], D], E], F]) ⇒ G"></a>
+      <h4 class="signature">
+      <span class="kind">implicit def</span>
+      <span class="symbol">
+        <span class="name">fun6ToPpairL</span>
+        <span class="tparams">[<span name="A">A</span>, <span name="B">B</span>, <span name="C">C</span>, <span name="D">D</span>, <span name="E">E</span>, <span name="F">F</span>, <span name="G">G</span>]</span>
+        <span class="params">(<span name="fun">
+                  fun
+                  : (A, B, C, D, E, F) ⇒ G
+                  
+                </span>)</span>
+        <span class="result">: (<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[A, B], C], D], E], F]) ⇒ G</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Convert a function of 4 arguments to one that takes a pair of a pair.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Convert a function of 4 arguments to one that takes a pair of a pair.</p></div><div class="block">
+          attributes: implicit 
+        </div><div class="block">
+          definition classes: <a name="com.google.xml.combinators.TupleToPairFunctions" class="extype" href="TupleToPairFunctions.html">TupleToPairFunctions</a>
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.TupleToPairFunctions#fun7ToPpairL" data-isabs="false">
+      <a id="fun7ToPpairL[A, B, C, D, E, F, G, H]((A, B, C, D, E, F, G) ⇒ H):(~[~[~[~[~[~[A, B], C], D], E], F], G]) ⇒ H"></a>
+      <h4 class="signature">
+      <span class="kind">implicit def</span>
+      <span class="symbol">
+        <span class="name">fun7ToPpairL</span>
+        <span class="tparams">[<span name="A">A</span>, <span name="B">B</span>, <span name="C">C</span>, <span name="D">D</span>, <span name="E">E</span>, <span name="F">F</span>, <span name="G">G</span>, <span name="H">H</span>]</span>
+        <span class="params">(<span name="fun">
+                  fun
+                  : (A, B, C, D, E, F, G) ⇒ H
+                  
+                </span>)</span>
+        <span class="result">: (<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[A, B], C], D], E], F], G]) ⇒ H</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Convert a function of 4 arguments to one that takes a pair of a pair.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Convert a function of 4 arguments to one that takes a pair of a pair.</p></div><div class="block">
+          attributes: implicit 
+        </div><div class="block">
+          definition classes: <a name="com.google.xml.combinators.TupleToPairFunctions" class="extype" href="TupleToPairFunctions.html">TupleToPairFunctions</a>
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.TupleToPairFunctions#funTuple2ToPair" data-isabs="false">
+      <a id="funTuple2ToPair[A, B, C]((A) ⇒ (B, C)):(A) ⇒ ~[B, C]"></a>
+      <h4 class="signature">
+      <span class="kind">implicit def</span>
+      <span class="symbol">
+        <span class="name">funTuple2ToPair</span>
+        <span class="tparams">[<span name="A">A</span>, <span name="B">B</span>, <span name="C">C</span>]</span>
+        <span class="params">(<span name="f">
+                  f
+                  : (A) ⇒ (B, C)
+                  
+                </span>)</span>
+        <span class="result">: (A) ⇒ <a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[B, C]</span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: implicit 
+        </div><div class="block">
+          definition classes: <a name="com.google.xml.combinators.TupleToPairFunctions" class="extype" href="TupleToPairFunctions.html">TupleToPairFunctions</a>
+        </div></div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.TupleToPairFunctions#funTuple2ToPairUnapply" data-isabs="false">
+      <a id="funTuple2ToPairUnapply[A, B, C]((A) ⇒ Option[(B, C)]):(A) ⇒ ~[B, C]"></a>
+      <h4 class="signature">
+      <span class="kind">implicit def</span>
+      <span class="symbol">
+        <span class="name">funTuple2ToPairUnapply</span>
+        <span class="tparams">[<span name="A">A</span>, <span name="B">B</span>, <span name="C">C</span>]</span>
+        <span class="params">(<span name="f">
+                  f
+                  : (A) ⇒ <span name="scala.Option" class="extype">Option</span>[(B, C)]
+                  
+                </span>)</span>
+        <span class="result">: (A) ⇒ <a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[B, C]</span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: implicit 
+        </div><div class="block">
+          definition classes: <a name="com.google.xml.combinators.TupleToPairFunctions" class="extype" href="TupleToPairFunctions.html">TupleToPairFunctions</a>
+        </div></div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.TupleToPairFunctions#funTuple3ToPair" data-isabs="false">
+      <a id="funTuple3ToPair[A, B, C, D]((A) ⇒ (B, C, D)):(A) ⇒ ~[~[B, C], D]"></a>
+      <h4 class="signature">
+      <span class="kind">implicit def</span>
+      <span class="symbol">
+        <span class="name">funTuple3ToPair</span>
+        <span class="tparams">[<span name="A">A</span>, <span name="B">B</span>, <span name="C">C</span>, <span name="D">D</span>]</span>
+        <span class="params">(<span name="f">
+                  f
+                  : (A) ⇒ (B, C, D)
+                  
+                </span>)</span>
+        <span class="result">: (A) ⇒ <a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[B, C], D]</span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: implicit 
+        </div><div class="block">
+          definition classes: <a name="com.google.xml.combinators.TupleToPairFunctions" class="extype" href="TupleToPairFunctions.html">TupleToPairFunctions</a>
+        </div></div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.TupleToPairFunctions#funTuple3ToPairUnapply" data-isabs="false">
+      <a id="funTuple3ToPairUnapply[A, B, C, D]((A) ⇒ Option[(B, C, D)]):(A) ⇒ ~[~[B, C], D]"></a>
+      <h4 class="signature">
+      <span class="kind">implicit def</span>
+      <span class="symbol">
+        <span class="name">funTuple3ToPairUnapply</span>
+        <span class="tparams">[<span name="A">A</span>, <span name="B">B</span>, <span name="C">C</span>, <span name="D">D</span>]</span>
+        <span class="params">(<span name="f">
+                  f
+                  : (A) ⇒ <span name="scala.Option" class="extype">Option</span>[(B, C, D)]
+                  
+                </span>)</span>
+        <span class="result">: (A) ⇒ <a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[B, C], D]</span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: implicit 
+        </div><div class="block">
+          definition classes: <a name="com.google.xml.combinators.TupleToPairFunctions" class="extype" href="TupleToPairFunctions.html">TupleToPairFunctions</a>
+        </div></div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.TupleToPairFunctions#funTuple4ToPair" data-isabs="false">
+      <a id="funTuple4ToPair[A, B, C, D, E]((A) ⇒ (B, C, D, E)):(A) ⇒ ~[~[~[B, C], D], E]"></a>
+      <h4 class="signature">
+      <span class="kind">implicit def</span>
+      <span class="symbol">
+        <span class="name">funTuple4ToPair</span>
+        <span class="tparams">[<span name="A">A</span>, <span name="B">B</span>, <span name="C">C</span>, <span name="D">D</span>, <span name="E">E</span>]</span>
+        <span class="params">(<span name="f">
+                  f
+                  : (A) ⇒ (B, C, D, E)
+                  
+                </span>)</span>
+        <span class="result">: (A) ⇒ <a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[B, C], D], E]</span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: implicit 
+        </div><div class="block">
+          definition classes: <a name="com.google.xml.combinators.TupleToPairFunctions" class="extype" href="TupleToPairFunctions.html">TupleToPairFunctions</a>
+        </div></div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.TupleToPairFunctions#funTuple4ToPairUnapply" data-isabs="false">
+      <a id="funTuple4ToPairUnapply[A, B, C, D, E]((A) ⇒ Option[(B, C, D, E)]):(A) ⇒ ~[~[~[B, C], D], E]"></a>
+      <h4 class="signature">
+      <span class="kind">implicit def</span>
+      <span class="symbol">
+        <span class="name">funTuple4ToPairUnapply</span>
+        <span class="tparams">[<span name="A">A</span>, <span name="B">B</span>, <span name="C">C</span>, <span name="D">D</span>, <span name="E">E</span>]</span>
+        <span class="params">(<span name="f">
+                  f
+                  : (A) ⇒ <span name="scala.Option" class="extype">Option</span>[(B, C, D, E)]
+                  
+                </span>)</span>
+        <span class="result">: (A) ⇒ <a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[B, C], D], E]</span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: implicit 
+        </div><div class="block">
+          definition classes: <a name="com.google.xml.combinators.TupleToPairFunctions" class="extype" href="TupleToPairFunctions.html">TupleToPairFunctions</a>
+        </div></div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.TupleToPairFunctions#funTuple5ToPair" data-isabs="false">
+      <a id="funTuple5ToPair[A, B, C, D, E, F]((A) ⇒ (B, C, D, E, F)):(A) ⇒ ~[~[~[~[B, C], D], E], F]"></a>
+      <h4 class="signature">
+      <span class="kind">implicit def</span>
+      <span class="symbol">
+        <span class="name">funTuple5ToPair</span>
+        <span class="tparams">[<span name="A">A</span>, <span name="B">B</span>, <span name="C">C</span>, <span name="D">D</span>, <span name="E">E</span>, <span name="F">F</span>]</span>
+        <span class="params">(<span name="f">
+                  f
+                  : (A) ⇒ (B, C, D, E, F)
+                  
+                </span>)</span>
+        <span class="result">: (A) ⇒ <a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[B, C], D], E], F]</span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: implicit 
+        </div><div class="block">
+          definition classes: <a name="com.google.xml.combinators.TupleToPairFunctions" class="extype" href="TupleToPairFunctions.html">TupleToPairFunctions</a>
+        </div></div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.TupleToPairFunctions#funTuple5ToPairUnapply" data-isabs="false">
+      <a id="funTuple5ToPairUnapply[A, B, C, D, E, F]((A) ⇒ Option[(B, C, D, E, F)]):(A) ⇒ ~[~[~[~[B, C], D], E], F]"></a>
+      <h4 class="signature">
+      <span class="kind">implicit def</span>
+      <span class="symbol">
+        <span class="name">funTuple5ToPairUnapply</span>
+        <span class="tparams">[<span name="A">A</span>, <span name="B">B</span>, <span name="C">C</span>, <span name="D">D</span>, <span name="E">E</span>, <span name="F">F</span>]</span>
+        <span class="params">(<span name="f">
+                  f
+                  : (A) ⇒ <span name="scala.Option" class="extype">Option</span>[(B, C, D, E, F)]
+                  
+                </span>)</span>
+        <span class="result">: (A) ⇒ <a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[B, C], D], E], F]</span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: implicit 
+        </div><div class="block">
+          definition classes: <a name="com.google.xml.combinators.TupleToPairFunctions" class="extype" href="TupleToPairFunctions.html">TupleToPairFunctions</a>
+        </div></div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#getClass" data-isabs="false">
+      <a id="getClass():java.lang.Class[_]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">getClass</span>
+        
+        <span class="params">()</span>
+        <span class="result">: java.lang.Class[_]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Returns a representation that corresponds to the dynamic class of the receiver object.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Returns a representation that corresponds to the dynamic class of the receiver object.</p><p>The nature of the representation is platform dependent.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a representation that corresponds to the dynamic class of the receiver object.</p></dd></dl><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#hashCode" data-isabs="false">
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">hashCode</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span name="scala.Int" class="extype">Int</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Returns a hash code value for the object.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Returns a hash code value for the object.</p><p>The default hashing algorithm is platform dependent.</p><p>Note that it is allowed for two objects to have identical hash codes (<code>o1.hashCode.equals(o2.hashCode)</code>) yet
+not be equal (<code>o1.equals(o2)</code> returns <code>false</code>).  A degenerate implementation could always return <code>0</code>.
+However, it is required that if two objects are equal (<code>o1.equals(o2)</code> returns <code>true</code>) that they have
+identical hash codes (<code>o1.hashCode.equals(o2.hashCode)</code>).  Therefore, when overriding this method, be sure
+to verify that the behavior is consistent with the <code>equals</code> method.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the hash code value for the object.</p></dd></dl><div class="block">
+          definition classes: AnyRef → Any
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#intVal" data-isabs="false">
+      <a id="intVal:Pickler[Int]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">intVal</span>
+        
+        
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[<span name="scala.Int" class="extype">Int</span>]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">A basic pickler that serializes an integer value to a string and back.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>A basic pickler that serializes an integer value to a string and back.</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#interleaved" data-isabs="false">
+      <a id="interleaved[A](⇒ Pickler[A]):Pickler[A]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">interleaved</span>
+        <span class="tparams">[<span name="A">A</span>]</span>
+        <span class="params">(<span name="pa">
+                  pa
+                  : ⇒ <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Transform the given parser into a parser that accepts permutations of its containing
+sequences.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Transform the given parser into a parser that accepts permutations of its containing
+sequences. That is, interleaved(a ~ b ~ c) will parse a, b, c in any order (with possibly
+other elements in between. It should not be called directly, instead use the
+interleaved which wraps an element around the interleaved elements.
+</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#interleaved" data-isabs="false">
+      <a id="interleaved[A](String,⇒ Pickler[A])((String, String)):Pickler[A]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">interleaved</span>
+        <span class="tparams">[<span name="A">A</span>]</span>
+        <span class="params">(<span name="label">
+                  label
+                  : String
+                  
+                </span>, <span name="pa">
+                  pa
+                  : ⇒ <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>)</span><span class="params">(<span class="implicit">implicit </span><span name="ns">
+                  ns
+                  : (String, String)
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Convenience method for creating an element with interleaved elements.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Convenience method for creating an element with interleaved elements. Elements enclosed
+by the given element label can be parsed in any order. Any unknown elements are ignored.</p><p>Example:
+  <code>interleaved("entry", elem("link", text) ~ elem("author", text))</code> will
+will parse an element entry with two subelements, link and author, in any order, with
+possibly other elements between them.
+</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="scala.Any#isInstanceOf" data-isabs="false">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span>
+        <span class="tparams">[<span name="T0">T0</span>]</span>
+        
+        <span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">This method is used to test whether the dynamic type of the receiver object is <code>T0</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>This method is used to test whether the dynamic type of the receiver object is <code>T0</code>.</p><p>Note that the test result of the test is modulo Scala's erasure semantics.  Therefore the expression
+<code>1.isInstanceOf[String]</code> will return <code>false</code>, while the expression <code>List(1).isInstanceOf[List[String]]</code> will
+return <code>true</code>.  In the latter example, because the type argument is erased as part of compilation it is not
+possible to check whether the contents of the list are of the requested typed.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p><code>true</code> if the receiver object is an instance of erasure of type <code>T0</code>; <code>false</code> otherwise.</p></dd></dl><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: Any
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#list" data-isabs="false">
+      <a id="list[A](Char,⇒ Pickler[A]):Pickler[List[A]]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">list</span>
+        <span class="tparams">[<span name="A">A</span>]</span>
+        <span class="params">(<span name="sep">
+                  sep
+                  : <span name="scala.Char" class="extype">Char</span>
+                  
+                </span>, <span name="pa">
+                  pa
+                  : ⇒ <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[List[A]]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Pickler for a list of elements.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Pickler for a list of elements. It unpickles a list of elements separated by 'sep'.
+It makes little sense to use this pickler on elem or attr picklers (use '~' and 'rep'
+instead.) For an example how this is used, see MediaRss which defines a comma-separated
+list of categories as the contents of an element.</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#logged" data-isabs="false">
+      <a id="logged[A](String,⇒ Pickler[A]):Pickler[A]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">logged</span>
+        <span class="tparams">[<span name="A">A</span>]</span>
+        <span class="params">(<span name="name">
+                  name
+                  : String
+                  
+                </span>, <span name="pa">
+                  pa
+                  : ⇒ <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">A logging combinator</p>
+            <div class="fullcomment"><div class="comment cmt"><p>A logging combinator</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#makeExtensible" data-isabs="false">
+      <a id="makeExtensible[A&lt;:HasStore](⇒ Pickler[A]):Pickler[A]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">makeExtensible</span>
+        <span class="tparams">[<span name="A">A &lt;: <a name="com.google.xml.combinators.HasStore" class="extype" href="HasStore.html">HasStore</a></span>]</span>
+        <span class="params">(<span name="pa">
+                  pa
+                  : ⇒ <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Make a given pickler store unconsumed input for later use.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Make a given pickler store unconsumed input for later use. The given type should
+mix in HasStore. This pickler will store unconsumed input in the HasStore instance. Use
+'extend' to apply another pickler on the stored input.</p><p><code>makeExtensible(Person.pickler)</code> will make a Person pickler ready for future
+extensions by keeping around all input left.
+</p></div>
+            
+            
+            
+            <div class="block"><ol>see also:
+                  <li class="cmt"><p>'exted'.
+</p></li>
+                </ol></div>
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#marker" data-isabs="false">
+      <a id="marker(⇒ Pickler[String]):Pickler[Boolean]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">marker</span>
+        
+        <span class="params">(<span name="pa">
+                  pa
+                  : ⇒ <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[String]
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[<span name="scala.Boolean" class="extype">Boolean</span>]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">A marker pickler: 'true' when the unpickler succeeds, false otherwise.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>A marker pickler: 'true' when the unpickler succeeds, false otherwise.</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#ne" data-isabs="false">
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">ne</span>
+        
+        <span class="params">(<span name="arg0">
+                  arg0
+                  : AnyRef
+                  
+                </span>)</span>
+        <span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt"><code>o.ne(arg0)</code> is the same as <code>!(o.eq(arg0))</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p><code>o.ne(arg0)</code> is the same as <code>!(o.eq(arg0))</code>.
+</p></div><dl class="paramcmts block"><dt class="param">arg0</dt><dd class="cmt"><p>the object to compare against this object for reference dis-equality.</p></dd><dt>returns</dt><dd class="cmt"><p><code>false</code> if the argument is not a reference to the receiver object; <code>true</code> otherwise.</p></dd></dl><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#notify" data-isabs="false">
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">notify</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Wakes up a single thread that is waiting on the receiver object's monitor.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Wakes up a single thread that is waiting on the receiver object's monitor.</p></div><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#notifyAll" data-isabs="false">
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">notifyAll</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Wakes up all threads that are waiting on the receiver object's monitor.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Wakes up all threads that are waiting on the receiver object's monitor.</p></div><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#opt" data-isabs="false">
+      <a id="opt[A](⇒ Pickler[A]):Pickler[Option[A]]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">opt</span>
+        <span class="tparams">[<span name="A">A</span>]</span>
+        <span class="params">(<span name="pa">
+                  pa
+                  : ⇒ <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[<span name="scala.Option" class="extype">Option</span>[A]]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">An optional pickler.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>An optional pickler. It pickles v when it is there, and leaves the input unchanged when empty.
+It unpickles the value when the underlying parser succeeds, and returns None otherwise.
+</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#or" data-isabs="false">
+      <a id="or[A](⇒ Pickler[A],⇒ Pickler[A]):Pickler[A]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">or</span>
+        <span class="tparams">[<span name="A">A</span>]</span>
+        <span class="params">(<span name="pa">
+                  pa
+                  : ⇒ <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>, <span name="qa">
+                  qa
+                  : ⇒ <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Return a pickler that always pickles the first value, but unpickles using the second when the
+first one fails.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Return a pickler that always pickles the first value, but unpickles using the second when the
+first one fails.
+</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#rep" data-isabs="false">
+      <a id="rep[A](⇒ Pickler[A]):Pickler[List[A]]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">rep</span>
+        <span class="tparams">[<span name="A">A</span>]</span>
+        <span class="params">(<span name="pa">
+                  pa
+                  : ⇒ <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[List[A]]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">A repetition pickler.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>A repetition pickler. It applies 'pa' until there it fails.</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#seq" data-isabs="false">
+      <a id="seq[A, B](⇒ Pickler[A],⇒ Pickler[B]):Pickler[~[A, B]]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">seq</span>
+        <span class="tparams">[<span name="A">A</span>, <span name="B">B</span>]</span>
+        <span class="params">(<span name="pa">
+                  pa
+                  : ⇒ <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>, <span name="pb">
+                  pb
+                  : ⇒ <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[B]
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[A, B]]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Sequential composition of two picklers</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Sequential composition of two picklers</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#synchronized" data-isabs="false">
+      <a id="synchronized[T0](⇒ T0):T0"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">synchronized</span>
+        <span class="tparams">[<span name="T0">T0</span>]</span>
+        <span class="params">(<span name="arg0">
+                  arg0
+                  : ⇒ T0
+                  
+                </span>)</span>
+        <span class="result">: T0</span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div></div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#text" data-isabs="false">
+      <a id="text:Pickler[String]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">text</span>
+        
+        
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[String]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">A basic pickler that serializes a value to a string and back.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>A basic pickler that serializes a value to a string and back.</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#toString" data-isabs="false">
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">toString</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span name="java.lang.String" class="extype">String</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Returns a string representation of the object.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Returns a string representation of the object.</p><p>The default representation is platform dependent.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a string representation of the object.</p></dd></dl><div class="block">
+          definition classes: AnyRef → Any
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.TupleToPairFunctions#tuple2Pair" data-isabs="false">
+      <a id="tuple2Pair[A, B]((A, B)):~[A, B]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">tuple2Pair</span>
+        <span class="tparams">[<span name="A">A</span>, <span name="B">B</span>]</span>
+        <span class="params">(<span name="p">
+                  p
+                  : (A, B)
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[A, B]</span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          definition classes: <a name="com.google.xml.combinators.TupleToPairFunctions" class="extype" href="TupleToPairFunctions.html">TupleToPairFunctions</a>
+        </div></div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.TupleToPairFunctions#tuple3Pair" data-isabs="false">
+      <a id="tuple3Pair[A, B, C]((A, B, C)):~[~[A, B], C]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">tuple3Pair</span>
+        <span class="tparams">[<span name="A">A</span>, <span name="B">B</span>, <span name="C">C</span>]</span>
+        <span class="params">(<span name="p">
+                  p
+                  : (A, B, C)
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[A, B], C]</span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          definition classes: <a name="com.google.xml.combinators.TupleToPairFunctions" class="extype" href="TupleToPairFunctions.html">TupleToPairFunctions</a>
+        </div></div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.TupleToPairFunctions#tuple4Pair" data-isabs="false">
+      <a id="tuple4Pair[A, B, C, D]((A, B, C, D)):~[~[~[A, B], C], D]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">tuple4Pair</span>
+        <span class="tparams">[<span name="A">A</span>, <span name="B">B</span>, <span name="C">C</span>, <span name="D">D</span>]</span>
+        <span class="params">(<span name="p">
+                  p
+                  : (A, B, C, D)
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[A, B], C], D]</span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          definition classes: <a name="com.google.xml.combinators.TupleToPairFunctions" class="extype" href="TupleToPairFunctions.html">TupleToPairFunctions</a>
+        </div></div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.TupleToPairFunctions#tuple5Pair" data-isabs="false">
+      <a id="tuple5Pair[A, B, C, D, E]((A, B, C, D, E)):~[~[~[~[A, B], C], D], E]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">tuple5Pair</span>
+        <span class="tparams">[<span name="A">A</span>, <span name="B">B</span>, <span name="C">C</span>, <span name="D">D</span>, <span name="E">E</span>]</span>
+        <span class="params">(<span name="p">
+                  p
+                  : (A, B, C, D, E)
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[<a name="com.google.xml.combinators.~" class="extype" href="$tilde.html">~</a>[A, B], C], D], E]</span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          definition classes: <a name="com.google.xml.combinators.TupleToPairFunctions" class="extype" href="TupleToPairFunctions.html">TupleToPairFunctions</a>
+        </div></div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#wait" data-isabs="false">
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">wait</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div><div class="block">
+          annotations: 
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </div></div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#wait" data-isabs="false">
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">wait</span>
+        
+        <span class="params">(<span name="arg0">
+                  arg0
+                  : <span name="scala.Long" class="extype">Long</span>
+                  
+                </span>, <span name="arg1">
+                  arg1
+                  : <span name="scala.Int" class="extype">Int</span>
+                  
+                </span>)</span>
+        <span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div><div class="block">
+          annotations: 
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </div></div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#wait" data-isabs="false">
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">wait</span>
+        
+        <span class="params">(<span name="arg0">
+                  arg0
+                  : <span name="scala.Long" class="extype">Long</span>
+                  
+                </span>)</span>
+        <span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div><div class="block">
+          annotations: 
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </div></div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#when" data-isabs="false">
+      <a id="when[A, B](⇒ Pickler[A],⇒ Pickler[B]):Pickler[B]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">when</span>
+        <span class="tparams">[<span name="A">A</span>, <span name="B">B</span>]</span>
+        <span class="params">(<span name="pa">
+                  pa
+                  : ⇒ <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>, <span name="pb">
+                  pb
+                  : ⇒ <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[B]
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[B]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Runs 'pb' unpickler on the first element that 'pa' successfully parses.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Runs 'pb' unpickler on the first element that 'pa' successfully parses. It
+is more general than 'interleaved', which uses only the element name to decide
+the input on which to run a pickler. 'pa' can be arbitrarily complex.</p><p>Example:
+  when(elem(&quot;feedLink&quot;, const(attr(&quot;rel&quot;, &quot;#kinds&quot;), rel)), kindsPickler)</p><p>will look for the first 'feedLink' element with an attribute equal to '#kinds'
+and then run 'kindsPickler' on that element.
+</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#wrap" data-isabs="false">
+      <a id="wrap[A, B](⇒ Pickler[B])((B) ⇒ A)((A) ⇒ B):Pickler[A]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">wrap</span>
+        <span class="tparams">[<span name="A">A</span>, <span name="B">B</span>]</span>
+        <span class="params">(<span name="pb">
+                  pb
+                  : ⇒ <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[B]
+                  
+                </span>)</span><span class="params">(<span name="g">
+                  g
+                  : (B) ⇒ A
+                  
+                </span>)</span><span class="params">(<span name="f">
+                  f
+                  : (A) ⇒ B
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[A]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Wrap a pair of functions around a given pickler</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Wrap a pair of functions around a given pickler</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.xml.combinators.Picklers#xml" data-isabs="false">
+      <a id="xml:Pickler[NodeSeq]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">xml</span>
+        
+        
+        <span class="result">: <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="Picklers$$Pickler.html">Pickler</a>[<span name="scala.xml.NodeSeq" class="extype">NodeSeq</span>]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">An xml pickler that collects all remaining XML nodes.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>An xml pickler that collects all remaining XML nodes.</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li></ol>
+            </div>
+
+        <div name="com.google.xml.combinators.TupleToPairFunctions" class="parent">
+              <h3>Inherited from <a name="com.google.xml.combinators.TupleToPairFunctions" class="extype" href="TupleToPairFunctions.html">TupleToPairFunctions</a></h3>
+            </div><div name="scala.AnyRef" class="parent">
+              <h3>Inherited from AnyRef</h3>
+            </div><div name="scala.Any" class="parent">
+              <h3>Inherited from <span name="scala.Any" class="extype">Any</span></h3>
+            </div>
+
+      </div>
+      
+      <div id="tooltip"></div>
+      
+    </body>
+      </html>

@@ -1,0 +1,356 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>com.google.gdata.youtube</title>
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link type="text/css" media="screen" rel="stylesheet" href="../../../../lib/template.css" />
+      <script type="text/javascript" src="../../../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../lib/tools.tooltip.js"></script>
+    
+        </head>
+        <body onload="windowTitle();" class="value">
+
+      <p id="owner"><a name="com" class="extype" href="../../../package.html">com</a>.<a name="com.google" class="extype" href="../../package.html">google</a>.<a name="com.google.gdata" class="extype" href="../package.html">gdata</a></p>
+
+      <div id="definition">
+        <img src="../../../../lib/package_big.png" />
+        <h1>youtube</h1>
+      </div>
+
+      <h4 class="signature" id="signature">
+      <span class="kind">package</span>
+      <span class="symbol">
+        <span class="name">youtube</span>
+        
+        
+        
+      </span>
+      </h4>
+      
+          
+          <div class="fullcomment" id="comment"></div>
+        
+
+      <div id="template">
+
+        <div id="mbrsel">
+          <div id="textfilter"><span class="pre"></span><span class="input"><input accesskey="/" type="text" /></span><span class="post"></span></div>
+          
+          
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in">Public</li><li class="all out">All</li></ol>
+            </div>
+          <div id="impl">
+              <span class="filtertype">Impl.</span>
+              <ol><li class="concrete in">Concrete</li><li class="abstract in">Abstract</li></ol>
+            </div>
+        </div>
+
+        
+
+        <div class="types members" id="types">
+              <h3>Type Members</h3>
+              <ol><li visbl="pub" name="com.google.gdata.youtube.ContactsEntries" data-isabs="true">
+      <a id="ContactsEntries:ContactsEntries"></a>
+      <h4 class="signature"><a href="ContactsEntries.html">
+      <span class="kind">trait</span>
+      <span class="symbol">
+        <span class="name">ContactsEntries</span>
+        
+        
+        <span class="result"> extends AtomEntries</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Youtube user contact entries.</p>
+    </li><li visbl="pub" name="com.google.gdata.youtube.PlaylistEntries" data-isabs="true">
+      <a id="PlaylistEntries:PlaylistEntries"></a>
+      <h4 class="signature"><a href="PlaylistEntries.html">
+      <span class="kind">trait</span>
+      <span class="symbol">
+        <span class="name">PlaylistEntries</span>
+        
+        
+        <span class="result"> extends AtomEntries</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Users playlist link entries.</p>
+    </li><li visbl="pub" name="com.google.gdata.youtube.PlaylistVideoEntries" data-isabs="true">
+      <a id="PlaylistVideoEntries:PlaylistVideoEntries"></a>
+      <h4 class="signature"><a href="PlaylistVideoEntries.html">
+      <span class="kind">trait</span>
+      <span class="symbol">
+        <span class="name">PlaylistVideoEntries</span>
+        
+        
+        <span class="result"> extends VideoEntries</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">This trait refines video entries to add position and an optional description.</p>
+    </li><li visbl="pub" name="com.google.gdata.youtube.Statistics" data-isabs="false">
+      <a id="Statistics:Statistics"></a>
+      <h4 class="signature"><a href="Statistics.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">Statistics</span>
+        
+        <span class="params">(<span name="viewCount">
+                  viewCount
+                  : Option[Int]
+                  
+                </span>, <span name="videoWatchCount">
+                  videoWatchCount
+                  : Option[Int]
+                  
+                </span>, <span name="subscriberCount">
+                  subscriberCount
+                  : Option[Int]
+                  
+                </span>, <span name="lastWebAccess">
+                  lastWebAccess
+                  : Option[DateTime]
+                  
+                </span>)</span>
+        <span class="result"> extends Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">You tube statistics.</p>
+    </li><li visbl="pub" name="com.google.gdata.youtube.StdCommentsFeed" data-isabs="false">
+      <a id="StdCommentsFeed:StdCommentsFeed"></a>
+      <h4 class="signature"><a href="StdCommentsFeed.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">StdCommentsFeed</span>
+        
+        
+        <span class="result"> extends AtomFeeds with AtomEntries</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A standard comment feed, using the atom feeds.</p>
+    </li><li visbl="pub" name="com.google.gdata.youtube.StdContactsFeed" data-isabs="false">
+      <a id="StdContactsFeed:StdContactsFeed"></a>
+      <h4 class="signature"><a href="StdContactsFeed.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">StdContactsFeed</span>
+        
+        
+        <span class="result"> extends AtomFeeds with ContactsEntries</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A concrete, standard contacts feed, used by YouTube.</p>
+    </li><li visbl="pub" name="com.google.gdata.youtube.StdPlaylistFeed" data-isabs="false">
+      <a id="StdPlaylistFeed:StdPlaylistFeed"></a>
+      <h4 class="signature"><a href="StdPlaylistFeed.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">StdPlaylistFeed</span>
+        
+        
+        <span class="result"> extends AtomFeeds with MediaRss with PlaylistVideoEntries</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A concrete, standard playlist feed.</p>
+    </li><li visbl="pub" name="com.google.gdata.youtube.StdSubscriptionFeed" data-isabs="false">
+      <a id="StdSubscriptionFeed:StdSubscriptionFeed"></a>
+      <h4 class="signature"><a href="StdSubscriptionFeed.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">StdSubscriptionFeed</span>
+        
+        
+        <span class="result"> extends AtomFeeds with SubscriptionEntries</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A concrete standard subscription feed.</p>
+    </li><li visbl="pub" name="com.google.gdata.youtube.StdUserPlaylistsFeed" data-isabs="false">
+      <a id="StdUserPlaylistsFeed:StdUserPlaylistsFeed"></a>
+      <h4 class="signature"><a href="StdUserPlaylistsFeed.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">StdUserPlaylistsFeed</span>
+        
+        
+        <span class="result"> extends UserPlaylistsFeed</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A concrete, standard user playlists feed.</p>
+    </li><li visbl="pub" name="com.google.gdata.youtube.StdUserProfileEntry" data-isabs="false">
+      <a id="StdUserProfileEntry:StdUserProfileEntry"></a>
+      <h4 class="signature"><a href="StdUserProfileEntry.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">StdUserProfileEntry</span>
+        
+        
+        <span class="result"> extends UserProfileEntries</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A concrete standard user profile entry.</p>
+    </li><li visbl="pub" name="com.google.gdata.youtube.StdVideoFeed" data-isabs="false">
+      <a id="StdVideoFeed:StdVideoFeed"></a>
+      <h4 class="signature"><a href="StdVideoFeed.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">StdVideoFeed</span>
+        
+        
+        <span class="result"> extends VideoFeeds</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A concrete, standard video feed.</p>
+    </li><li visbl="pub" name="com.google.gdata.youtube.SubscriptionEntries" data-isabs="true">
+      <a id="SubscriptionEntries:SubscriptionEntries"></a>
+      <h4 class="signature"><a href="SubscriptionEntries.html">
+      <span class="kind">trait</span>
+      <span class="symbol">
+        <span class="name">SubscriptionEntries</span>
+        
+        
+        <span class="result"> extends AtomEntries</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">User Subscription entries extends atom entries with subscription-specific elements
+like 'queryString' and 'feedLink'.</p>
+    </li><li visbl="pub" name="com.google.gdata.youtube.UserPlaylistsFeed" data-isabs="true">
+      <a id="UserPlaylistsFeed:UserPlaylistsFeed"></a>
+      <h4 class="signature"><a href="UserPlaylistsFeed.html">
+      <span class="kind">trait</span>
+      <span class="symbol">
+        <span class="name">UserPlaylistsFeed</span>
+        
+        
+        <span class="result"> extends AtomFeeds with PlaylistEntries</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">User playlist feeds.</p>
+    </li><li visbl="pub" name="com.google.gdata.youtube.UserProfileEntries" data-isabs="true">
+      <a id="UserProfileEntries:UserProfileEntries"></a>
+      <h4 class="signature"><a href="UserProfileEntries.html">
+      <span class="kind">trait</span>
+      <span class="symbol">
+        <span class="name">UserProfileEntries</span>
+        
+        
+        <span class="result"> extends AtomEntries</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.youtube.VideoEntries" data-isabs="true">
+      <a id="VideoEntries:VideoEntries"></a>
+      <h4 class="signature"><a href="VideoEntries.html">
+      <span class="kind">trait</span>
+      <span class="symbol">
+        <span class="name">VideoEntries</span>
+        
+        
+        <span class="result"> extends AtomEntries</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A component for video entries.</p>
+    </li><li visbl="pub" name="com.google.gdata.youtube.VideoFeeds" data-isabs="true">
+      <a id="VideoFeeds:VideoFeeds"></a>
+      <h4 class="signature"><a href="VideoFeeds.html">
+      <span class="kind">trait</span>
+      <span class="symbol">
+        <span class="name">VideoFeeds</span>
+        
+        
+        <span class="result"> extends AtomFeeds with MediaRss with VideoEntries</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A VideoFeed class that brings together an atom feed and youtube video
+entries.</p>
+    </li><li visbl="pub" name="com.google.gdata.youtube.YouTubeQuery" data-isabs="false">
+      <a id="YouTubeQuery:YouTubeQuery"></a>
+      <h4 class="signature"><a href="YouTubeQuery.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">YouTubeQuery</span>
+        
+        
+        <span class="result"> extends Query</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A YouTube specific query.</p>
+    </li><li visbl="pub" name="com.google.gdata.youtube.YouTubeService" data-isabs="false">
+      <a id="YouTubeService:YouTubeService"></a>
+      <h4 class="signature"><a href="YouTubeService.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">YouTubeService</span>
+        
+        
+        <span class="result"> extends Service</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">This class takes care of the communication with the you tube service and provides
+methods for retrieving and navigating between different feeds.</p>
+    </li></ol>
+            </div>
+
+        <div class="values members" id="values">
+              <h3>Value Members</h3>
+              <ol><li visbl="pub" name="com.google.gdata.youtube.Schemas" data-isabs="false">
+      <a id="Schemas:Schemas"></a>
+      <h4 class="signature"><a href="Schemas$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Schemas</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">You tube schema constants.</p>
+    </li><li visbl="pub" name="com.google.gdata.youtube.Statistics" data-isabs="false">
+      <a id="Statistics:Statistics"></a>
+      <h4 class="signature"><a href="Statistics$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Statistics</span>
+        
+        
+        <span class="result"> extends Serializable</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.youtube.YouTubeQuery" data-isabs="false">
+      <a id="YouTubeQuery:YouTubeQuery"></a>
+      <h4 class="signature"><a href="YouTubeQuery$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">YouTubeQuery</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.youtube.YouTubeService" data-isabs="false">
+      <a id="YouTubeService:YouTubeService"></a>
+      <h4 class="signature"><a href="YouTubeService$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">YouTubeService</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+      </div>
+      
+      <div id="tooltip"></div>
+      
+    </body>
+      </html>

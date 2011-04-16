@@ -1,0 +1,1759 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>com.google.gdata.calendar.CalendarService</title>
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link type="text/css" media="screen" rel="stylesheet" href="../../../../lib/template.css" />
+      <script type="text/javascript" src="../../../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../lib/tools.tooltip.js"></script>
+    
+        </head>
+        <body onload="windowTitle();" class="type">
+
+      <p id="owner"><a name="com" class="extype" href="../../../package.html">com</a>.<a name="com.google" class="extype" href="../../package.html">google</a>.<a name="com.google.gdata" class="extype" href="../package.html">gdata</a>.<a name="com.google.gdata.calendar" class="extype" href="package.html">calendar</a></p>
+
+      <div id="definition">
+        <img src="../../../../lib/class_big.png" />
+        <h1>CalendarService</h1>
+      </div>
+
+      <h4 class="signature" id="signature">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">CalendarService</span>
+        
+        
+        <span class="result"> extends <a name="com.google.gdata.Service" class="extype" href="../Service.html">Service</a></span>
+      </span>
+      </h4>
+      
+          <div class="shortcomment cmt"><p>A service class for connecting to the calendar service. It provides
+methods for getting a user's calendars, managing events and calendar
+subscriptions.
+</p></div>
+          <div class="fullcomment" id="comment"><div class="comment cmt"><p>A service class for connecting to the calendar service. It provides
+methods for getting a user's calendars, managing events and calendar
+subscriptions.
+</p></div><div class="block">
+            go to: <a href="CalendarService$.html">companion</a>
+          </div><div class="block">
+            linear super types: <a name="com.google.gdata.Service" class="extype" href="../Service.html">Service</a>, AnyRef, <span name="scala.Any" class="extype">Any</span>
+          </div>
+            
+            
+            
+            <div class="block"><ol>see also:
+                  <li class="cmt"><p>com.google.gdata.Service
+</p></li>, <li class="cmt"><p>http://code.google.com/apis/calendar/developers_guide_protocol.html</p></li>
+                </ol></div>
+          </div>
+        
+
+      <div id="template">
+
+        <div id="mbrsel">
+          <div id="textfilter"><span class="pre"></span><span class="input"><input accesskey="/" type="text" /></span><span class="post"></span></div>
+          <div id="order">
+                <span class="filtertype">Ordering</span>
+                <ol><li class="alpha in">Alphabetic</li><li class="inherit out">By inheritance</li></ol>
+              </div>
+          <div id="ancestors">
+                <span class="filtertype">Inherited</span>
+                <ol><li class="hideall">Hide All</li><li class="showall">Show all</li></ol>
+                <ol id="linearization"><li name="com.google.gdata.calendar.CalendarService" class="in">CalendarService</li><li name="com.google.gdata.Service" class="in">Service</li><li name="scala.AnyRef" class="in">AnyRef</li><li name="scala.Any" class="in">Any</li></ol>
+              </div>
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in">Public</li><li class="all out">All</li></ol>
+            </div>
+          <div id="impl">
+              <span class="filtertype">Impl.</span>
+              <ol><li class="concrete in">Concrete</li><li class="abstract in">Abstract</li></ol>
+            </div>
+        </div>
+
+        <div class="members" id="constructors">
+              <h3>Instance constructors</h3>
+              <ol><li visbl="pub" name="com.google.gdata.calendar.CalendarService#this" data-isabs="false">
+      <a id="this:CalendarService"></a>
+      <h4 class="signature">
+      <span class="kind">new</span>
+      <span class="symbol">
+        <span class="name">CalendarService</span>
+        
+        <span class="params">(<span name="appName">
+                  appName
+                  : String
+                  
+                </span>)</span>
+        
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div class="values members" id="values">
+              <h3>Value Members</h3>
+              <ol><li visbl="pub" name="scala.AnyRef#!=" data-isabs="false">
+      <a id="!=(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">!=</span>
+        
+        <span class="params">(<span name="arg0">
+                  arg0
+                  : AnyRef
+                  
+                </span>)</span>
+        <span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div></div>
+          
+    </li><li visbl="pub" name="scala.Any#!=" data-isabs="false">
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">!=</span>
+        
+        <span class="params">(<span name="arg0">
+                  arg0
+                  : <span name="scala.Any" class="extype">Any</span>
+                  
+                </span>)</span>
+        <span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt"><code>o != arg0</code> is the same as <code>!(o == (arg0))</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p><code>o != arg0</code> is the same as <code>!(o == (arg0))</code>.
+</p></div><dl class="paramcmts block"><dt class="param">arg0</dt><dd class="cmt"><p>the object to compare against this object for dis-equality.</p></dd><dt>returns</dt><dd class="cmt"><p><code>false</code> if the receiver object is equivalent to the argument; <code>true</code> otherwise.</p></dd></dl><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: Any
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="scala.AnyRef###" data-isabs="false">
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">##</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span name="scala.Int" class="extype">Int</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef → Any
+        </div></div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#$asInstanceOf" data-isabs="false">
+      <a id="$asInstanceOf[T0]():T0"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">$asInstanceOf</span>
+        <span class="tparams">[<span name="T0">T0</span>]</span>
+        <span class="params">()</span>
+        <span class="result">: T0</span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div></div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#$isInstanceOf" data-isabs="false">
+      <a id="$isInstanceOf[T0]():Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">$isInstanceOf</span>
+        <span class="tparams">[<span name="T0">T0</span>]</span>
+        <span class="params">()</span>
+        <span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div></div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#==" data-isabs="false">
+      <a id="==(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">==</span>
+        
+        <span class="params">(<span name="arg0">
+                  arg0
+                  : AnyRef
+                  
+                </span>)</span>
+        <span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt"><code>o == arg0</code> is the same as <code>if (o eq null) arg0 eq null else o.equals(arg0)</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p><code>o == arg0</code> is the same as <code>if (o eq null) arg0 eq null else o.equals(arg0)</code>.
+</p></div><dl class="paramcmts block"><dt class="param">arg0</dt><dd class="cmt"><p>the object to compare against this object for equality.</p></dd><dt>returns</dt><dd class="cmt"><p><code>true</code> if the receiver object is equivalent to the argument; <code>false</code> otherwise.</p></dd></dl><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="scala.Any#==" data-isabs="false">
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">==</span>
+        
+        <span class="params">(<span name="arg0">
+                  arg0
+                  : <span name="scala.Any" class="extype">Any</span>
+                  
+                </span>)</span>
+        <span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt"><code>o == arg0</code> is the same as <code>o.equals(arg0)</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p><code>o == arg0</code> is the same as <code>o.equals(arg0)</code>.
+</p></div><dl class="paramcmts block"><dt class="param">arg0</dt><dd class="cmt"><p>the object to compare against this object for equality.</p></dd><dt>returns</dt><dd class="cmt"><p><code>true</code> if the receiver object is equivalent to the argument; <code>false</code> otherwise.</p></dd></dl><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: Any
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.calendar.CalendarService#aclFeed" data-isabs="false">
+      <a id="aclFeed:StdAclFeed"></a>
+      <h4 class="signature">
+      <span class="kind">val</span>
+      <span class="symbol">
+        <span class="name">aclFeed</span>
+        
+        
+        <span class="result">: <a name="com.google.gdata.calendar.StdAclFeed" class="extype" href="StdAclFeed.html">StdAclFeed</a></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">The access control list feed.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>The access control list feed.</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.calendar.CalendarService#addCalendar" data-isabs="false">
+      <a id="addCalendar(String):Entry"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">addCalendar</span>
+        
+        <span class="params">(<span name="id">
+                  id
+                  : String
+                  
+                </span>)</span>
+        <span class="result">: Entry</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Add a new calendar subscription to the given calendar id.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Add a new calendar subscription to the given calendar id. Returns a calendar entry
+possibly updated by the server.
+</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.calendar.CalendarService#addEvent" data-isabs="false">
+      <a id="addEvent(URL,Entry):Entry"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">addEvent</span>
+        
+        <span class="params">(<span name="url">
+                  url
+                  : <span name="java.net.URL" class="extype">URL</span>
+                  
+                </span>, <span name="e">
+                  e
+                  : Entry
+                  
+                </span>)</span>
+        <span class="result">: Entry</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Add the given event to the user's calendar.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Add the given event to the user's calendar. Returns the event with possible new
+fields added by the server. The event should not have the id field set.
+</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="scala.Any#asInstanceOf" data-isabs="false">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span>
+        <span class="tparams">[<span name="T0">T0</span>]</span>
+        
+        <span class="result">: T0</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">This method is used to cast the receiver object to be of type <code>T0</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>This method is used to cast the receiver object to be of type <code>T0</code>.</p><p>Note that the success of a cast at runtime is modulo Scala's erasure semantics.  Therefore the expression
+<code>1.asInstanceOf[String]</code> will throw a <code>ClassCastException</code> at runtime, while the expression
+<code>List(1).asInstanceOf[List[String]]</code> will not.  In the latter example, because the type argument is erased as
+part of compilation it is not possible to check whether the contents of the list are of the requested typed.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the receiver object.</p></dd></dl><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: Any
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="prt" name="com.google.gdata.Service#authTokenFactory" data-isabs="false">
+      <a id="authTokenFactory:AuthTokenFactory"></a>
+      <h4 class="signature">
+      <span class="kind">var</span>
+      <span class="symbol">
+        <span class="name">authTokenFactory</span>
+        
+        
+        <span class="result">: <a name="com.google.gdata.client.AuthTokenFactory" class="extype" href="../client/AuthTokenFactory.html">AuthTokenFactory</a></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">A facotry for authentication tokens.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>A facotry for authentication tokens.</p></div><div class="block">
+          attributes: protected 
+        </div><div class="block">
+          definition classes: <a name="com.google.gdata.Service" class="extype" href="../Service.html">Service</a>
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.calendar.CalendarService.calendarsFeed" data-isabs="false">
+      <a id="calendarsFeed:calendarsFeed"></a>
+      <h4 class="signature"><a href="CalendarService$calendarsFeed$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">calendarsFeed</span>
+        
+        
+        <span class="result"> extends StdCalendarsFeed</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A calendars feed.</p>
+    </li><li visbl="prt" name="scala.AnyRef#clone" data-isabs="false">
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">clone</span>
+        
+        <span class="params">()</span>
+        <span class="result">: AnyRef</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">This method creates and returns a copy of the receiver object.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>This method creates and returns a copy of the receiver object.</p><p>The default implementation of the <code>clone</code> method is platform dependent.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a copy of the receiver object.</p></dd></dl><div class="block">
+          attributes: protected[<a name="java.lang" class="extype" href="../../../../java/lang/package.html">lang</a>] 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div><div class="block">
+          annotations: 
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.calendar.CalendarService#comments" data-isabs="false">
+      <a id="comments:StdAtomFeed"></a>
+      <h4 class="signature">
+      <span class="kind">val</span>
+      <span class="symbol">
+        <span class="name">comments</span>
+        
+        
+        <span class="result">: <a name="com.google.gdata.data.StdAtomFeed" class="extype" href="../data/StdAtomFeed.html">StdAtomFeed</a></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">A standard comment feed.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>A standard comment feed.</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.calendar.CalendarService#contacts" data-isabs="false">
+      <a id="contacts:StdContactEntries"></a>
+      <h4 class="signature">
+      <span class="kind">val</span>
+      <span class="symbol">
+        <span class="name">contacts</span>
+        
+        
+        <span class="result">: <a name="com.google.gdata.data.kinds.StdContactEntries" class="extype" href="../data/kinds/StdContactEntries.html">StdContactEntries</a></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">A standard contact entry, that might be part of a feed.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>A standard contact entry, that might be part of a feed.</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.Service#delete" data-isabs="false">
+      <a id="delete(URL):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">delete</span>
+        
+        <span class="params">(<span name="url">
+                  url
+                  : <span name="java.net.URL" class="extype">URL</span>
+                  
+                </span>)</span>
+        <span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">DELETE the resource identified by the given URL.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>DELETE the resource identified by the given URL.
+</p></div><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: <a name="com.google.gdata.Service" class="extype" href="../Service.html">Service</a>
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#eq" data-isabs="false">
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">eq</span>
+        
+        <span class="params">(<span name="arg0">
+                  arg0
+                  : AnyRef
+                  
+                </span>)</span>
+        <span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">This method is used to test whether the argument (<code>arg0</code>) is a reference to the
+receiver object (<code>this</code>).</p>
+            <div class="fullcomment"><div class="comment cmt"><p>This method is used to test whether the argument (<code>arg0</code>) is a reference to the
+receiver object (<code>this</code>).</p><p>The <code>eq</code> method implements an [http://en.wikipedia.org/wiki/Equivalence_relation equivalence relation] on
+non-null instances of <code>AnyRef</code>:
+ * It is reflexive: for any non-null instance <code>x</code> of type <code>AnyRef</code>, <code>x.eq(x)</code> returns <code>true</code>.
+ * It is symmetric: for any non-null instances <code>x</code> and <code>y</code> of type <code>AnyRef</code>, <code>x.eq(y)</code> returns <code>true</code> if and
+   only if <code>y.eq(x)</code> returns <code>true</code>.
+ * It is transitive: for any non-null instances <code>x</code>, <code>y</code>, and <code>z</code> of type <code>AnyRef</code> if <code>x.eq(y)</code> returns <code>true</code>
+   and <code>y.eq(z)</code> returns <code>true</code>, then <code>x.eq(z)</code> returns <code>true</code>.</p><p>Additionally, the <code>eq</code> method has three other properties.
+ * It is consistent: for any non-null instances <code>x</code> and <code>y</code> of type <code>AnyRef</code>, multiple invocations of
+   <code>x.eq(y)</code> consistently returns <code>true</code> or consistently returns <code>false</code>.
+ * For any non-null instance <code>x</code> of type <code>AnyRef</code>, <code>x.eq(null)</code> and <code>null.eq(x)</code> returns <code>false</code>.
+ * <code>null.eq(null)</code> returns <code>true</code>.</p><p>When overriding the <code>equals</code> or <code>hashCode</code> methods, it is important to ensure that their behavior is
+consistent with reference equality.  Therefore, if two objects are references to each other (<code>o1 eq o2</code>), they
+should be equal to each other (<code>o1 == o2</code>) and they should hash to the same value (<code>o1.hashCode == o2.hashCode</code>).
+</p></div><dl class="paramcmts block"><dt class="param">arg0</dt><dd class="cmt"><p>the object to compare against this object for reference equality.</p></dd><dt>returns</dt><dd class="cmt"><p><code>true</code> if the argument is a reference to the receiver object; <code>false</code> otherwise.</p></dd></dl><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#equals" data-isabs="false">
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">equals</span>
+        
+        <span class="params">(<span name="arg0">
+                  arg0
+                  : <span name="scala.Any" class="extype">Any</span>
+                  
+                </span>)</span>
+        <span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">This method is used to compare the receiver object (<code>this</code>) with the argument object (<code>arg0</code>) for equivalence.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>This method is used to compare the receiver object (<code>this</code>) with the argument object (<code>arg0</code>) for equivalence.</p><p>The default implementations of this method is an [http://en.wikipedia.org/wiki/Equivalence_relation equivalence
+relation]:
+ * It is reflexive: for any instance <code>x</code> of type <code>Any</code>, <code>x.equals(x)</code> should return <code>true</code>.
+ * It is symmetric: for any instances <code>x</code> and <code>y</code> of type <code>Any</code>, <code>x.equals(y)</code> should return <code>true</code> if and
+   only if <code>y.equals(x)</code> returns <code>true</code>.
+ * It is transitive: for any instances <code>x</code>, <code>y</code>, and <code>z</code> of type <code>AnyRef</code> if <code>x.equals(y)</code> returns <code>true</code> and
+   <code>y.equals(z)</code> returns <code>true</code>, then <code>x.equals(z)</code> should return <code>true</code>.</p><p>If you override this method, you should verify that your implementation remains an equivalence relation.
+Additionally, when overriding this method it is often necessary to override <code>hashCode</code> to ensure that objects
+that are &quot;equal&quot; (<code>o1.equals(o2)</code> returns <code>true</code>) hash to the same scala.Int
+(<code>o1.hashCode.equals(o2.hashCode)</code>).
+</p></div><dl class="paramcmts block"><dt class="param">arg0</dt><dd class="cmt"><p>the object to compare against this object for equality.</p></dd><dt>returns</dt><dd class="cmt"><p><code>true</code> if the receiver object is equivalent to the argument; <code>false</code> otherwise.</p></dd></dl><div class="block">
+          definition classes: AnyRef → Any
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.calendar.CalendarService.eventsFeed" data-isabs="false">
+      <a id="eventsFeed:eventsFeed"></a>
+      <h4 class="signature"><a href="CalendarService$eventsFeed$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">eventsFeed</span>
+        
+        
+        <span class="result"> extends StdEventsFeed</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">An events feed.</p>
+    </li><li visbl="prt" name="scala.AnyRef#finalize" data-isabs="false">
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">finalize</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">This method is called by the garbage collector on the receiver object when garbage collection determines that
+there are no more references to the object.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>This method is called by the garbage collector on the receiver object when garbage collection determines that
+there are no more references to the object.</p><p>The details of when and if the <code>finalize</code> method are invoked, as well as the interaction between <code>finalize</code>
+and non-local returns and exceptions, are all platform dependent.</p></div><div class="block">
+          attributes: protected[<a name="java.lang" class="extype" href="../../../../java/lang/package.html">lang</a>] 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div><div class="block">
+          annotations: 
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.Service#fromEntryLink" data-isabs="false">
+      <a id="fromEntryLink[A](EntryLink[A],Pickler[A]):A"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">fromEntryLink</span>
+        <span class="tparams">[<span name="A">A</span>]</span>
+        <span class="params">(<span name="f">
+                  f
+                  : <a name="com.google.gdata.data.kinds.EntryLink" class="extype" href="../data/kinds/EntryLink.html">EntryLink</a>[A]
+                  
+                </span>, <span name="pa">
+                  pa
+                  : <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="../../xml/combinators/Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>)</span>
+        <span class="result">: A</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Return the entry embedded in the given entry link, or make a query to retrieve
+it from the given URL.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Return the entry embedded in the given entry link, or make a query to retrieve
+it from the given URL. If the url is not given, it assumes the entry is embedded.
+</p></div><div class="block">
+          definition classes: <a name="com.google.gdata.Service" class="extype" href="../Service.html">Service</a>
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.Service#fromFeedLink" data-isabs="false">
+      <a id="fromFeedLink[A](FeedLink[A],Pickler[A]):A"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">fromFeedLink</span>
+        <span class="tparams">[<span name="A">A</span>]</span>
+        <span class="params">(<span name="f">
+                  f
+                  : <a name="com.google.gdata.data.kinds.FeedLink" class="extype" href="../data/kinds/FeedLink.html">FeedLink</a>[A]
+                  
+                </span>, <span name="pa">
+                  pa
+                  : <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="../../xml/combinators/Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>)</span>
+        <span class="result">: A</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Return the feed embedded in the given feed link, or make a query to retrieve
+it from the given URL.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Return the feed embedded in the given feed link, or make a query to retrieve
+it from the given URL. If the url is not given, it assumes the feed is embedded.
+</p></div><div class="block">
+          definition classes: <a name="com.google.gdata.Service" class="extype" href="../Service.html">Service</a>
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.calendar.CalendarService#getAccessControlList" data-isabs="false">
+      <a id="getAccessControlList(Entry):Option[Feed]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">getAccessControlList</span>
+        
+        <span class="params">(<span name="cal">
+                  cal
+                  : Entry
+                  
+                </span>)</span>
+        <span class="result">: <span name="scala.Option" class="extype">Option</span>[Feed]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Retrieve the access control list for the given calender.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Retrieve the access control list for the given calender. Only owners of a calendar
+can retrieve the ACL feed. Returns the ACL feed if the calendar has the ACL link,
+or None.
+</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.calendar.CalendarService#getAccessControlList" data-isabs="false">
+      <a id="getAccessControlList(URL):Feed"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">getAccessControlList</span>
+        
+        <span class="params">(<span name="url">
+                  url
+                  : <span name="java.net.URL" class="extype">URL</span>
+                  
+                </span>)</span>
+        <span class="result">: Feed</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Retrieve the access control list for the calender at the given URL.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Retrieve the access control list for the calender at the given URL. The acl feed URL
+is found in a link element with rel set to http//schemas.google.com/acl/2007#accessControlList.
+Only owners of a calendar can retrieve the ACL feed.
+</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.calendar.CalendarService#getAllUserCalendars" data-isabs="false">
+      <a id="getAllUserCalendars:Feed"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">getAllUserCalendars</span>
+        
+        
+        <span class="result">: Feed</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Retrieve all user calendars.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Retrieve all user calendars. This is a read/write feed and needs authentication.
+</p></div>
+            
+            
+            
+            <div class="block"><ol>see also:
+                  <li class="cmt"><p>Service.setUserCredentials</p></li>
+                </ol></div>
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.calendar.CalendarService#getCalendars" data-isabs="false">
+      <a id="getCalendars(String):Feed"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">getCalendars</span>
+        
+        <span class="params">(<span name="url">
+                  url
+                  : String
+                  
+                </span>)</span>
+        <span class="result">: Feed</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Retrieve calendars found at the given URL.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Retrieve calendars found at the given URL.
+</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.calendar.CalendarService#getCalendars" data-isabs="false">
+      <a id="getCalendars(URL):Feed"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">getCalendars</span>
+        
+        <span class="params">(<span name="url">
+                  url
+                  : <span name="java.net.URL" class="extype">URL</span>
+                  
+                </span>)</span>
+        <span class="result">: Feed</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Retrieve calendars found at the given URL.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Retrieve calendars found at the given URL.
+</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#getClass" data-isabs="false">
+      <a id="getClass():java.lang.Class[_]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">getClass</span>
+        
+        <span class="params">()</span>
+        <span class="result">: java.lang.Class[_]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Returns a representation that corresponds to the dynamic class of the receiver object.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Returns a representation that corresponds to the dynamic class of the receiver object.</p><p>The nature of the representation is platform dependent.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a representation that corresponds to the dynamic class of the receiver object.</p></dd></dl><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.calendar.CalendarService#getEvents" data-isabs="false">
+      <a id="getEvents(String,String,String,Query):Feed"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">getEvents</span>
+        
+        <span class="params">(<span name="username">
+                  username
+                  : String
+                  
+                </span>, <span name="visibility">
+                  visibility
+                  : String
+                  
+                </span>, <span name="projection">
+                  projection
+                  : String
+                  
+                </span>, <span name="q">
+                  q
+                  : <a name="com.google.gdata.Query" class="extype" href="../Query.html">Query</a>
+                  
+                </span>)</span>
+        <span class="result">: Feed</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Retrieve events for the given user, based on their visibility and with the amount
+of detail given by the 'projection' parameter.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Retrieve events for the given user, based on their visibility and with the amount
+of detail given by the 'projection' parameter.
+</p></div>
+            
+            
+            
+            <div class="block"><ol>see also:
+                  <li class="cmt"><p>com.google.gdata.calendar.CalendarService</p></li>, <li class="cmt"><p>http://code.google.com/apis/calendar/reference.html#Projection</p></li>
+                </ol></div>
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.calendar.CalendarService#getEvents" data-isabs="false">
+      <a id="getEvents(String,String,Query):Feed"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">getEvents</span>
+        
+        <span class="params">(<span name="visibility">
+                  visibility
+                  : String
+                  
+                </span>, <span name="projection">
+                  projection
+                  : String
+                  
+                </span>, <span name="q">
+                  q
+                  : <a name="com.google.gdata.Query" class="extype" href="../Query.html">Query</a>
+                  
+                </span>)</span>
+        <span class="result">: Feed</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Retrieve events based on their visibility and with the amount of detail given by
+the 'projection' parameter.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Retrieve events based on their visibility and with the amount of detail given by
+the 'projection' parameter.
+</p></div>
+            
+            
+            
+            <div class="block"><ol>see also:
+                  <li class="cmt"><p>com.google.gdata.calendar.CalendarService</p></li>, <li class="cmt"><p>http://code.google.com/apis/calendar/reference.html#Projection</p></li>
+                </ol></div>
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.calendar.CalendarService#getEvents" data-isabs="false">
+      <a id="getEvents(URL):Feed"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">getEvents</span>
+        
+        <span class="params">(<span name="url">
+                  url
+                  : <span name="java.net.URL" class="extype">URL</span>
+                  
+                </span>)</span>
+        <span class="result">: Feed</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Retrieve events found at the given URL.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Retrieve events found at the given URL.
+</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.calendar.CalendarService#getEvents" data-isabs="false">
+      <a id="getEvents(String):Feed"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">getEvents</span>
+        
+        <span class="params">(<span name="url">
+                  url
+                  : String
+                  
+                </span>)</span>
+        <span class="result">: Feed</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Retrieve events found at the given URL.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Retrieve events found at the given URL.
+</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.calendar.CalendarService#getOwnedUserCalendars" data-isabs="false">
+      <a id="getOwnedUserCalendars:Feed"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">getOwnedUserCalendars</span>
+        
+        
+        <span class="result">: Feed</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Retrieve calendars that a user owns.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Retrieve calendars that a user owns. This is a read/write feed and needs authentication.
+</p></div>
+            
+            
+            
+            <div class="block"><ol>see also:
+                  <li class="cmt"><p>Service.setUserCredentials</p></li>
+                </ol></div>
+          </div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#hashCode" data-isabs="false">
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">hashCode</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span name="scala.Int" class="extype">Int</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Returns a hash code value for the object.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Returns a hash code value for the object.</p><p>The default hashing algorithm is platform dependent.</p><p>Note that it is allowed for two objects to have identical hash codes (<code>o1.hashCode.equals(o2.hashCode)</code>) yet
+not be equal (<code>o1.equals(o2)</code> returns <code>false</code>).  A degenerate implementation could always return <code>0</code>.
+However, it is required that if two objects are equal (<code>o1.equals(o2)</code> returns <code>true</code>) that they have
+identical hash codes (<code>o1.hashCode.equals(o2.hashCode)</code>).  Therefore, when overriding this method, be sure
+to verify that the behavior is consistent with the <code>equals</code> method.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the hash code value for the object.</p></dd></dl><div class="block">
+          definition classes: AnyRef → Any
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.Service#insert" data-isabs="false">
+      <a id="insert[A](URL,A,Pickler[A]):A"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">insert</span>
+        <span class="tparams">[<span name="A">A</span>]</span>
+        <span class="params">(<span name="url">
+                  url
+                  : <span name="java.net.URL" class="extype">URL</span>
+                  
+                </span>, <span name="v">
+                  v
+                  : A
+                  
+                </span>, <span name="pa">
+                  pa
+                  : <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="../../xml/combinators/Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>)</span>
+        <span class="result">: A</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">POST the given value to the given URL.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>POST the given value to the given URL.
+</p></div><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: <a name="com.google.gdata.Service" class="extype" href="../Service.html">Service</a>
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="scala.Any#isInstanceOf" data-isabs="false">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span>
+        <span class="tparams">[<span name="T0">T0</span>]</span>
+        
+        <span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">This method is used to test whether the dynamic type of the receiver object is <code>T0</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>This method is used to test whether the dynamic type of the receiver object is <code>T0</code>.</p><p>Note that the test result of the test is modulo Scala's erasure semantics.  Therefore the expression
+<code>1.isInstanceOf[String]</code> will return <code>false</code>, while the expression <code>List(1).isInstanceOf[List[String]]</code> will
+return <code>true</code>.  In the latter example, because the type argument is erased as part of compilation it is not
+possible to check whether the contents of the list are of the requested typed.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p><code>true</code> if the receiver object is an instance of erasure of type <code>T0</code>; <code>false</code> otherwise.</p></dd></dl><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: Any
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="prt" name="com.google.gdata.Service#mkRequest" data-isabs="false">
+      <a id="mkRequest(Value,String):GDataRequest"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">mkRequest</span>
+        
+        <span class="params">(<span name="method">
+                  method
+                  : <span name="scala.Enumeration.Value" class="extype">Value</span>
+                  
+                </span>, <span name="url">
+                  url
+                  : String
+                  
+                </span>)</span>
+        <span class="result">: <a name="com.google.gdata.client.GDataRequest" class="extype" href="../client/GDataRequest.html">GDataRequest</a></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: protected 
+        </div><div class="block">
+          definition classes: <a name="com.google.gdata.Service" class="extype" href="../Service.html">Service</a>
+        </div></div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#ne" data-isabs="false">
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">ne</span>
+        
+        <span class="params">(<span name="arg0">
+                  arg0
+                  : AnyRef
+                  
+                </span>)</span>
+        <span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt"><code>o.ne(arg0)</code> is the same as <code>!(o.eq(arg0))</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p><code>o.ne(arg0)</code> is the same as <code>!(o.eq(arg0))</code>.
+</p></div><dl class="paramcmts block"><dt class="param">arg0</dt><dd class="cmt"><p>the object to compare against this object for reference dis-equality.</p></dd><dt>returns</dt><dd class="cmt"><p><code>false</code> if the argument is not a reference to the receiver object; <code>true</code> otherwise.</p></dd></dl><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#notify" data-isabs="false">
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">notify</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Wakes up a single thread that is waiting on the receiver object's monitor.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Wakes up a single thread that is waiting on the receiver object's monitor.</p></div><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#notifyAll" data-isabs="false">
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">notifyAll</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Wakes up all threads that are waiting on the receiver object's monitor.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Wakes up all threads that are waiting on the receiver object's monitor.</p></div><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="prt" name="com.google.gdata.Service#pickle" data-isabs="false">
+      <a id="pickle[A](GDataRequest,A,Pickler[A]):A"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">pickle</span>
+        <span class="tparams">[<span name="A">A</span>]</span>
+        <span class="params">(<span name="request">
+                  request
+                  : <a name="com.google.gdata.client.GDataRequest" class="extype" href="../client/GDataRequest.html">GDataRequest</a>
+                  
+                </span>, <span name="v">
+                  v
+                  : A
+                  
+                </span>, <span name="pa">
+                  pa
+                  : <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="../../xml/combinators/Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>)</span>
+        <span class="result">: A</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Pickle the given value on the request object and unpickle the result.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Pickle the given value on the request object and unpickle the result. The
+request should allow both input and output, and should be in a state
+that allows writing (no reading had yet been performed).
+</p></div><div class="block">
+          attributes: protected 
+        </div><div class="block">
+          definition classes: <a name="com.google.gdata.Service" class="extype" href="../Service.html">Service</a>
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.Service#query" data-isabs="false">
+      <a id="query[A](URL,Pickler[A]):A"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">query</span>
+        <span class="tparams">[<span name="A">A</span>]</span>
+        <span class="params">(<span name="url">
+                  url
+                  : <span name="java.net.URL" class="extype">URL</span>
+                  
+                </span>, <span name="p">
+                  p
+                  : <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="../../xml/combinators/Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>)</span>
+        <span class="result">: A</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Make the given query and parse the XML result using the given pickler.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Make the given query and parse the XML result using the given pickler.
+</p></div><div class="block">
+          definition classes: <a name="com.google.gdata.Service" class="extype" href="../Service.html">Service</a>
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.Service#query" data-isabs="false">
+      <a id="query[A](String,Pickler[A]):A"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">query</span>
+        <span class="tparams">[<span name="A">A</span>]</span>
+        <span class="params">(<span name="url">
+                  url
+                  : String
+                  
+                </span>, <span name="p">
+                  p
+                  : <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="../../xml/combinators/Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>)</span>
+        <span class="result">: A</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Make the given query and parse the XML result using the given pickler.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Make the given query and parse the XML result using the given pickler.
+</p></div><div class="block">
+          definition classes: <a name="com.google.gdata.Service" class="extype" href="../Service.html">Service</a>
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.Service#query" data-isabs="false">
+      <a id="query[A](String,Query,Pickler[A]):A"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">query</span>
+        <span class="tparams">[<span name="A">A</span>]</span>
+        <span class="params">(<span name="base">
+                  base
+                  : String
+                  
+                </span>, <span name="q">
+                  q
+                  : <a name="com.google.gdata.Query" class="extype" href="../Query.html">Query</a>
+                  
+                </span>, <span name="p">
+                  p
+                  : <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="../../xml/combinators/Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>)</span>
+        <span class="result">: A</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Make the given query and parse the XML result using the given pickler.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Make the given query and parse the XML result using the given pickler.
+</p></div><div class="block">
+          definition classes: <a name="com.google.gdata.Service" class="extype" href="../Service.html">Service</a>
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="prt" name="com.google.gdata.Service#requestFactory" data-isabs="false">
+      <a id="requestFactory:Factory"></a>
+      <h4 class="signature">
+      <span class="kind">var</span>
+      <span class="symbol">
+        <span class="name">requestFactory</span>
+        
+        
+        <span class="result">: <a name="com.google.gdata.client.GDataRequest.Factory" class="extype" href="../client/GDataRequest$$Factory.html">Factory</a></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">A factory for GData requests.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>A factory for GData requests.</p></div><div class="block">
+          attributes: protected 
+        </div><div class="block">
+          definition classes: <a name="com.google.gdata.Service" class="extype" href="../Service.html">Service</a>
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.Service#setUserCredentials" data-isabs="false">
+      <a id="setUserCredentials(String,String,String,String):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">setUserCredentials</span>
+        
+        <span class="params">(<span name="username">
+                  username
+                  : String
+                  
+                </span>, <span name="passwd">
+                  passwd
+                  : String
+                  
+                </span>, <span name="cToken">
+                  cToken
+                  : String
+                  
+                </span>, <span name="cAnswer">
+                  cAnswer
+                  : String
+                  
+                </span>)</span>
+        <span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Set user credentials and captcha challenge.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Set user credentials and captcha challenge.</p></div><div class="block">
+          definition classes: <a name="com.google.gdata.Service" class="extype" href="../Service.html">Service</a>
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.Service#setUserCredentials" data-isabs="false">
+      <a id="setUserCredentials(String,String):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">setUserCredentials</span>
+        
+        <span class="params">(<span name="username">
+                  username
+                  : String
+                  
+                </span>, <span name="passwd">
+                  passwd
+                  : String
+                  
+                </span>)</span>
+        <span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Set user credentials.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Set user credentials.</p></div><div class="block">
+          definition classes: <a name="com.google.gdata.Service" class="extype" href="../Service.html">Service</a>
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#synchronized" data-isabs="false">
+      <a id="synchronized[T0](⇒ T0):T0"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">synchronized</span>
+        <span class="tparams">[<span name="T0">T0</span>]</span>
+        <span class="params">(<span name="arg0">
+                  arg0
+                  : ⇒ T0
+                  
+                </span>)</span>
+        <span class="result">: T0</span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div></div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#toString" data-isabs="false">
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">toString</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span name="java.lang.String" class="extype">String</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Returns a string representation of the object.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Returns a string representation of the object.</p><p>The default representation is platform dependent.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a string representation of the object.</p></dd></dl><div class="block">
+          definition classes: AnyRef → Any
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.Service#update" data-isabs="false">
+      <a id="update[A](URL,A,Pickler[A]):A"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">update</span>
+        <span class="tparams">[<span name="A">A</span>]</span>
+        <span class="params">(<span name="url">
+                  url
+                  : <span name="java.net.URL" class="extype">URL</span>
+                  
+                </span>, <span name="v">
+                  v
+                  : A
+                  
+                </span>, <span name="pa">
+                  pa
+                  : <a name="com.google.xml.combinators.Picklers.Pickler" class="extype" href="../../xml/combinators/Picklers$$Pickler.html">Pickler</a>[A]
+                  
+                </span>)</span>
+        <span class="result">: A</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">PUT the given value to the given URL.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>PUT the given value to the given URL. The given url should exactly match the
+it of the entry that is updated.
+</p></div><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: <a name="com.google.gdata.Service" class="extype" href="../Service.html">Service</a>
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.calendar.CalendarService#updateCalendar" data-isabs="false">
+      <a id="updateCalendar(Entry):Entry"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">updateCalendar</span>
+        
+        <span class="params">(<span name="c">
+                  c
+                  : Entry
+                  
+                </span>)</span>
+        <span class="result">: Entry</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Update the given calendar subscription.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Update the given calendar subscription. The entry should have a link with a 'rel'
+field set to 'edit'. This method will connect to that link and issue an update request.
+Returns the updated calendar entry.
+</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.calendar.CalendarService#updateCalendar" data-isabs="false">
+      <a id="updateCalendar(URL,Entry):Entry"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">updateCalendar</span>
+        
+        <span class="params">(<span name="url">
+                  url
+                  : <span name="java.net.URL" class="extype">URL</span>
+                  
+                </span>, <span name="c">
+                  c
+                  : Entry
+                  
+                </span>)</span>
+        <span class="result">: Entry</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Update the given calendar subscription.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Update the given calendar subscription.
+</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.calendar.CalendarService#updateEvent" data-isabs="false">
+      <a id="updateEvent(URL,Entry):Entry"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">updateEvent</span>
+        
+        <span class="params">(<span name="url">
+                  url
+                  : <span name="java.net.URL" class="extype">URL</span>
+                  
+                </span>, <span name="e">
+                  e
+                  : Entry
+                  
+                </span>)</span>
+        <span class="result">: Entry</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Update the given event on the server.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Update the given event on the server. Returns the updated event, as returned by
+the server.
+</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="com.google.gdata.calendar.CalendarService#updateEvent" data-isabs="false">
+      <a id="updateEvent(Entry):Entry"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">updateEvent</span>
+        
+        <span class="params">(<span name="e">
+                  e
+                  : Entry
+                  
+                </span>)</span>
+        <span class="result">: Entry</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Update the given event on the server.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Update the given event on the server. Returns the updated event, as returned by
+the server. The given event should have a link with a 'rel' field set to 'edit'.
+This method will connect to that link and issue an update request.
+</p></div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="prt" name="com.google.gdata.Service#user" data-isabs="false">
+      <a id="user:Option[String]"></a>
+      <h4 class="signature">
+      <span class="kind">var</span>
+      <span class="symbol">
+        <span class="name">user</span>
+        
+        
+        <span class="result">: <span name="scala.Option" class="extype">Option</span>[String]</span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: protected 
+        </div><div class="block">
+          definition classes: <a name="com.google.gdata.Service" class="extype" href="../Service.html">Service</a>
+        </div></div>
+          
+    </li><li visbl="pub" name="com.google.gdata.Service#username" data-isabs="false">
+      <a id="username:Option[String]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">username</span>
+        
+        
+        <span class="result">: <span name="scala.Option" class="extype">Option</span>[String]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Retrieve the current username.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Retrieve the current username.</p></div><div class="block">
+          definition classes: <a name="com.google.gdata.Service" class="extype" href="../Service.html">Service</a>
+        </div>
+            
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#wait" data-isabs="false">
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">wait</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div><div class="block">
+          annotations: 
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </div></div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#wait" data-isabs="false">
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">wait</span>
+        
+        <span class="params">(<span name="arg0">
+                  arg0
+                  : <span name="scala.Long" class="extype">Long</span>
+                  
+                </span>, <span name="arg1">
+                  arg1
+                  : <span name="scala.Int" class="extype">Int</span>
+                  
+                </span>)</span>
+        <span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div><div class="block">
+          annotations: 
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </div></div>
+          
+    </li><li visbl="pub" name="scala.AnyRef#wait" data-isabs="false">
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">wait</span>
+        
+        <span class="params">(<span name="arg0">
+                  arg0
+                  : <span name="scala.Long" class="extype">Long</span>
+                  
+                </span>)</span>
+        <span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div><div class="block">
+          annotations: 
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </div></div>
+          
+    </li></ol>
+            </div>
+
+        <div name="com.google.gdata.Service" class="parent">
+              <h3>Inherited from <a name="com.google.gdata.Service" class="extype" href="../Service.html">Service</a></h3>
+            </div><div name="scala.AnyRef" class="parent">
+              <h3>Inherited from AnyRef</h3>
+            </div><div name="scala.Any" class="parent">
+              <h3>Inherited from <span name="scala.Any" class="extype">Any</span></h3>
+            </div>
+
+      </div>
+      
+      <div id="tooltip"></div>
+      
+    </body>
+      </html>

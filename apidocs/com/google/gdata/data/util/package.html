@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>com.google.gdata.data.util</title>
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link type="text/css" media="screen" rel="stylesheet" href="../../../../../lib/template.css" />
+      <script type="text/javascript" src="../../../../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../../lib/tools.tooltip.js"></script>
+    
+        </head>
+        <body onload="windowTitle();" class="value">
+
+      <p id="owner"><a name="com" class="extype" href="../../../../package.html">com</a>.<a name="com.google" class="extype" href="../../../package.html">google</a>.<a name="com.google.gdata" class="extype" href="../../package.html">gdata</a>.<a name="com.google.gdata.data" class="extype" href="../package.html">data</a></p>
+
+      <div id="definition">
+        <img src="../../../../../lib/package_big.png" />
+        <h1>util</h1>
+      </div>
+
+      <h4 class="signature" id="signature">
+      <span class="kind">package</span>
+      <span class="symbol">
+        <span class="name">util</span>
+        
+        
+        
+      </span>
+      </h4>
+      
+          
+          <div class="fullcomment" id="comment"></div>
+        
+
+      <div id="template">
+
+        <div id="mbrsel">
+          <div id="textfilter"><span class="pre"></span><span class="input"><input accesskey="/" type="text" /></span><span class="post"></span></div>
+          
+          
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in">Public</li><li class="all out">All</li></ol>
+            </div>
+          <div id="impl">
+              <span class="filtertype">Impl.</span>
+              <ol><li class="concrete in">Concrete</li><li class="abstract in">Abstract</li></ol>
+            </div>
+        </div>
+
+        
+
+        <div class="types members" id="types">
+              <h3>Type Members</h3>
+              <ol><li visbl="pub" name="com.google.gdata.data.util.DateTime" data-isabs="false">
+      <a id="DateTime:DateTime"></a>
+      <h4 class="signature"><a href="DateTime.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">DateTime</span>
+        
+        
+        <span class="result"> extends Ordered[DateTime]</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Simple class to represent Date/Time.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.util.NormalPlayTime" data-isabs="true">
+      <a id="NormalPlayTime:NormalPlayTime"></a>
+      <h4 class="signature"><a href="NormalPlayTime.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">NormalPlayTime</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A class for representing normal play times, as defined by RFC 2326.</p>
+    </li><li visbl="pub" name="com.google.gdata.data.util.SpecificTime" data-isabs="false">
+      <a id="SpecificTime:SpecificTime"></a>
+      <h4 class="signature"><a href="SpecificTime.html">
+      <span class="kind">case class</span>
+      <span class="symbol">
+        <span class="name">SpecificTime</span>
+        
+        <span class="params">(<span name="hour">
+                  hour
+                  : Int
+                  
+                </span>, <span name="minute">
+                  minute
+                  : Int
+                  
+                </span>, <span name="seconds">
+                  seconds
+                  : Int
+                  
+                </span>, <span name="millis">
+                  millis
+                  : Int
+                  
+                </span>)</span>
+        <span class="result"> extends NormalPlayTime with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">A fixed time offset.</p>
+    </li></ol>
+            </div>
+
+        <div class="values members" id="values">
+              <h3>Value Members</h3>
+              <ol><li visbl="pub" name="com.google.gdata.data.util.DateParser" data-isabs="false">
+      <a id="DateParser:DateParser"></a>
+      <h4 class="signature"><a href="DateParser$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">DateParser</span>
+        
+        
+        <span class="result"> extends Parsers with ImplicitConversions</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Parse a date that follows RFC 3339 (used by the Atom spec)
+</p>
+    </li><li visbl="pub" name="com.google.gdata.data.util.DateTime" data-isabs="false">
+      <a id="DateTime:DateTime"></a>
+      <h4 class="signature"><a href="DateTime$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">DateTime</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.util.NormalPlayTime" data-isabs="false">
+      <a id="NormalPlayTime:NormalPlayTime"></a>
+      <h4 class="signature"><a href="NormalPlayTime$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">NormalPlayTime</span>
+        
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="com.google.gdata.data.util.Now" data-isabs="false">
+      <a id="Now:Now"></a>
+      <h4 class="signature"><a href="Now$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Now</span>
+        
+        
+        <span class="result"> extends NormalPlayTime with Product with Serializable</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">The specially designated time instant 'now'.</p>
+    </li></ol>
+            </div>
+
+        
+
+      </div>
+      
+      <div id="tooltip"></div>
+      
+    </body>
+      </html>
